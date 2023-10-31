@@ -1,3 +1,63 @@
+# Chain-of-Thought Workflow Engine
+
+This project is an open-source Chain-of-Thought (CoT) workflow engine that parses and executes a CoT workflow. It processes each node in the workflow by executing the associated LLM (Language Learning Model) tasks and determines the subsequent path based on the LLM's output in conditional nodes.
+
+## Features
+
+- Parses and executes a Chain-of-Thought workflow
+- Executes LLM tasks for each node in the workflow
+- Determines the subsequent path in conditional nodes based on LLM's output
+- Caches output variables for use in later nodes
+- Supports input parameters from files and output variables
+- Outputs results to files or caches them as variables
+
+## Usage
+
+To use the CoT workflow engine, you need to provide a JSON configuration file that defines the workflow and an LLM string for the language learning model.
+
+### Example
+
+```python
+llm_string = "AIVertical_short"
+cot_config_path = "../data/workflows/Ads/marketing_plan.json"
+process_cot(cot_config_path, llm_string)
+```
+
+## Configuration
+
+The workflow configuration file is a JSON file that defines the nodes and their properties. Each node has a unique ID, a type (either 'executor' or 'decision_maker'), input parameters, and output properties.
+
+### Node Types
+
+- **Executor**: Executes an LLM task and stores the output in a variable or a file.
+- **DecisionMaker**: Evaluates a condition based on the LLM's output and determines the subsequent path in the workflow.
+
+### Input Parameters
+
+Input parameters can be of the following types:
+
+- **output_variable**: A variable that holds the output of a previous node.
+- **prompt_template**: A file that contains a template for the LLM task.
+- **prompt_parameters**: A file that contains parameters for the LLM task.
+
+### Output Properties
+
+Output properties define how the output of a node should be stored. They can be of the following types:
+
+- **variable**: Stores the output in a variable for use in later nodes.
+- **file**: Stores the output in a file.
+
+## Dependencies
+
+To use this project, you need to have the following dependencies installed:
+
+- Python 3.10 or higher
+- `utils` module for LLM configuration and GPT processing
+
+## License
+
+This project is open-source and available under the [MIT License](https://opensource.org/licenses/MIT).
+
 # Project
 
 > This repo has been populated by an initial template to help get you started. Please
