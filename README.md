@@ -11,6 +11,21 @@ This project is an open-source Chain-of-Thought (CoT) workflow engine that parse
 - Supports input parameters from files and output variables
 - Outputs results to files or caches them as variables
 
+## Dependencies
+
+To use this project, you need to have the following dependencies installed:
+
+- Python 3.10 or higher
+
+- Run
+	```
+	pip install -r requirements.txt 
+	```
+  before run the cot_engine.py
+
+- `utils` module for LLM configuration and GPT processing
+
+
 ## Usage
 
 To use the CoT workflow engine, you need to provide a JSON configuration file that defines the workflow and an LLM string for the language learning model.
@@ -49,12 +64,6 @@ Output properties define how the output of a node should be stored. They can be 
 - **variable**: Stores the output in a variable for use in later nodes.
 - **file**: Stores the output in a file.
 
-## Dependencies
-
-To use this project, you need to have the following dependencies installed:
-
-- Python 3.10 or higher
-- `utils` module for LLM configuration and GPT processing
 
 ## License
 
