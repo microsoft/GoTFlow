@@ -20,17 +20,6 @@
   "interval": 60,
   "capacity": 32768
 }},
-{"id": "viding",
-  "config":{
-  "key_path": "../config/openai_key_viding.txt",
-  "api_type": "azure",
-  "api_base": "https://rg-gpt4.openai.azure.com/",
-  "api_version": "2023-05-15",
-  "engine": "gpt4",
-  "max_token": 1000,
-  "interval": 10,
-  "capacity": 8192
-}},
 {"id": "embedding",
   "config":{
   "key_path": "../config/openai_key.txt",
@@ -39,15 +28,6 @@
   "api_version": "2022-12-01",
   "engine": "textembeddingada002",
   "interval": 60
-}},
-{"id": "embedding_viding",
-  "config":{
-  "key_path": "../config/openai_key_viding.txt",
-  "api_type": "azure",
-  "api_base": "https://rg-gpt4.openai.azure.com/",
-  "api_version": "2022-12-01",
-  "engine": "emada",
-  "interval": 10
 }},
 {"id": "AIVertical_short_new",
   "config":{

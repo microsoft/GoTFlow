@@ -140,7 +140,7 @@ def process_node(node, output_dir):
 
     node_type = node['type']
     next_nodes_ids = None
-    llm_string = "viding"
+    llm_string = "AIVertical_short"
 
     if node_type == 'executor':
         executor = Executor(node, llm_string)
