@@ -1,4 +1,4 @@
-# Chain-of-Thought Workflow Engine
+# CoTFlow: Chain-of-Thought Workflow Engine
 
 This project is an open-source Chain-of-Thought (CoT) workflow engine that parses and executes a CoT workflow. It processes each node in the workflow by executing the associated LLM (Language Learning Model) tasks and determines the subsequent path based on the LLM's output in conditional nodes.
 
