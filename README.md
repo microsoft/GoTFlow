@@ -23,6 +23,8 @@ cot_config_path = "../data/workflows/Ads/marketing_plan.json"
 process_cot(cot_config_path, llm_string)
 ```
 
+PS: The workflow defined in data/workflows/Ads/marketing_plan.json has been visulized in images/workflows/marketing_plan_flowchart.jpg.
+
 ## Configuration
 
 The workflow configuration file is a JSON file that defines the nodes and their properties. Each node has a unique ID, a type (either 'executor' or 'decision_maker'), input parameters, and output properties.
