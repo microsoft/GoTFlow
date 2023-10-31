@@ -6,6 +6,7 @@ from utils import get_llm_config, gpt_process_loops
 output_cache = {}
 node_cache = {}
 
+
 class Executor:
     def __init__(self, node, llm_string, loops=3):
         self.node = node
@@ -136,11 +137,10 @@ class DecisionMaker(Executor):
         return []  # return an empty list if no matching path is found
 
 
-def process_node(node, output_dir):
+def process_node(node, llm_string, output_dir):
 
     node_type = node['type']
     next_nodes_ids = None
-    llm_string = "AIVertical_short"
 
     if node_type == 'executor':
         executor = Executor(node, llm_string)
@@ -155,7 +155,7 @@ def process_node(node, output_dir):
     return next_nodes_ids
 
 
-def process_cot(cot_config_path, output_dir="../output"):
+def process_cot(cot_config_path, llm_string, output_dir="../output"):
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
@@ -172,9 +172,10 @@ def process_cot(cot_config_path, output_dir="../output"):
     while next_nodes_ids:
         current_node_id = next_nodes_ids.pop(0)
         current_node = node_cache[current_node_id]
-        next_nodes_ids.extend(node_id for node_id in process_node(current_node, output_dir))
+        next_nodes_ids.extend(node_id for node_id in process_node(current_node, llm_string, output_dir))
 
 
 if __name__ == "__main__":
+    llm_string = "AIVertical_short"
     cot_config_path = "../data/workflows/Ads/marketing_plan.json"
-    process_cot(cot_config_path)
+    process_cot(cot_config_path, llm_string)
