@@ -7,7 +7,7 @@
       {
         "name": "prompt_template_file_path",
         "type": "prompt_template",
-        "file_path": "../config/prompts/sum_data_reader.txt"
+        "file_path": "../data/prompts/sum_data_reader.txt"
       },
       {
         "name": "input_parameter_file_path",
@@ -29,7 +29,7 @@
       {
         "name": "prompt_template_file_path",
         "type": "prompt_template",
-        "file_path": "../config/prompts/sum_data_feature_determine.txt"
+        "file_path": "../data/prompts/sum_data_feature_determine.txt"
       },
       {
         "name": "data_reader_output",
@@ -68,7 +68,7 @@
       {
         "name": "prompt_template_file_path",
         "type": "prompt_template",
-        "file_path": "../config/prompts/sum_trend_miner.txt"
+        "file_path": "../data/prompts/sum_trend_miner.txt"
       },
       {
         "name": "input_parameter_file_path",
@@ -94,7 +94,7 @@
       {
         "name": "prompt_template_file_path",
         "type": "prompt_template",
-        "file_path": "../config/prompts/sum_quantity_analysis.txt"
+        "file_path": "../data/prompts/sum_quantity_analysis.txt"
       },
       {
         "name": "input_parameter_file_path",
@@ -120,7 +120,7 @@
       {
         "name": "prompt_template_file_path",
         "type": "prompt_template",
-        "file_path": "../config/prompts/sum_quality_analysis_1.txt"
+        "file_path": "../data/prompts/sum_quality_analysis_1.txt"
       },
       {
         "name": "input_parameter_file_path",
@@ -146,7 +146,7 @@
       {
         "name": "prompt_template_file_path",
         "type": "prompt_template",
-        "file_path": "../config/prompts/sum_quality_analysis_2.txt"
+        "file_path": "../data/prompts/sum_quality_analysis_2.txt"
       },
       {
         "name": "input_parameter_file_path",
