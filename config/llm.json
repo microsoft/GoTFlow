@@ -1,4 +1,4 @@
-[{"id": "AIVertical_short",
+[{"id": "llm_short",
 "config":{
   "key_path": "../config/openai_key.txt",
   "api_type": "azure",
@@ -9,7 +9,7 @@
   "interval": 60,
   "capacity": 8192
 }},
-{"id": "AIVertical_long",
+{"id": "llm_long",
 "config":{
   "key_path": "../config/openai_key.txt",
   "api_type": "azure",
@@ -19,45 +19,5 @@
   "max_token": 1500,
   "interval": 60,
   "capacity": 32768
-}},
-{"id": "embedding",
-  "config":{
-  "key_path": "../config/openai_key.txt",
-  "api_type": "azure",
-  "api_base": "https://avidemo0.openai.azure.com/",
-  "api_version": "2022-12-01",
-  "engine": "textembeddingada002",
-  "interval": 60
-}},
-{"id": "AIVertical_short_new",
-  "config":{
-  "key_path": "../config/openai_key_new.txt",
-  "api_type": "azure",
-  "api_base": "https://apiforaigccourse.openai.azure.com/",
-  "api_version": "2023-03-15-preview",
-  "engine": "gpt4",
-  "max_token": 1000,
-  "interval": 10,
-  "capacity": 8192
-}},
-  {"id": "AIVertical_long_new",
-  "config":{
-  "key_path": "../config/openai_key_new.txt",
-  "api_type": "azure",
-  "api_base": "https://apiforaigccourse.openai.azure.com/",
-  "api_version": "2023-03-15-preview",
-  "engine": "gpt432k",
-  "max_token": 1000,
-  "interval": 10,
-  "capacity": 32768
-}},
-{"id": "embedding_new",
-  "config":{
-  "key_path": "../config/openai_key_new.txt",
-  "api_type": "azure",
-  "api_base": "https://apiforaigccourse.openai.azure.com/",
-  "api_version": "2022-12-01",
-  "engine": "textembeddingada002",
-  "interval": 60
 }}
 ]

@@ -186,6 +186,6 @@ if __name__ == "__main__":
     llm_string = args.llm_string  # This will be an empty string if --llm_string is not provided
 
     if not llm_string:
-        llm_string = "AIVertical_short"
+        llm_string = "llm_short"
 
     process_cot(workflow_file_path, llm_string)
