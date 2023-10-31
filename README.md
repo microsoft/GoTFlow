@@ -32,10 +32,8 @@ To use the CoT workflow engine, you need to provide a JSON configuration file th
 
 ### Example
 
-```python
-llm_string = "AIVertical_short"
-cot_config_path = "../data/workflows/Ads/marketing_plan.json"
-process_cot(cot_config_path, llm_string)
+```
+python cot_engine.py "../data/workflows/Ads/marketing_plan.json" --llm_string="AIVertical_short"
 ```
 
 PS: The workflow defined in data/workflows/Ads/marketing_plan.json has been visulized in images/workflows/marketing_plan_flowchart.jpg.

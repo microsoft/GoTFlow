@@ -1,5 +1,6 @@
 import json
 import os.path
+import argparse
 
 from utils import get_llm_config, gpt_process_loops
 
@@ -176,6 +177,15 @@ def process_cot(cot_config_path, llm_string, output_dir="../output"):
 
 
 if __name__ == "__main__":
-    llm_string = "AIVertical_short"
-    cot_config_path = "../data/workflows/Ads/marketing_plan.json"
-    process_cot(cot_config_path, llm_string)
+    parser = argparse.ArgumentParser(description='Process a workflow based on a configuration file.')
+    parser.add_argument('workflow_file_path', help='The path to the workflow configuration file.')
+    parser.add_argument('--llm_string', default='', help='Optional string for the llm.')
+
+    args = parser.parse_args()
+    workflow_file_path = args.workflow_file_path
+    llm_string = args.llm_string  # This will be an empty string if --llm_string is not provided
+
+    if not llm_string:
+        llm_string = "AIVertical_short"
+
+    process_cot(workflow_file_path, llm_string)
