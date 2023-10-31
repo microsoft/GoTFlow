@@ -1,0 +1,167 @@
+[
+  {
+    "id": "data_reader",
+    "description": "read data from the result of task_a",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../config/prompts/sum_data_reader.txt"
+      },
+      {
+        "name": "input_parameter_file_path",
+        "type": "prompt_parameters",
+        "file_path": "../data/raw_text/Ads/summary_gen/marketvolume.json"
+      }
+    ],
+    "output": {
+      "type": "variable",
+      "name": "data_reader_output"
+    },
+    "next_nodes": ["determine_data_feature"]
+  },
+  {
+    "id": "determine_data_feature",
+    "description": "",
+    "type": "decision_maker",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../config/prompts/sum_data_feature_determine.txt"
+      },
+      {
+        "name": "data_reader_output",
+        "type": "output_variable"
+      }
+    ],
+    "output": {
+      "type": "variable",
+      "name":  "is_quantitative_data"
+    },
+    "condition": {
+      "is_composed": false,
+      "data_source": {
+        "type": "output_variable",
+        "name": "is_quantitative_data"
+      },
+      "operator": "equal",
+      "operand": "yes"
+    },
+    "forward_paths": [
+      {
+        "condition_result": true,
+        "next_nodes": ["data_trend_miner"]
+      },
+      {
+        "condition_result": false,
+        "next_nodes": ["qualitative_analysis_1", "qualitative_analysis_2"]
+      }
+    ]
+  },
+  {
+    "id": "data_trend_miner",
+    "description": "",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../config/prompts/sum_trend_miner.txt"
+      },
+      {
+        "name": "input_parameter_file_path",
+        "type": "prompt_parameters",
+        "file_path": "../data/raw_text/Ads/summary_gen/marketvolume.json"
+      },
+      {
+        "name": "data_reader_output",
+        "type": "output_variable"
+      }
+    ],
+    "output": {
+      "type": "variable",
+      "name":  "data_trend_miner_output"
+    },
+    "next_nodes": ["quantitative_analysis"]
+  },
+  {
+    "id": "quantitative_analysis",
+    "description": "",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../config/prompts/sum_quantity_analysis.txt"
+      },
+      {
+        "name": "input_parameter_file_path",
+        "type": "prompt_parameters",
+        "file_path": "../data/raw_text/Ads/summary_gen/marketvolume.json"
+      },
+      {
+        "name": "data_trend_miner_output",
+        "type": "output_variable"
+      }
+    ],
+    "output": {
+      "type": "file",
+      "name":  "quantitative_analysis_output.txt"
+    },
+    "next_nodes": []
+  },
+  {
+    "id": "qualitative_analysis_1",
+    "description": "",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../config/prompts/sum_quality_analysis_1.txt"
+      },
+      {
+        "name": "input_parameter_file_path",
+        "type": "prompt_parameters",
+        "file_path": "../data/raw_text/Ads/summary_gen/marketvolume.json"
+      },
+      {
+        "name": "data_reader_output",
+        "type": "output_variable"
+      }
+    ],
+    "output": {
+      "type": "file",
+      "name":  "qualitative_analysis_1_output.txt"
+    },
+    "next_nodes": []
+  },
+  {
+    "id": "qualitative_analysis_2",
+    "description": "",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../config/prompts/sum_quality_analysis_2.txt"
+      },
+      {
+        "name": "input_parameter_file_path",
+        "type": "prompt_parameters",
+        "file_path": "../data/raw_text/Ads/summary_gen/marketvolume.json"
+      },
+      {
+        "name": "data_reader_output",
+        "type": "output_variable"
+      }
+    ],
+    "output": {
+      "type": "file",
+      "name":  "qualitative_analysis_2_output.txt"
+    },
+    "next_nodes": []
+  }
+]

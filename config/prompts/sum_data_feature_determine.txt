@@ -1,0 +1,8 @@
+我是一家${organization}的${role}，我现在要为我的一位${customer}客户提供一份${report}。
+下面两个“---”之间是${goal}的${target}信息，两个“***”之间其中的数据部分，请判断能否基于原始信息和其中数据对${target}进行定量分析，如果可以，请输入“yes”，否则请输出“no”：
+---
+${content}
+---
+***
+${data_reader_output}
+***

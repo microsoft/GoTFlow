@@ -396,3 +396,9 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+__pycache__
+.idea
+venv
+config/openai_key*
+logs/*.log
+output/*

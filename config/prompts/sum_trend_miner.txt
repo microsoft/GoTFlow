@@ -1,0 +1,8 @@
+我是一家${organization}的${role}，我现在要为我的一位${customer}客户提供一份${report}。
+下面两个“---”之间是${goal}的${target}信息，而两个“***”之间的是该信息的数据部分，请根据原始信息及其数据部分的提炼，给出${target}信息的趋势总结：
+---
+${content}
+---
+***
+${data_reader_output}
+***

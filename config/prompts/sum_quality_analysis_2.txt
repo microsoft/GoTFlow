@@ -1,0 +1,8 @@
+我是一家${organization}的${role}，我现在要为我的一位${customer}客户提供一份${report}。
+下面两个“---”之间是${goal}的${target}信息，而两个“***”之间的是基于该信息中的数据部分。请回答这一问题：如果将原始信息作为一个原因，那么会造成${target}相关的哪些结果？：
+---
+${content}
+---
+***
+${data_reader_output}
+***
