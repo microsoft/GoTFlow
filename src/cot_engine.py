@@ -176,5 +176,5 @@ def process_cot(cot_config_path, output_dir="../output"):
 
 
 if __name__ == "__main__":
-    cot_config_path = "../data/workflow_conf/Ads/marketing_plan.json"
+    cot_config_path = "../data/workflows/Ads/marketing_plan.json"
     process_cot(cot_config_path)
