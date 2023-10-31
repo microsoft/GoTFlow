@@ -31,8 +31,10 @@ To use this project, you need to have the following dependencies installed:
 To use the CoT workflow engine, you need to provide a JSON configuration file that defines the workflow and an LLM string for the language learning model.
 
 ### Example
-
 ```
+cd src
+```
+``` 
 python cot_engine.py "../data/workflows/Ads/marketing_plan.json" --llm_string "AIVertical_short"
 ```
 
