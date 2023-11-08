@@ -8,26 +8,7 @@ class Executor:
         self.llm_config = get_llm_config(llm_string)
         self.loops = loops
 
-    def get_value(self, parameter, output_cache):
-        name = parameter["name"]
-        type = parameter["type"]
-        if type == "output_variable":
-            if not name in output_cache:
-                print(f"Error: the value of {name} has not been cached in output_cache.")
-            else:
-                value = output_cache[name]
-                return value
-        elif type == "prompt_template" or type == "prompt_parameters":
-            file_path = parameter["file_path"]
-            if not file_path:
-                print(f"Error: the file_path of {name} doesn't exist.")
-            with open(file_path, 'r', encoding="utf-8") as file:
-                value = file.read()
-                return value
-
-        return None
-
-    def execute(self, output_dir, output_cache):
+    def execute(self, output_dir, parameter_cache, output_cache):
         # Here you would put the code to execute the task defined by this node
         print(f"[Node Id]: {self.node['id']}")
 
@@ -35,15 +16,21 @@ class Executor:
         parameter_value_dict = {}
 
         for parameter in self.node["input_parameters"]:
-            p_value = self.get_value(parameter, output_cache)
+            name = parameter["name"]
             if parameter["type"] == "prompt_template":
-                prompt_template += p_value
+                file_path = parameter["file_path"]
+                if not file_path:
+                    print(f"Error: the file_path of {name} doesn't exist.")
+                with open(file_path, 'r', encoding="utf-8") as file:
+                    prompt_template += file.read()
             elif parameter["type"] == "prompt_parameters":
-                json_obj = json.loads(p_value)
-                for key, value in json_obj.items():
+                for key, value in parameter_cache.items():
                     parameter_value_dict[key] = value
             elif parameter["type"] == "output_variable":
-                parameter_value_dict[parameter["name"]] = p_value
+                if not name in output_cache:
+                    print(f"Error: the value of {name} has not been cached in output_cache.")
+                else:
+                    parameter_value_dict[parameter["name"]] = output_cache[name]
 
         if not prompt_template:
             print("Error: There is no prompt template.")
@@ -76,10 +63,19 @@ class DecisionMaker(Executor):
         self.llm_config = get_llm_config(llm_string)
         self.loops = loops
 
-    def evaluate_simple_condition(self, condition, output_cache):
+    def evaluate_simple_condition(self, condition, parameter_cache, output_cache):
         operator = condition['operator']
         operand = condition['operand']
-        value = self.get_value(condition['data_source'], output_cache)
+        value = None
+        data_source = condition['data_source']
+        name = data_source['name']
+        if data_source['type'] == "output_variable":
+            value = output_cache[name]
+        elif data_source['type'] == "input_parameter_file_path":
+            value = parameter_cache[name]
+
+        if not value:
+            raise ValueError(f'Unknown value of {name}')
 
         if operator == 'equal':
             return value == operand
@@ -96,10 +92,10 @@ class DecisionMaker(Executor):
         else:
             raise ValueError(f'Unknown operator: {operator}')
 
-    def evaluate_condition(self, condition, output_cache):
+    def evaluate_condition(self, condition, parameter_cache, output_cache):
         if condition['is_composed']:
             sub_conditions_results = [
-                self.evaluate_condition(sub_condition, output_cache)
+                self.evaluate_condition(sub_condition, parameter_cache, output_cache)
                 for sub_condition in condition['sub_conditions']
             ]
             relation = condition['relation']
@@ -113,13 +109,13 @@ class DecisionMaker(Executor):
             else:
                 raise ValueError(f'Unknown relation: {relation}')
         else:
-            return self.evaluate_simple_condition(condition, output_cache)
+            return self.evaluate_simple_condition(condition, parameter_cache, output_cache)
 
-    def decide(self, output_cache):
+    def decide(self, parameter_cache, output_cache):
         # Here you would put the code to make the decision defined by this node
         print(f"")
         condition = self.node["condition"]
-        condition_result = self.evaluate_condition(condition, output_cache)
+        condition_result = self.evaluate_condition(condition, parameter_cache, output_cache)
         print(f"{self.node['id']}: determine next node based on the condition result: {condition_result}\n")
         # For simplicity, return the first path in this example
         return condition_result

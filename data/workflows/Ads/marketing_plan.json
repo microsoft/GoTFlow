@@ -11,8 +11,7 @@
       },
       {
         "name": "input_parameter_file_path",
-        "type": "prompt_parameters",
-        "file_path": "../data/parameters/Ads/summary_gen/marketvolume.json"
+        "type": "prompt_parameters"
       }
     ],
     "output": {
@@ -30,6 +29,10 @@
         "name": "prompt_template_file_path",
         "type": "prompt_template",
         "file_path": "../data/prompts/sum_data_feature_determine.txt"
+      },
+      {
+        "name": "input_parameter_file_path",
+        "type": "prompt_parameters"
       },
       {
         "name": "data_reader_output",
@@ -72,8 +75,7 @@
       },
       {
         "name": "input_parameter_file_path",
-        "type": "prompt_parameters",
-        "file_path": "../data/parameters/Ads/summary_gen/marketvolume.json"
+        "type": "prompt_parameters"
       },
       {
         "name": "data_reader_output",
@@ -98,8 +100,7 @@
       },
       {
         "name": "input_parameter_file_path",
-        "type": "prompt_parameters",
-        "file_path": "../data/parameters/Ads/summary_gen/marketvolume.json"
+        "type": "prompt_parameters"
       },
       {
         "name": "data_trend_miner_output",
@@ -124,8 +125,7 @@
       },
       {
         "name": "input_parameter_file_path",
-        "type": "prompt_parameters",
-        "file_path": "../data/parameters/Ads/summary_gen/marketvolume.json"
+        "type": "prompt_parameters"
       },
       {
         "name": "data_reader_output",
@@ -150,8 +150,7 @@
       },
       {
         "name": "input_parameter_file_path",
-        "type": "prompt_parameters",
-        "file_path": "../data/parameters/Ads/summary_gen/marketvolume.json"
+        "type": "prompt_parameters"
       },
       {
         "name": "data_reader_output",
