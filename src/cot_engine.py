@@ -6,8 +6,8 @@ from flow_nodes import Executor, DecisionMaker
 
 output_cache = {}
 
-def process_node(node, llm_string, parameter_cache, output_dir):
 
+def process_node(node, llm_string, parameter_cache, output_dir):
     node_type = node['type']
     next_nodes_ids = None
 
