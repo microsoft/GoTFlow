@@ -1,10 +1,12 @@
-# CoTFlow: Chain-of-Thought Workflow Engine
+# GoTFlow: Graph-of-Thought Workflow Engine
 
-This project is an open-source Chain-of-Thought (CoT) workflow engine that parses and executes a CoT workflow. It processes each node in the workflow by executing the associated LLM (Language Learning Model) tasks and determines the subsequent path based on the LLM's output in conditional nodes.
+This project is an open-source Graph-of-Thought (GoT) workflow engine that parses and executes a GoT workflow. It processes each node in the workflow by executing the associated LLM (Language Learning Model) tasks and determines the subsequent path based on the LLM's output in conditional nodes.
+
+The example of this project is provided by Xiaoxu Wang (xiaoxuwang1996@gmail.com) and Jianing Fan (cc.fanjianing@gmail.com). Thanks a lot for our friends Xiaoxu and Jianing.
 
 ## Features
 
-- Parses and executes a Chain-of-Thought workflow
+- Parses and executes a Graph-of-Thought workflow
 - Executes LLM tasks for each node in the workflow
 - Determines the subsequent path in conditional nodes based on LLM's output
 - Caches output variables for use in later nodes
@@ -28,7 +30,7 @@ To use this project, you need to have the following dependencies installed:
 
 ## Usage
 
-To use the CoT workflow engine, you need to provide a JSON configuration file that defines the workflow and an LLM string for the language learning model.
+To use the GoT workflow engine, you need to provide a JSON configuration file that defines the workflow and an LLM string for the language learning model.
 
 ### Example
 ```
