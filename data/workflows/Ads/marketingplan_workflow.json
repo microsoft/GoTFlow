@@ -1,4 +1,12 @@
-[
+{
+  "output_dir_path": "../data/workflows/Ads/output",
+  "input_parameters":[
+    {
+            "suffix": "trend",
+            "file_path": "../data/workflows/Ads/input/parameters/trend.json"
+    }
+  ],
+  "flow_items": [
   {
     "id": "data_reader",
     "description": "read data from the result of task_a",
@@ -14,10 +22,10 @@
         "type": "prompt_parameters"
       }
     ],
-    "output": {
+    "output": [{
       "type": "variable",
       "name": "data_reader_output"
-    },
+    }],
     "next_nodes": ["determine_data_feature"]
   },
   {
@@ -39,10 +47,10 @@
         "type": "output_variable"
       }
     ],
-    "output": {
+    "output": [{
       "type": "variable",
       "name":  "is_quantitative_data"
-    },
+    }],
     "condition": {
       "is_composed": false,
       "data_source": {
@@ -82,10 +90,10 @@
         "type": "output_variable"
       }
     ],
-    "output": {
+    "output": [{
       "type": "variable",
       "name":  "data_trend_miner_output"
-    },
+    }],
     "next_nodes": ["quantitative_analysis"]
   },
   {
@@ -107,10 +115,10 @@
         "type": "output_variable"
       }
     ],
-    "output": {
+    "output": [{
       "type": "file",
       "name":  "quantitative_analysis_output.txt"
-    },
+    }],
     "next_nodes": []
   },
   {
@@ -132,10 +140,10 @@
         "type": "output_variable"
       }
     ],
-    "output": {
+    "output": [{
       "type": "file",
       "name":  "qualitative_analysis_1_output.txt"
-    },
+    }],
     "next_nodes": []
   },
   {
@@ -157,10 +165,11 @@
         "type": "output_variable"
       }
     ],
-    "output": {
+    "output": [{
       "type": "file",
       "name":  "qualitative_analysis_2_output.txt"
-    },
+    }],
     "next_nodes": []
   }
-]
+  ]
+}

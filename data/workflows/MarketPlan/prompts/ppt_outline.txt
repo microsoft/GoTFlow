@@ -1,0 +1,4 @@
+The following text between two "---" is the manuscript extracted from a PPT, please generate a Chinese outline of this PPT in an accurate and detailed way:
+---
+${manuscript}
+---

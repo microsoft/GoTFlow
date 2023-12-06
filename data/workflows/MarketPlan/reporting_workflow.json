@@ -1,0 +1,57 @@
+{
+  "output_dir_path": "../data/workflows/MarketPlan/output",
+  "input_parameters":[],
+  "flow_items":[
+  {
+    "id": "generate_specified_outline",
+    "description": "generate outline for a specified ppt",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../data/workflows/MarketPlan/prompts/ppt_outline.txt"
+      },
+      {
+        "name": "manuscript",
+        "type": "prompt_text",
+        "file_path": "../data/workflows/MarketPlan/input/raw_data/manuscript.txt"
+      }
+    ],
+    "output": [{
+      "type": "variable",
+      "name": "specified_outline"
+    },
+    {
+      "type": "file",
+      "name": "specified_outline.txt"
+    }],
+    "next_nodes": ["generate_generic_outline"]
+  },
+  {
+    "id": "generate_generic_outline",
+    "description": "generate generic outline for marketplan reports",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../data/workflows/MarketPlan/prompts/generic_outline.txt"
+      },
+      {
+        "name": "specified_outline",
+        "type": "output_variable"
+      }
+    ],
+    "output": [{
+      "type": "file",
+      "name": "generic_outline.txt"
+    },
+    {
+      "type": "variable",
+      "name": "generic_outline"
+    }],
+    "next_nodes": []
+  }
+  ]
+}

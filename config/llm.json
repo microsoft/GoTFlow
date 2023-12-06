@@ -1,6 +1,6 @@
 [{"id": "llm_short",
 "config":{
-  "key_path": "../config/openai_key.txt",
+  "key_path": "../../config/openai_key.txt",
   "api_type": "azure",
   "api_base": "https://avidemo0.openai.azure.com/",
   "api_version": "2023-03-15-preview",
@@ -11,7 +11,7 @@
 }},
 {"id": "llm_long",
 "config":{
-  "key_path": "../config/openai_key.txt",
+  "key_path": "../../config/openai_key.txt",
   "api_type": "azure",
   "api_base": "https://avidemo0.openai.azure.com/",
   "api_version": "2023-03-15-preview",

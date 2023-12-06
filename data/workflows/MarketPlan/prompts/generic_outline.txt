@@ -1,0 +1,5 @@
+The following text between two "---" is the outline of a speicifed report, please change it to a generic outline for reports of this type.
+To do this, you could replace the specified topics, cases or strategies with some variables, for example  "${Topic_1}", "${Topic_2}", ... "${Case_4}", "${Case_5}", ...
+---
+${specified_outline}
+---

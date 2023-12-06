@@ -1,5 +1,4 @@
-from utils import get_llm_config, gpt_process_loops
-import json
+from src.utils.aoai import get_llm_config, gpt_process_loops
 import os
 
 class Executor:
@@ -21,11 +20,20 @@ class Executor:
                 file_path = parameter["file_path"]
                 if not file_path:
                     print(f"Error: the file_path of {name} doesn't exist.")
+                    continue
                 with open(file_path, 'r', encoding="utf-8") as file:
                     prompt_template += file.read()
             elif parameter["type"] == "prompt_parameters":
                 for key, value in parameter_cache.items():
                     parameter_value_dict[key] = value
+            elif parameter["type"] == "prompt_text":
+                file_path = parameter["file_path"]
+                if not file_path or not name:
+                    print(f"Error: the file_path of {name} doesn't exist.")
+                    continue
+                with open(file_path, 'r', encoding="utf-8") as file:
+                    prompt_text = file.read()
+                    parameter_value_dict[name] = prompt_text
             elif parameter["type"] == "output_variable":
                 if not name in output_cache:
                     print(f"Error: the value of {name} has not been cached in output_cache.")
@@ -45,12 +53,16 @@ class Executor:
         print(f"[Prompt]: {prompt}\n")
         output = gpt_process_loops(self.llm_config, prompt, self.loops)
         print(f"[Output]: {output}\n")
-        if output and self.node["output"]["type"] == "variable":
-            output_cache[self.node["output"]["name"]] = output
-        elif output and self.node["output"]["type"] == "file":
-            output_path = os.path.join(output_dir, self.node["output"]["name"])
-            with open(output_path, 'w') as file:
-                file.write(output)
+
+        outputs = self.node["output"]
+
+        for output_item in outputs:
+            if output and output_item["type"] == "variable":
+                output_cache[output_item["name"]] = output
+            elif output and output_item["type"] == "file":
+                output_path = os.path.join(output_dir, output_item["name"])
+                with open(output_path, 'w') as file:
+                    file.write(output)
         return
 
     def get_next_node(self):
