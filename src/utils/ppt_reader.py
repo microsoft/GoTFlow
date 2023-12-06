@@ -75,7 +75,7 @@ ppt_file = '..\\..\\sample_reports\\电动化变革热度高涨，双轮车迎�
 json_output, manuscript = read_ppt_to_json(ppt_file)
 
 # Save the output to a file
-with open('..\\..\\output\\output.json', 'w', encoding='utf-8') as f:
+with open('..\\..\\data\\ppt_data\\ppt_content.json', 'w', encoding='utf-8') as f:
     f.write(json_output)
 
 

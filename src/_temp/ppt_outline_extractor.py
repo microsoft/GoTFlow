@@ -56,7 +56,7 @@ def read_json_file(file_path):
     return data
 
 json_text = ""
-with open("../../output/output.json", 'r') as file:
+with open("../../output/ppt_content.json", 'r') as file:
     json_text = file.read()
 
 outline_gen = Outline_Generator("llm_long")
