@@ -1,5 +1,11 @@
-The following text between two "---" is the outline of a speicifed report, please change it to a generic outline for reports of this type.
+The following text between two "---" is the outline of a specified report, please change it to a generic outline for reports of this type.
 To do this, you could replace the specified topics, cases or strategies with some variables, for example  "${Topic_1}", "${Topic_2}", ... "${Case_4}", "${Case_5}", ...
+To be generic, the specified insights ought to be removed. And there won't contain any opinions in the output.
+All words related to specified facts (e.g. densely populated, city spread), trends (e.g. increasing, decreasing), insights, opinions, etc. should be removed.
+Those words related to specified user groups(e.g. woman, young people, senior people), specified markets (e.g. local market, toC market, toB market) also should be removed.
+If there were trends in the specified outline, you could remain those "trend" themselves, but the concrete increasing or decreasing would be removed.
+The concrete ideas or strategies in the specified outline should be removed as well.
+Introduction, advice and conclusion should be removed.
 ---
 ${specified_outline}
 ---
