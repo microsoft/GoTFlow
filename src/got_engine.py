@@ -26,7 +26,7 @@ def process_node(node, llm_string, parameter_cache, output_dir):
 
 def process_got(got_config_path, llm_string):
     # Load the workflow from the JSON configuration file
-    with open(got_config_path) as f:
+    with open(got_config_path, encoding="utf8") as f:
         workflow_config = json.load(f)
         if not workflow_config:
             print("Error: The workflow configuration file is empty.")
@@ -47,7 +47,7 @@ def process_got(got_config_path, llm_string):
 
             parameter_cache = {}
 
-            with open(input_parameter_file_path) as f:
+            with open(input_parameter_file_path, encoding="utf8") as f:
                 json_obj = json.load(f)
                 for key, value in json_obj.items():
                     parameter_cache[key] = value
@@ -63,16 +63,6 @@ def process_got(got_config_path, llm_string):
         process_got_single_parameter_file(flow_items, {}, llm_string, output_path)
 
     return
-    # Create a cache for all nodes
-    #node_cache = {node['id']: node for node in workflow_config}
-
-    # Assume the workflow starts with the first node in the list
-    #next_nodes_ids = [workflow_config[0]['id']]
-
-    #while next_nodes_ids:
-    #    current_node_id = next_nodes_ids.pop(0)
-    #    current_node = node_cache[current_node_id]
-    #    next_nodes_ids.extend(node_id for node_id in process_node(current_node, llm_string, parameter_cache, output_dir))
 
 
 def process_got_single_parameter_file(flow_items, parameter_cache, llm_string, output_path):

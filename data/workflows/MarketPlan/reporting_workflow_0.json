@@ -24,7 +24,7 @@
     },
     {
       "type": "file",
-      "name": "specified_outline.txt"
+      "name": "0_1_specified_outline.txt"
     }],
     "next_nodes": ["generate_generic_outline"]
   },
@@ -45,7 +45,7 @@
     ],
     "output": [{
       "type": "file",
-      "name": "generic_outline.txt"
+      "name": "0_2_generic_outline.txt"
     },
     {
       "type": "variable",

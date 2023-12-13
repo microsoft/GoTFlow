@@ -14,6 +14,10 @@ class Executor:
         prompt_template = ""
         parameter_value_dict = {}
 
+        # put all parameters in parameter_cache into parameter_value_dict
+        for key, value in parameter_cache.items():
+            parameter_value_dict[key] = value
+
         for parameter in self.node["input_parameters"]:
             name = parameter["name"]
             if parameter["type"] == "prompt_template":
@@ -23,9 +27,9 @@ class Executor:
                     continue
                 with open(file_path, 'r', encoding="utf-8") as file:
                     prompt_template += file.read()
-            elif parameter["type"] == "prompt_parameters":
-                for key, value in parameter_cache.items():
-                    parameter_value_dict[key] = value
+            #elif parameter["type"] == "prompt_parameters":
+            #    for key, value in parameter_cache.items():
+            #        parameter_value_dict[key] = value
             elif parameter["type"] == "prompt_text":
                 file_path = parameter["file_path"]
                 if not file_path or not name:
@@ -34,6 +38,9 @@ class Executor:
                 with open(file_path, 'r', encoding="utf-8") as file:
                     prompt_text = file.read()
                     parameter_value_dict[name] = prompt_text
+            elif parameter["type"] == "temp_parameter":
+                if name and parameter["value"]:
+                    parameter_value_dict[name] = parameter["value"]
             elif parameter["type"] == "output_variable":
                 if not name in output_cache:
                     print(f"Error: the value of {name} has not been cached in output_cache.")

@@ -1,0 +1,59 @@
+{
+  "output_dir_path": "../data/workflows/MarketPlan/output",
+  "input_parameters":[
+    {
+            "suffix": "",
+            "file_path": "../data/workflows/MarketPlan/input/parameters/basic_info.json"
+    }
+  ],
+  "flow_items":[
+  {
+    "id": "明确市场规模和趋势",
+    "description": "明确目标产品在目标区域的市场规模和趋势",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../data/workflows/MarketPlan/prompts/market_volume_trend.txt"
+      },
+      {
+        "name": "content",
+        "type": "prompt_text",
+        "file_path": "../data/workflows/MarketPlan/input/raw_data/1-1_marketingintro.txt"
+      },
+      {
+        "name": "step",
+        "type": "temp_parameter",
+        "value": "步骤1，信息洞察及总结。"
+      },
+      {
+        "name": "topic",
+        "type": "temp_parameter",
+        "value": "东南亚双轮电动车的市场情况介绍"
+      },
+      {
+        "name": "action",
+        "type": "temp_parameter",
+        "value": "提取东南亚双轮电动车的市场规模及趋势的信息"
+      },
+      {
+        "name": "label_types",
+        "type": "temp_parameter",
+        "value": "\"product\" and \"trend\""
+      },
+      {
+        "name": "labeling_rules",
+        "type": "temp_parameter",
+        "value": "类型为product的标签的value应该是资料中讨论的产品，类型为trend的标签的value则是该产品在当前市场中的发展趋势，具体可能包括‘大幅上升’，‘小幅上升’， ‘急速上升’，‘基本平稳’，‘有所下降’等"
+      }
+    ],
+    "output": [
+    {
+      "type": "file",
+      "name": "1-1_marketing_volume_trend.txt"
+    }],
+    "next_nodes": []
+  }
+  ]
+}

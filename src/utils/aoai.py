@@ -8,6 +8,9 @@ import logging
 import random
 import time
 
+from openai import OpenAI
+from openai.lib.azure import AzureOpenAI
+
 root_dir = os.path.dirname(os.path.abspath(__file__))
 # 创建 logging 的文件路径
 config_file = os.path.join(root_dir, '../../config/llm.json')
@@ -41,8 +44,37 @@ def get_llm_config(api_id):
 
     return api_config
 
-
 def gpt_process(llm_config, prompt):
+    openai.api_key = llm_config['api_key']
+    openai.api_type = llm_config['api_type']
+    openai.api_base = llm_config['api_base']
+    openai.api_version = llm_config['api_version']
+
+    # gets the API Key from environment variable AZURE_OPENAI_API_KEY
+    client = AzureOpenAI(
+        api_version=llm_config['api_version'],
+        api_key=llm_config['api_key'],
+        azure_endpoint=llm_config['api_base'],
+    )
+
+    response = client.chat.completions.create(
+        model=llm_config['engine'],  # model = "deployment_name".
+        messages=[
+            {"role": "user", "content": prompt}
+        ],
+        temperature=0,
+        max_tokens=llm_config['max_token'],
+        top_p=0.95,
+        frequency_penalty=0,
+        presence_penalty=0,
+        stop=None
+    )
+
+    text = response.choices[0].message.content.strip()
+
+    return text
+
+def gpt_process_orig(llm_config, prompt):
     openai.api_key = llm_config['api_key']
     openai.api_type = llm_config['api_type']
     openai.api_base = llm_config['api_base']
