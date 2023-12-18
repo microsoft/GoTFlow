@@ -8,7 +8,6 @@ import logging
 import random
 import time
 
-from openai import OpenAI
 from openai.lib.azure import AzureOpenAI
 
 root_dir = os.path.dirname(os.path.abspath(__file__))
@@ -73,27 +72,6 @@ def gpt_process(llm_config, prompt):
     text = response.choices[0].message.content.strip()
 
     return text
-
-def gpt_process_orig(llm_config, prompt):
-    openai.api_key = llm_config['api_key']
-    openai.api_type = llm_config['api_type']
-    openai.api_base = llm_config['api_base']
-    openai.api_version = llm_config['api_version']
-    response = openai.ChatCompletion.create(
-            engine= llm_config['engine'],
-            # replace this value with the deployment name you chose when you deployed the associated model.
-            messages=[{"role": "user","content": prompt}],
-            temperature=0,
-            max_tokens= llm_config['max_token'],
-            top_p=0.95,
-            frequency_penalty=0,
-            presence_penalty=0,
-            stop=None)
-
-    text = response.choices[0].message.content.strip()
-
-    return text
-
 
 def gpt_process_loops(llm_config, prompt, loop_number):
     processed_time = 0

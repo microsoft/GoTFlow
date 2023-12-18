@@ -8,8 +8,8 @@
   ],
   "flow_items":[
     {
-    "id": "明确市场未来潜力",
-    "description": "明确目标产品在目标区域的市场未来的千里如何",
+    "id": "明确市场影响因素",
+    "description": "明确目标产品在目标区域的市场的印象因素是什么",
     "type": "executor",
     "input_parameters": [
       {
@@ -20,7 +20,7 @@
       {
         "name": "content",
         "type": "prompt_text",
-        "file_path": "../data/workflows/MarketPlan/input/raw_data/1-1_marketingintro.txt"
+        "file_path": "../data/workflows/MarketPlan/input/raw_data/1-2_marketingdriving.txt"
       },
       {
         "name": "step",
@@ -30,34 +30,38 @@
       {
         "name": "topic",
         "type": "temp_parameter",
-        "value": "东南亚双轮电动车的市场情况介绍"
+        "value": "东南亚双轮电动车的市场驱动因素分析"
       },
       {
         "name": "action",
         "type": "temp_parameter",
-        "value": "提取东南亚双轮电动车的市场规模及趋势的信息"
+        "value": "提取信息说明有哪些因素在促进东南亚双轮电动车市场的增长"
       },
       {
         "name": "label_types",
         "type": "temp_parameter",
-        "value": "\"product\", \"volume\" and \"trend\""
+        "value": "\"factor\""
       },
       {
         "name": "labeling_rules",
         "type": "temp_parameter",
-        "value": "类型为product的标签的value应该是资料中讨论的产品；类型为volume的标签value是该产品在当前市场的份额（占有率），具体可以用百分比数字或者形容词来表示；类型为trend的标签的value则是该产品在当前市场中的发展趋势，具体可能包括‘大幅上升’，‘小幅上升’， ‘急速上升’，‘基本平稳’，‘有所下降’等"
+        "value": "类型为factor的标签的value应该是影响东南亚双轮电动车市场增长的某一个具体的因素"
       }
     ],
     "output": [
+      {
+      "type": "variable",
+      "name": "marketing_factors"
+    },
     {
       "type": "file",
-      "name": "1-1_1_marketing_volume_trend.txt"
+      "name": "1-2_1_marketing_factors.txt"
     }],
-    "next_nodes": ["明确市场规模和趋势"]
+    "next_nodes": ["明确因素驱动市场的方式"]
   },
   {
-    "id": "明确市场规模和趋势",
-    "description": "明确目标产品在目标区域的市场规模和趋势",
+    "id": "明确因素驱动市场的方式",
+    "description": "明确目标产品在目标区域的市场被各种因素驱动的方式",
     "type": "executor",
     "input_parameters": [
       {
@@ -68,7 +72,7 @@
       {
         "name": "content",
         "type": "prompt_text",
-        "file_path": "../data/workflows/MarketPlan/input/raw_data/1-1_marketingintro.txt"
+        "file_path": "../data/workflows/MarketPlan/input/raw_data/1-2_marketingdriving.txt"
       },
       {
         "name": "step",
@@ -78,28 +82,32 @@
       {
         "name": "topic",
         "type": "temp_parameter",
-        "value": "东南亚双轮电动车的市场情况介绍"
+        "value": "东南亚双轮电动车的市场驱动因素分析"
       },
       {
         "name": "action",
         "type": "temp_parameter",
-        "value": "根据所给材料抽取关于东南亚双轮电动车的未来的市场潜力的信息"
+        "value": "根据所给材料，和之前获得的东南亚各市场的影响因素：${marketing_factors}，来确定各种因素是如何影响东南亚双轮电动车市场的"
       },
       {
         "name": "label_types",
         "type": "temp_parameter",
-        "value": "\"product\" and \"market_potential\""
+        "value": "\"factor\" and \"way\""
       },
       {
         "name": "labeling_rules",
         "type": "temp_parameter",
-        "value": "类型为product的标签的value应该是资料中讨论的产品；类型为market_potential的标签的value则是该产品在未来的市场潜力，具体可能包括‘潜力巨大’，‘有一定的市场潜力’， ‘潜力不大’等"
+        "value": "类型为factor的标签的value应该是影响东南亚双轮电动车市场增长的某一个具体的因素；类型为way的标签的value则是某一个具体的factor影响东南亚双轮电动车市场的方式"
+      },
+      {
+        "name": "marketing_factors",
+        "type": "output_variable"
       }
     ],
     "output": [
     {
       "type": "file",
-      "name": "1-1_2_marketing_potential.txt"
+      "name": "1-2_2_marketing_factor_ways.txt"
     }],
     "next_nodes": []
   }

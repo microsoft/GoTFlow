@@ -23,6 +23,27 @@ def process_node(node, llm_string, parameter_cache, output_dir):
 
     return next_nodes_ids
 
+def process_got_single_parameter_file(flow_items, parameter_cache, llm_string, output_path):
+    if output_path and not os.path.exists(output_path):
+        os.makedirs(output_path)
+
+    # Create a cache for all nodes
+    node_cache = {node['id']: node for node in flow_items}
+
+    # Assume the workflow starts with the first node in the list
+    next_nodes_ids = [flow_items[0]['id']]
+    processed_nodes_ids = []
+
+    while next_nodes_ids:
+        if next_nodes_ids:  # If there are nodes to process
+            current_node_id = next_nodes_ids.pop(0)
+            current_node = node_cache[current_node_id]
+            new_next_nodes_ids = process_node(current_node, llm_string, parameter_cache, output_path)
+            processed_nodes_ids.append(current_node_id)
+            if new_next_nodes_ids:  # If the current node has next nodes
+                next_nodes_ids.extend(node_id for node_id in new_next_nodes_ids if ((node_id not in next_nodes_ids) and (node_id not in processed_nodes_ids)))
+
+    return
 
 def process_got(got_config_path, llm_string):
     # Load the workflow from the JSON configuration file
@@ -61,25 +82,6 @@ def process_got(got_config_path, llm_string):
             process_got_single_parameter_file(flow_items, parameter_cache, llm_string, output_path)
     else:
         process_got_single_parameter_file(flow_items, {}, llm_string, output_path)
-
-    return
-
-
-def process_got_single_parameter_file(flow_items, parameter_cache, llm_string, output_path):
-    if output_path and not os.path.exists(output_path):
-        os.makedirs(output_path)
-
-    # Create a cache for all nodes
-    node_cache = {node['id']: node for node in flow_items}
-
-    # Assume the workflow starts with the first node in the list
-    next_nodes_ids = [flow_items[0]['id']]
-
-    while next_nodes_ids:
-        current_node_id = next_nodes_ids.pop(0)
-        current_node = node_cache[current_node_id]
-        next_nodes_ids.extend(
-            node_id for node_id in process_node(current_node, llm_string, parameter_cache, output_path))
 
     return
 
