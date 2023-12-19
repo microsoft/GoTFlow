@@ -1,0 +1,97 @@
+{
+"output": "东南亚市场的本地双轮电动车品牌主要有印尼的SMOOT、MAKA Motors、Gen Indonesia、Ilectra Motor Group（IMG），越南的VinFast、Pega、Dibao、Anbico、Dat Bike、Selex Motors，以及泰国的GPX。各品牌的市场份额具体数据未提供。",
+"labels": [
+    {
+        "type": "brand",
+        "value": "SMOOT"
+    },
+    {
+        "type": "area",
+        "value": "印尼"
+    },
+    {
+        "type": "brand",
+        "value": "MAKA Motors"
+    },
+    {
+        "type": "area",
+        "value": "印尼"
+    },
+    {
+        "type": "brand",
+        "value": "Gen Indonesia"
+    },
+    {
+        "type": "area",
+        "value": "印尼"
+    },
+    {
+        "type": "brand",
+        "value": "Ilectra Motor Group（IMG）"
+    },
+    {
+        "type": "area",
+        "value": "印尼"
+    },
+    {
+        "type": "brand",
+        "value": "VinFast"
+    },
+    {
+        "type": "area",
+        "value": "越南"
+    },
+    {
+        "type": "brand",
+        "value": "Pega"
+    },
+    {
+        "type": "area",
+        "value": "越南"
+    },
+    {
+        "type": "brand",
+        "value": "Dibao"
+    },
+    {
+        "type": "area",
+        "value": "越南"
+    },
+    {
+        "type": "brand",
+        "value": "Anbico"
+    },
+    {
+        "type": "area",
+        "value": "越南"
+    },
+    {
+        "type": "brand",
+        "value": "Dat Bike"
+    },
+    {
+        "type": "area",
+        "value": "越南"
+    },
+    {
+        "type": "brand",
+        "value": "Selex Motors"
+    },
+    {
+        "type": "area",
+        "value": "越南"
+    },
+    {
+        "type": "brand",
+        "value": "GPX"
+    },
+    {
+        "type": "area",
+        "value": "泰国"
+    },
+    {
+        "type": "market_share",
+        "value": "未提供"
+    }
+]
+}

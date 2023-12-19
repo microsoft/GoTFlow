@@ -1,0 +1,53 @@
+{
+"output": "在东南亚市场，主要的日本双轮电动车品牌有本田、雅马哈、铃木和川崎。其中，本田在越南、泰国和菲律宾的市场份额分别为72.1%、76.7%和43.5%，雅马哈的市场份额分别为25.5%、16.5%和35.1%。铃木和川崎的市场份额尚无具体数据。",
+"labels": [
+    {
+        "type": "brand",
+        "value": "本田"
+    },
+    {
+        "type": "area",
+        "value": "日本"
+    },
+    {
+        "type": "market_share",
+        "value": "越南72.1%，泰国76.7%，菲律宾43.5%"
+    },
+    {
+        "type": "brand",
+        "value": "雅马哈"
+    },
+    {
+        "type": "area",
+        "value": "日本"
+    },
+    {
+        "type": "market_share",
+        "value": "越南25.5%，泰国16.5%，菲律宾35.1%"
+    },
+    {
+        "type": "brand",
+        "value": "铃木"
+    },
+    {
+        "type": "area",
+        "value": "日本"
+    },
+    {
+        "type": "market_share",
+        "value": "暂无具体数据"
+    },
+    {
+        "type": "brand",
+        "value": "川崎"
+    },
+    {
+        "type": "area",
+        "value": "日本"
+    },
+    {
+        "type": "market_share",
+        "value": "暂无具体数据"
+    }
+]
+}

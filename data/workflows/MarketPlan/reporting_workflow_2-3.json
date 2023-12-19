@@ -1,0 +1,111 @@
+{
+  "output_dir_path": "../data/workflows/MarketPlan/output",
+  "input_parameters":[
+    {
+            "suffix": "",
+            "file_path": "../data/workflows/MarketPlan/input/parameters/basic_info.json"
+    }
+  ],
+  "flow_items":[
+    {
+    "id": "明确日本品牌的格局",
+    "description": "在东南亚市场有哪些东南亚本地双轮车品牌？各品牌的市场份额分别为多少？",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_template.txt"
+      },
+      {
+        "name": "content",
+        "type": "prompt_text",
+        "file_path": "../data/workflows/MarketPlan/input/raw_data/2-3_eastsouthasia_brands.txt"
+      },
+      {
+        "name": "step",
+        "type": "temp_parameter",
+        "value": "步骤1，信息洞察及总结"
+      },
+      {
+        "name": "topic",
+        "type": "temp_parameter",
+        "value": "东南亚市场东南亚本地品牌双轮电动车的市场份额和品牌发展情况"
+      },
+      {
+        "name": "action",
+        "type": "temp_parameter",
+        "value": "提取信息说明在东南亚市场有哪些东南亚本地的双轮电动车的品牌？各品牌的市场份额多少？"
+      },
+      {
+        "name": "label_types",
+        "type": "temp_parameter",
+        "value": "\"brand\",\"area\",\"market_share\""
+      },
+      {
+        "name": "labeling_rules",
+        "type": "temp_parameter",
+        "value": "类型为brand的标签的value应该是占据东南亚双轮电动车市场份额的某一个品牌；类型为area的标签的value应该是\"brand\"所属于的国家或地区；类型为market_share的标签的value应该是\"brand\"对应的市场份额"
+      }
+    ],
+    "output": [
+      {
+      "type": "variable",
+      "name": "players"
+    },
+    {
+      "type": "file",
+      "name": "2-3_1_esasia_players.txt"
+    }],
+    "next_nodes": ["明确头部企业销售状况"]
+  },
+  {
+    "id": "明确头部企业销售状况",
+    "description": "头部企业的销售状况如何，有哪些市场动作或相关战略规划？",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_template.txt"
+      },
+      {
+        "name": "content",
+        "type": "prompt_text",
+        "file_path": "../data/workflows/MarketPlan/input/raw_data/2-3_eastsouthasia_brands.txt"
+      },
+      {
+        "name": "step",
+        "type": "temp_parameter",
+        "value": "步骤1，信息洞察及总结。"
+      },
+      {
+        "name": "topic",
+        "type": "temp_parameter",
+        "value": "东南亚市场东南亚本地品牌双轮电动车的市场份额和品牌发展情况"
+      },
+      {
+        "name": "action",
+        "type": "temp_parameter",
+        "value": "东南亚市场双轮电动车东南亚本地品牌的头部企业的销售状况如何，有哪些市场动作或相关战略规划？"
+      },
+      {
+        "name": "label_types",
+        "type": "temp_parameter",
+        "value": "\"enterprise\", \"status\" and \"behaviour\""
+      },
+      {
+        "name": "labeling_rules",
+        "type": "temp_parameter",
+        "value": "类型为enterprise的标签的value应该是占据东南亚双轮电动车市场的东南亚本地品牌的头部企业；类型为status的标签的value则是\"enterprise\"对应的企业的销售状况，类型为behaviour的标签的value则是\"enterprise\"对应的企业的市场动作或战略规划"
+      }
+    ],
+    "output": [
+    {
+      "type": "file",
+      "name": "2-3_2_esasia_enterprises.txt"
+    }],
+    "next_nodes": []
+  }
+  ]
+}

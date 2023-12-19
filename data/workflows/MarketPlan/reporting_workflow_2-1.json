@@ -1,0 +1,115 @@
+{
+  "output_dir_path": "../data/workflows/MarketPlan/output",
+  "input_parameters":[
+    {
+            "suffix": "",
+            "file_path": "../data/workflows/MarketPlan/input/parameters/basic_info.json"
+    }
+  ],
+  "flow_items":[
+    {
+    "id": "明确市场竞争格局",
+    "description": "明确目标产品的当前市场竞争格局是如何分布的",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_template.txt"
+      },
+      {
+        "name": "content",
+        "type": "prompt_text",
+        "file_path": "../data/workflows/MarketPlan/input/raw_data/2-1_players.txt"
+      },
+      {
+        "name": "step",
+        "type": "temp_parameter",
+        "value": "步骤1，信息洞察及总结"
+      },
+      {
+        "name": "topic",
+        "type": "temp_parameter",
+        "value": "东南亚双轮电动车的市场竞争格局分析"
+      },
+      {
+        "name": "action",
+        "type": "temp_parameter",
+        "value": "提取信息说明东南亚双轮电动车市场的竞争格局是怎么样的，都有哪些国家/地区的品牌在该市场中占据了该产品的份额，分别比例为多少，趋势如何等"
+      },
+      {
+        "name": "label_types",
+        "type": "temp_parameter",
+        "value": "\"brand\",\"area\",\"market_share\""
+      },
+      {
+        "name": "labeling_rules",
+        "type": "temp_parameter",
+        "value": "类型为brand的标签的value应该是占据东南亚双轮电动车市场份额的某一个品牌；类型为area的标签的value应该是\"brand\"所属于的国家或地区；类型为market_share的标签的value应该是\"brand\"对应的市场份额"
+      }
+    ],
+    "output": [
+      {
+      "type": "variable",
+      "name": "marketing_players"
+    },
+    {
+      "type": "file",
+      "name": "2-1_1_marketing_players.txt"
+    }],
+    "next_nodes": ["明确不同品牌的特征"]
+  },
+  {
+    "id": "明确不同品牌的特征",
+    "description": "不同类型品牌间有哪些主要特征",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_template.txt"
+      },
+      {
+        "name": "content",
+        "type": "prompt_text",
+        "file_path": "../data/workflows/MarketPlan/input/raw_data/2-1_players.txt"
+      },
+      {
+        "name": "step",
+        "type": "temp_parameter",
+        "value": "步骤1，信息洞察及总结。"
+      },
+      {
+        "name": "topic",
+        "type": "temp_parameter",
+        "value": "东南亚双轮电动车的市场竞争格局分析"
+      },
+      {
+        "name": "action",
+        "type": "temp_parameter",
+        "value": "根据所给材料，和之前获得的不同品牌的竞争格局：${marketing_players}，来确定不同品牌间有哪些主要特征，尤其是那些影响其市场份额的特征"
+      },
+      {
+        "name": "label_types",
+        "type": "temp_parameter",
+        "value": "\"brand\" and \"feature\""
+      },
+      {
+        "name": "labeling_rules",
+        "type": "temp_parameter",
+        "value": "类型为brand的标签的value应该是占据东南亚双轮电动车市场份额的某一个品牌；类型为feature的标签的value则是\"brand\"对应的特征，这个特征应该是影响其市场份额的因素"
+      },
+      {
+        "name": "marketing_players",
+        "type": "output_variable"
+      }
+    ],
+    "output": [
+    {
+      "type": "file",
+      "name": "2-1_2_brand_features.txt"
+    }],
+    "next_nodes": []
+  }
+  ]
+}

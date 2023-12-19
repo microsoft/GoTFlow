@@ -1,0 +1,101 @@
+{
+"output": "在东南亚市场，中国的双轮电动车品牌有雅迪、爱玛、台铃、绿源、小牛、小刀、新日和九号。雅迪在越南市场的销量同比增长36.6%，爱玛出口东南亚的车辆同比增加154%，其中泰国出口数量同比增长174%。其他品牌的市场份额数据未提供。",
+"labels": [
+    {
+        "type": "brand",
+        "value": "雅迪"
+    },
+    {
+        "type": "area",
+        "value": "中国"
+    },
+    {
+        "type": "market_share",
+        "value": "36.6%"
+    },
+    {
+        "type": "brand",
+        "value": "爱玛"
+    },
+    {
+        "type": "area",
+        "value": "中国"
+    },
+    {
+        "type": "market_share",
+        "value": "154%"
+    },
+    {
+        "type": "brand",
+        "value": "台铃"
+    },
+    {
+        "type": "area",
+        "value": "中国"
+    },
+    {
+        "type": "market_share",
+        "value": "未提供"
+    },
+    {
+        "type": "brand",
+        "value": "绿源"
+    },
+    {
+        "type": "area",
+        "value": "中国"
+    },
+    {
+        "type": "market_share",
+        "value": "未提供"
+    },
+    {
+        "type": "brand",
+        "value": "小牛"
+    },
+    {
+        "type": "area",
+        "value": "中国"
+    },
+    {
+        "type": "market_share",
+        "value": "未提供"
+    },
+    {
+        "type": "brand",
+        "value": "小刀"
+    },
+    {
+        "type": "area",
+        "value": "中国"
+    },
+    {
+        "type": "market_share",
+        "value": "未提供"
+    },
+    {
+        "type": "brand",
+        "value": "新日"
+    },
+    {
+        "type": "area",
+        "value": "中国"
+    },
+    {
+        "type": "market_share",
+        "value": "未提供"
+    },
+    {
+        "type": "brand",
+        "value": "九号"
+    },
+    {
+        "type": "area",
+        "value": "中国"
+    },
+    {
+        "type": "market_share",
+        "value": "未提供"
+    }
+]
+}
