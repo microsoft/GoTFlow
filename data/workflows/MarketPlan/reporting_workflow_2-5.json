@@ -1,0 +1,115 @@
+{
+  "output_dir_path": "../data/workflows/MarketPlan/output",
+  "input_parameters":[
+    {
+            "suffix": "",
+            "file_path": "../data/workflows/MarketPlan/input/parameters/basic_info.json"
+    }
+  ],
+  "flow_items":[
+    {
+    "id": "明确投融资情况",
+    "description": "明确目标产品的当前市场的投融资情况和趋势",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_template.txt"
+      },
+      {
+        "name": "content",
+        "type": "prompt_text",
+        "file_path": "../data/workflows/MarketPlan/input/raw_data/2-5_investments.txt"
+      },
+      {
+        "name": "step",
+        "type": "temp_parameter",
+        "value": "步骤1，信息洞察及总结"
+      },
+      {
+        "name": "topic",
+        "type": "temp_parameter",
+        "value": "东南亚双轮电动车生产企业的投融资分析"
+      },
+      {
+        "name": "action",
+        "type": "temp_parameter",
+        "value": "提取信息说明东南亚市场对于双轮车品牌的投资情况如何？近几年有何变化趋势？"
+      },
+      {
+        "name": "label_types",
+        "type": "temp_parameter",
+        "value": "\"brand\", \"investment\" and \"investment_trend\""
+      },
+      {
+        "name": "labeling_rules",
+        "type": "temp_parameter",
+        "value": "类型为brand的标签的value应该是占据东南亚双轮电动车市场份额的某一个品牌；类型为investment的标签的value应该是\"brand\"在东南亚市场获得投资或融资的情况；类型为investment_trend的标签的value应该是\"brand\"近年来在东南亚市场的投融资情况变化趋势"
+      }
+    ],
+    "output": [
+      {
+      "type": "variable",
+      "name": "brand_investment"
+    },
+    {
+      "type": "file",
+      "name": "2-5_1_brand_investment.txt"
+    }],
+    "next_nodes": ["明确市场潜力和增长方向"]
+  },
+  {
+    "id": "明确市场潜力和增长方向",
+    "description": "明确整体市场未来增长空间如何，增长方向是什么",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_template.txt"
+      },
+      {
+        "name": "content",
+        "type": "prompt_text",
+        "file_path": "../data/workflows/MarketPlan/input/raw_data/2-5_investments.txt"
+      },
+      {
+        "name": "step",
+        "type": "temp_parameter",
+        "value": "步骤1，信息洞察及总结。"
+      },
+      {
+        "name": "topic",
+        "type": "temp_parameter",
+        "value": "东南亚双轮电动车生产企业的投融资分析"
+      },
+      {
+        "name": "action",
+        "type": "temp_parameter",
+        "value": "根据所给材料，和之前获得的不同品牌的投融资情况及趋势：${brand_investment}，来确定整体市场的增长空间和增长方向"
+      },
+      {
+        "name": "label_types",
+        "type": "temp_parameter",
+        "value": "\"potential\" and \"direction\""
+      },
+      {
+        "name": "labeling_rules",
+        "type": "temp_parameter",
+        "value": "类型为potential的标签的value应该是东南亚双轮电动车市场整体的增长空间（market growth potential）；类型为direction的标签的value则是东南亚双轮电动车市场的增长方向（market growth direction）"
+      },
+      {
+        "name": "brand_investment",
+        "type": "output_variable"
+      }
+    ],
+    "output": [
+    {
+      "type": "file",
+      "name": "2-5_2_market_growth.txt"
+    }],
+    "next_nodes": []
+  }
+  ]
+}

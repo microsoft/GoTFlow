@@ -1,0 +1,167 @@
+{
+  "output_dir_path": "../data/workflows/MarketPlan/output",
+  "input_parameters":[
+    {
+            "suffix": "",
+            "file_path": "../data/workflows/MarketPlan/input/parameters/basic_info.json"
+    }
+  ],
+  "flow_items":[
+    {
+    "id": "明确消费群体画像",
+    "description": "明确目标产品的消费群体画像",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_template.txt"
+      },
+      {
+        "name": "content",
+        "type": "prompt_text",
+        "file_path": "../data/workflows/MarketPlan/input/raw_data/3_consumers.txt"
+      },
+      {
+        "name": "step",
+        "type": "temp_parameter",
+        "value": "步骤1，信息洞察及总结"
+      },
+      {
+        "name": "topic",
+        "type": "temp_parameter",
+        "value": "东南亚双轮电动车消费群体分析"
+      },
+      {
+        "name": "action",
+        "type": "temp_parameter",
+        "value": "提取信息说明东南亚市场双轮电动车的核心消费者都包含哪些群体？这些消费群体的基础画像（年龄、性别、受教育程度、收入、居住地、职业等）分别是什么？各自的行为偏好、兴趣偏好又是什么？"
+      },
+      {
+        "name": "label_types",
+        "type": "temp_parameter",
+        "value": "\"consumer_group\", \"age\", \"gender\", \"education\", \"income\", \"location\", \"profession\", \"behavior\", \"interest\""
+      },
+      {
+        "name": "labeling_rules",
+        "type": "temp_parameter",
+        "value": "类型为consumer_group的标签的value应该是东南亚市场的双轮电动车的某一个核心消费群体；类型为age的标签的value应该是\"consumer_group\"的年龄分布；类型为gender的标签的value应该是\"consumer_group\"的性别分布；类型为education的标签的value应该是\"consumer_group\"的受教育程度分布；类型为income的标签的value应该是\"consumer_group\"的收入分布；类型为location的标签的value应该是\"consumer_group\"的居住地分布；类型为profession的标签的value应该是\"consumer_group\"的职业分布；类型为behavior的标签的value应该是\"consumer_group\"的行为偏好；类型为interest的标签的value应该是\"consumer_group\"的兴趣偏好"
+      }
+    ],
+    "output": [
+      {
+      "type": "variable",
+      "name": "consumer_groups"
+    },
+    {
+      "type": "file",
+      "name": "3_1_consumer_groups.txt"
+    }],
+    "next_nodes": ["明确产品的使用场景和需求"]
+  },
+  {
+    "id": "明确产品的使用场景和需求",
+    "description": "明确产品的使用场景和需求",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_template.txt"
+      },
+      {
+        "name": "content",
+        "type": "prompt_text",
+        "file_path": "../data/workflows/MarketPlan/input/raw_data/3_consumers.txt"
+      },
+      {
+        "name": "step",
+        "type": "temp_parameter",
+        "value": "步骤1，信息洞察及总结。"
+      },
+      {
+        "name": "topic",
+        "type": "temp_parameter",
+        "value": "东南亚双轮电动车消费群体分析"
+      },
+      {
+        "name": "action",
+        "type": "temp_parameter",
+        "value": "根据所给材料，和之前获得的消费群体的信息：${consumer_groups}，来确定对双轮电动车的使用场景有哪些？消费群体对于产品的需求有哪些？"
+      },
+      {
+        "name": "label_types",
+        "type": "temp_parameter",
+        "value": "\"consumer_group\",\"scenario\" and \"requirement\""
+      },
+      {
+        "name": "labeling_rules",
+        "type": "temp_parameter",
+        "value": "类型为consumer_group的标签的value应该是东南亚市场的双轮电动车的某一个核心消费群体；类型为scenario的标签的value应该是\"consumer_group\"在东南亚使用电动双轮车的场景；类型为requirement的标签的value应该是\"consumer_group\"在东南亚使用电动双轮车的需求"
+      },
+      {
+        "name": "consumer_groups",
+        "type": "output_variable"
+      }
+    ],
+    "output": [
+    {
+      "type": "file",
+      "name": "3_2_scenario_requirement.txt"
+    }],
+    "next_nodes": []
+  },
+  {
+    "id": "明确产品的购买因素",
+    "description": "明确产品的购买因素",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_template.txt"
+      },
+      {
+        "name": "content",
+        "type": "prompt_text",
+        "file_path": "../data/workflows/MarketPlan/input/raw_data/3_consumers.txt"
+      },
+      {
+        "name": "step",
+        "type": "temp_parameter",
+        "value": "步骤1，信息洞察及总结。"
+      },
+      {
+        "name": "topic",
+        "type": "temp_parameter",
+        "value": "东南亚双轮电动车消费群体分析"
+      },
+      {
+        "name": "action",
+        "type": "temp_parameter",
+        "value": "根据所给材料，和之前获得的消费群体的信息：${consumer_groups}，来确定消费群体在购买双轮电动车时有哪些购买因素，以及这些因素是如何影响消费者的"
+      },
+      {
+        "name": "label_types",
+        "type": "temp_parameter",
+        "value": "\"consumer_group\",\"purchase_factor\" and \"purchase_influence\""
+      },
+      {
+        "name": "labeling_rules",
+        "type": "temp_parameter",
+        "value": "类型为consumer_group的标签的value应该是东南亚市场的双轮电动车的某一个核心消费群体；类型为purchase_factor的标签的value应该是\"consumer_group\"在东南亚购买电动双轮车的因素；类型为purchase_influence的标签的value应该是\"purchase_factor\"是如何影响消费者的"
+      },
+      {
+        "name": "consumer_groups",
+        "type": "output_variable"
+      }
+    ],
+    "output": [
+    {
+      "type": "file",
+      "name": "3_3_purchase_factors.txt"
+    }],
+    "next_nodes": []
+  }
+  ]
+}
