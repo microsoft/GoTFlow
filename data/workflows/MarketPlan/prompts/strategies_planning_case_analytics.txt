@@ -1,0 +1,29 @@
+我是一名${role}。
+我正在完成一项任务：${task}。
+目前需要分析一些既往的案例，这些案例相关的资料都放在下面两个 "---" 之间：
+---
+${content}
+---
+请根据这些资料，请针对不同品牌的案例进行分析，提取出如下面两个 "***" 之间要求的内容：
+***
+1. 该品牌案例的背景信息
+2. 该品牌的营销目标、挑战
+3. 该品牌为了营销而进行的动作或采取的措施
+4. 该品牌的营销策略
+5. 该案例的营销效果
+6. 该案例亮点
+***
+最终的输出为一个json object 的list，其中每一个json object 需要符合下列格式，其中的 case_summary 部分对应的是具体的一个案例的文字总结：
+{
+"brand":"${brand}",
+"case_summary":"${case_summary}",
+"back_ground":"${back_ground}",
+"marketing_target":"${marketing_target}",
+"marketing_challenge":"${marketing_challenge}",
+"marketing_action":"${marketing_action}",
+"marketing_strategy":"${marketing_strategy}",
+"marketing_effect":"${marketing_effect}",
+"highlight":"${highlight}"
+}
+
+

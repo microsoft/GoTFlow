@@ -1,0 +1,13 @@
+[
+{
+"brand": "Viar Motor",
+"case_summary": "Viar Motor与Grab和换电品牌SWAP合作，推出SMOOT Tempur电动摩托车，满足Grab车队的需求，并配备SWAP提供的电池更换系统。",
+"back_ground": "东南亚电动二轮车市场竞争激烈，Grab和Gojek等平台推出电动摩托车车队，为市场带来新的机遇。",
+"marketing_target": "通过B端合作，打开更广阔的市场，满足Grab车队的电动摩托车需求。",
+"marketing_challenge": "在竞争激烈的市场中，与Grab等平台建立合作关系，提供满足其需求的电动摩托车产品。",
+"marketing_action": "与Grab和换电品牌SWAP合作，推出SMOOT Tempur电动摩托车，并配备SWAP提供的电池更换系统。",
+"marketing_strategy": "通过与Grab等平台合作，提供满足其需求的电动摩托车产品，打开更广阔的市场。",
+"marketing_effect": "成功与Grab建立合作关系，为Grab车队提供电动摩托车。",
+"highlight": "与Grab和换电品牌SWAP的合作，推出满足Grab车队需求的SMOOT Tempur电动摩托车，并配备便捷的电池更换系统。"
+}
+]

@@ -1,0 +1,53 @@
+{
+"output": "印尼家庭在日常通勤和短途出行时使用双轮电动车，需求为实用性和经济性；越南学生和老年人在上学、购物等日常出行场景中使用双轮电动车，需求为外观和使用寿命；马来西亚年轻消费人口在日常通勤和短途出行时使用双轮电动车，将拥有二轮车视为成人仪式和独立的象征；B端用户如外卖、快递等配送服务以及共享经济行业的企业在业务运营中使用双轮电动车，需求为与电动二轮车企业合作以满足其业务需求。",
+"labels":[
+    {
+        "type": "consumer_group",
+        "value": "印尼家庭"
+    },
+    {
+        "type": "scenario",
+        "value": "日常通勤和短途出行"
+    },
+    {
+        "type": "requirement",
+        "value": "实用性和经济性"
+    },
+    {
+        "type": "consumer_group",
+        "value": "越南学生和老年人"
+    },
+    {
+        "type": "scenario",
+        "value": "上学、购物等日常出行"
+    },
+    {
+        "type": "requirement",
+        "value": "外观和使用寿命"
+    },
+    {
+        "type": "consumer_group",
+        "value": "马来西亚年轻消费人口"
+    },
+    {
+        "type": "scenario",
+        "value": "日常通勤和短途出行"
+    },
+    {
+        "type": "requirement",
+        "value": "成人仪式和独立的象征"
+    },
+    {
+        "type": "consumer_group",
+        "value": "B端用户"
+    },
+    {
+        "type": "scenario",
+        "value": "业务运营"
+    },
+    {
+        "type": "requirement",
+        "value": "与电动二轮车企业合作满足业务需求"
+    }
+]
+}

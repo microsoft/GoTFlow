@@ -1,0 +1,57 @@
+[
+{
+"brand": "小牛电动",
+"case_summary": "小牛电动在东南亚市场的拓展，包括为G20峰会提供电动摩托车、社媒营销、产品策略以及社区运营。",
+"back_ground": "东南亚市场对电动两轮车需求增长，小牛电动希望在该市场取得更大的市场份额。",
+"marketing_target": "提高品牌知名度，扩大市场份额，满足东南亚市场的需求。",
+"marketing_challenge": "面临竞争对手的挑战，以及不同国家的政策和市场需求差异。",
+"marketing_action": "为G20峰会提供电动摩托车，社媒营销，产品策略调整以满足本地化需求，社区运营。",
+"marketing_strategy": "与当地合作伙伴协同，进行产品的本地化生产，提供更多满足本地化需求的电动两轮车产品。",
+"marketing_effect": "在东南亚市场取得了一定的市场份额，受到当地消费者的青睐。",
+"highlight": "小牛电动通过与当地合作伙伴协同，进行产品的本地化生产，以满足东南亚市场的需求。"
+},
+{
+"brand": "雅迪",
+"case_summary": "雅迪通过世界杯营销活动提升品牌知名度。",
+"back_ground": "足球世界杯期间，雅迪希望借助世界杯热潮提升品牌知名度。",
+"marketing_target": "提高品牌知名度，吸引更多消费者关注。",
+"marketing_challenge": "如何在世界杯期间有效吸引消费者关注。",
+"marketing_action": "通过“雅迪星球”小程序上线赛事竞猜、观赛派对等，发起世界杯互动活动。",
+"marketing_strategy": "借助世界杯热潮，通过线上线下活动吸引消费者关注。",
+"marketing_effect": "成功吸引了大量消费者关注，提升了品牌知名度。",
+"highlight": "雅迪通过世界杯营销活动，成功吸引了大量消费者关注，提升了品牌知名度。"
+},
+{
+"brand": "台铃",
+"case_summary": "台铃通过守望亚洲挑战赛、与王一博合作等方式在东南亚市场进行品牌推广。",
+"back_ground": "台铃希望在东南亚市场取得更大的市场份额。",
+"marketing_target": "提高品牌知名度，扩大市场份额。",
+"marketing_challenge": "面临竞争对手的挑战，以及不同国家的政策和市场需求差异。",
+"marketing_action": "举办守望亚洲挑战赛，与王一博合作进行品牌推广。",
+"marketing_strategy": "通过守望亚洲挑战赛展示台铃的产品实力和环保理念，借助王一博的影响力提升品牌知名度。",
+"marketing_effect": "在东南亚市场取得了一定的市场份额，提升了品牌知名度。",
+"highlight": "台铃通过守望亚洲挑战赛和与王一博的合作，成功提升了品牌知名度和市场份额。"
+},
+{
+"brand": "爱玛",
+"case_summary": "爱玛在印度尼西亚市场的拓展，包括为G20峰会提供定制电动摩托车。",
+"back_ground": "印度尼西亚市场对电动两轮车需求增长，爱玛希望在该市场取得更大的市场份额。",
+"marketing_target": "提高品牌知名度，扩大市场份额，满足印度尼西亚市场的需求。",
+"marketing_challenge": "面临竞争对手的挑战，以及不同国家的政策和市场需求差异。",
+"marketing_action": "为G20峰会提供定制电动摩托车，满足印度尼西亚市场的需求。",
+"marketing_strategy": "通过为G20峰会提供定制电动摩托车，展示爱玛的产品实力和满足印度尼西亚市场的需求。",
+"marketing_effect": "在印度尼西亚市场取得了一定的市场份额，提升了品牌知名度。",
+"highlight": "爱玛通过为G20峰会提供定制电动摩托车，成功展示了其产品实力和满足印度尼西亚市场的需求。"
+},
+{
+"brand": "Viar Motor",
+"case_summary": "Viar Motor与Grab和换电品牌SWAP合作，推出SMOOT Tempur电动摩托车，满足Grab车队的需求，并配备SWAP提供的电池更换系统。",
+"back_ground": "东南亚电动二轮车市场竞争激烈，Grab和Gojek等平台推出电动摩托车车队，为市场带来新的机遇。",
+"marketing_target": "通过B端合作，打开更广阔的市场，满足Grab车队的电动摩托车需求。",
+"marketing_challenge": "在竞争激烈的市场中，与Grab等平台建立合作关系，提供满足其需求的电动摩托车产品。",
+"marketing_action": "与Grab和换电品牌SWAP合作，推出SMOOT Tempur电动摩托车，并配备SWAP提供的电池更换系统。",
+"marketing_strategy": "通过与Grab等平台合作，提供满足其需求的电动摩托车产品，打开更广阔的市场。",
+"marketing_effect": "成功与Grab建立合作关系，为Grab车队提供电动摩托车。",
+"highlight": "与Grab和换电品牌SWAP的合作，推出满足Grab车队需求的SMOOT Tempur电动摩托车，并配备便捷的电池更换系统。"
+}
+]

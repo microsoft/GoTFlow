@@ -1,0 +1,34 @@
+{
+  "output_dir_path": "../data/workflows/MarketPlan/output",
+  "input_parameters":[
+    {
+            "suffix": "",
+            "file_path": "../data/workflows/MarketPlan/input/parameters/basic_info.json"
+    }
+  ],
+  "flow_items":[
+    {
+    "id": "营销案例分析",
+    "description": "分析营销案例",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_case_analytics.txt"
+      },
+      {
+        "name": "content",
+        "type": "prompt_text",
+        "file_path": "../data/workflows/MarketPlan/input/raw_data/4_cases.txt"
+      }
+    ],
+    "output": [
+    {
+      "type": "file",
+      "name": "4_case_analytics.txt"
+    }],
+    "next_nodes": []
+  }
+  ]
+}

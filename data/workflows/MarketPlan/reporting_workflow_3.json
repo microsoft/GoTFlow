@@ -109,7 +109,7 @@
       "type": "file",
       "name": "3_2_scenario_requirement.txt"
     }],
-    "next_nodes": []
+    "next_nodes": ["明确产品的购买因素"]
   },
   {
     "id": "明确产品的购买因素",
