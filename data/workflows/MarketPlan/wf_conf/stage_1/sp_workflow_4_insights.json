@@ -1,0 +1,39 @@
+{
+  "output_dir_path": "../data/workflows/MarketPlan/output",
+  "input_parameters":[
+    {
+            "suffix": "",
+            "file_path": "../data/workflows/MarketPlan/input/parameters/basic_info.json"
+    }
+  ],
+  "flow_items":[
+    {
+    "id": "营销案例分析洞察",
+    "description": "营销案例分析洞察",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_insights.txt"
+      },
+      {
+        "name": "content",
+        "type": "prompt_text",
+        "file_path": "../data/workflows/MarketPlan/output/4_case_analytics.txt"
+      },
+      {
+        "name": "action",
+        "type": "temp_parameter",
+        "value": "分析知名品牌营销案例，具体分析内容包括：案例背景；品牌当时的营销目标、挑战；品牌相关营销动作、措施和策略总结；案例营销效果；以及案例亮点"
+      }
+    ],
+    "output": [
+    {
+      "type": "file",
+      "name": "4_case_analytics_insights.txt"
+    }],
+    "next_nodes": []
+  }
+  ]
+}

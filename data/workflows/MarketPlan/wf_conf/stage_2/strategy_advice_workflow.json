@@ -1,0 +1,57 @@
+{
+  "output_dir_path": "../data/workflows/MarketPlan/output",
+  "input_parameters":[
+    {
+            "suffix": "",
+            "file_path": "../data/workflows/MarketPlan/input/parameters/basic_info.json"
+    }
+  ],
+  "flow_items":[
+    {
+    "id": "GTM策略建议生成",
+    "description": "GTM策略建议生成",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_advice_gtm.txt"
+      },
+      {
+        "name": "content",
+        "type": "prompt_text_list",
+        "file_paths": ["../data/workflows/MarketPlan/output/chapter_1_abstract_outline.txt","../data/workflows/MarketPlan/output/chapter_2_abstract_outline.txt","../data/workflows/MarketPlan/output/chapter_3_abstract_outline.txt","../data/workflows/MarketPlan/output/chapter_4_abstract_outline.txt"]
+      }
+    ],
+    "output": [
+    {
+      "type": "file",
+      "name": "strategy_advice_gtm.txt"
+    }],
+    "next_nodes": ["营销策略建议生成"]
+  },
+  {
+    "id": "营销策略建议生成",
+    "description": "营销策略建议生成",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_advice_marketing.txt"
+      },
+      {
+        "name": "content",
+        "type": "prompt_text_list",
+        "file_paths": ["../data/workflows/MarketPlan/output/4_case_analytics.txt","../data/workflows/MarketPlan/output/4_case_analytics_insights.txt"]
+      }
+    ],
+    "output": [
+    {
+      "type": "file",
+      "name": "strategy_advice_marketing.txt"
+    }],
+    "next_nodes": []
+  }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "output_dir_path": "../data/workflows/MarketPlan/output",
+  "input_parameters":[
+    {
+            "suffix": "",
+            "file_path": "../data/workflows/MarketPlan/input/parameters/basic_info.json"
+    }
+  ],
+  "flow_items":[
+    {
+    "id": "消费群体，产品使用场景、需求和购买因素洞察",
+    "description": "明确目标产品的消费群体画像",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_insights.txt"
+      },
+      {
+        "name": "content",
+        "type": "prompt_text_list",
+        "file_paths": ["../data/workflows/MarketPlan/output/3_1_consumer_groups.txt","../data/workflows/MarketPlan/output/3_2_scenario_requirement.txt","../data/workflows/MarketPlan/output/3_3_purchase_factors.txt"]
+      },
+      {
+        "name": "action",
+        "type": "temp_parameter",
+        "value": "明确东南亚市场双轮电动车的核心消费者群体的基本信息，确定对双轮电动车的使用场景有哪些，消费群体对于产品的需求有哪些，消费群体在购买双轮电动车时有哪些购买因素，以及这些因素是如何影响消费者的"
+      }
+    ],
+    "output": [
+    {
+      "type": "file",
+      "name": "3_consumer_insights.txt"
+    }],
+    "next_nodes": []
+  }
+  ]
+}

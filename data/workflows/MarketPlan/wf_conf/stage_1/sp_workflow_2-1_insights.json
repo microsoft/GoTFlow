@@ -1,0 +1,39 @@
+{
+  "output_dir_path": "../data/workflows/MarketPlan/output",
+  "input_parameters":[
+    {
+            "suffix": "",
+            "file_path": "../data/workflows/MarketPlan/input/parameters/basic_info.json"
+    }
+  ],
+  "flow_items":[
+    {
+    "id": "市场竞争格局洞察",
+    "description": "市场竞争格局洞察",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_insights.txt"
+      },
+      {
+        "name": "content",
+        "type": "prompt_text_list",
+        "file_paths": ["../data/workflows/MarketPlan/output/2-1_1_marketing_players.txt","../data/workflows/MarketPlan/output/2-1_2_brand_features.txt"]
+      },
+      {
+        "name": "action",
+        "type": "temp_parameter",
+        "value": "明确东南亚双轮电动车市场的竞争格局是怎么样的，以及各个品牌的特征都有什么"
+      }
+    ],
+    "output": [
+    {
+      "type": "file",
+      "name": "2-1_marketing_players_insights.txt"
+    }],
+    "next_nodes": []
+  }
+  ]
+}

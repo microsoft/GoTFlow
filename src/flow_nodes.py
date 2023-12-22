@@ -38,6 +38,19 @@ class Executor:
                 with open(file_path, 'r', encoding="utf-8") as file:
                     prompt_text = file.read()
                     parameter_value_dict[name] = prompt_text
+            elif parameter["type"]  == "prompt_text_list":
+                file_paths = parameter["file_paths"]
+                if not file_paths or not name:
+                    print(f"Error: the file_paths of {name} doesn't exist.")
+                    continue
+                if not isinstance(file_paths, list):
+                    print(f"Error: the file_paths of {name} is not a list.")
+                    continue
+                prompt_text = ""
+                for file_path in file_paths:
+                    with open(file_path, 'r', encoding="utf-8") as file:
+                        prompt_text += file.read()
+                parameter_value_dict[name] = prompt_text
             elif parameter["type"] == "temp_parameter":
                 if name and parameter["value"]:
                     parameter_value_dict[name] = parameter["value"]

@@ -1,0 +1,123 @@
+{
+  "output_dir_path": "../data/workflows/MarketPlan/output",
+  "input_parameters":[
+    {
+            "suffix": "",
+            "file_path": "../data/workflows/MarketPlan/input/parameters/basic_info.json"
+    }
+  ],
+  "flow_items":[
+    {
+    "id": "生成第一章的摘要和提纲",
+    "description": "生成第一章的摘要和提纲",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_outline.txt"
+      },
+      {
+        "name": "content",
+        "type": "prompt_text_list",
+        "file_paths": ["../data/workflows/MarketPlan/output/1-1_marketing_insights.txt","../data/workflows/MarketPlan/output/1-2_marketing_factor_ways_insights.txt"]
+      },
+      {
+        "name": "chapter_number",
+        "type": "temp_parameter",
+        "value": "1"
+      }
+    ],
+    "output": [
+    {
+      "type": "file",
+      "name": "chapter_1_abstract_outline.txt"
+    }],
+    "next_nodes": ["生成第二章的摘要和提纲"]
+  },
+  {
+    "id": "生成第二章的摘要和提纲",
+    "description": "生成第二章的摘要和提纲",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_outline.txt"
+      },
+      {
+        "name": "content",
+        "type": "prompt_text_list",
+        "file_paths": ["../data/workflows/MarketPlan/output/2-1_marketing_players_insights.txt","../data/workflows/MarketPlan/output/2-2_japanese_players_enterprises_insights.txt","../data/workflows/MarketPlan/output/2-3_esasia_players_enterprises_insights.txt","../data/workflows/MarketPlan/output/2-4_chinese_players_enterprises_insights.txt","../data/workflows/MarketPlan/output/2-5_investment_growth_insights.txt"]
+      },
+      {
+        "name": "chapter_number",
+        "type": "temp_parameter",
+        "value": "2"
+      }
+    ],
+    "output": [
+    {
+      "type": "file",
+      "name": "chapter_2_abstract_outline.txt"
+    }],
+    "next_nodes": ["生成第三章的摘要和提纲"]
+  },
+    {
+    "id": "生成第三章的摘要和提纲",
+    "description": "生成第三章的摘要和提纲",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_outline.txt"
+      },
+      {
+        "name": "content",
+        "type": "prompt_text_list",
+        "file_paths": ["../data/workflows/MarketPlan/output/3_consumer_insights.txt"]
+      },
+      {
+        "name": "chapter_number",
+        "type": "temp_parameter",
+        "value": "3"
+      }
+    ],
+    "output": [
+    {
+      "type": "file",
+      "name": "chapter_3_abstract_outline.txt"
+    }],
+    "next_nodes": ["生成第四章的摘要和提纲"]
+  },
+    {
+    "id": "生成第四章的摘要和提纲",
+    "description": "生成第四章的摘要和提纲",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_outline.txt"
+      },
+      {
+        "name": "content",
+        "type": "prompt_text_list",
+        "file_paths": ["../data/workflows/MarketPlan/output/4_case_analytics_insights.txt"]
+      },
+      {
+        "name": "chapter_number",
+        "type": "temp_parameter",
+        "value": "4"
+      }
+    ],
+    "output": [
+    {
+      "type": "file",
+      "name": "chapter_4_abstract_outline.txt"
+    }],
+    "next_nodes": []
+  }
+  ]
+}

@@ -28,43 +28,86 @@ To use this project, you need to have the following dependencies installed:
 - `utils` module for LLM configuration and GPT processing
 
 
-## Usage
+# Usage
 
-To use the GoT workflow engine, you need to provide a JSON configuration file that defines the workflow and an LLM string for the language learning model.
+## GoTFlow Engine
 
-### Example
+The GoTFlow engine is a Python-based workflow engine designed to execute a series of tasks defined in a workflow configuration file. The engine reads the configuration file, processes each task in the order specified, and outputs the results.
+
+To run the GoTFlow engine, use the following command:
+
+```bash
+python got_engine.py <workflow_config_file>
 ```
-cd src
+
+Replace `<workflow_config_file>` with the path to your workflow configuration file.
+
+## Workflow Configuration
+
+A workflow configuration is a JSON file that defines a series of tasks (or "flow items") to be executed by the GoTFlow engine. Each task is represented as an object in the "flow_items" array.
+
+Here is an example of a workflow configuration file:
+
+```json
+{
+  "output_dir_path": "../data/workflows/MarketPlan/output",
+  "input_parameters":[],
+  "flow_items":[
+  {
+    "id": "task1",
+    "description": "Description of task1",
+    "type": "executor",
+    "input_parameters": [],
+    "output": [],
+    "next_nodes": ["task2"]
+  },
+  {
+    "id": "task2",
+    "description": "Description of task2",
+    "type": "executor",
+    "input_parameters": [],
+    "output": [],
+    "next_nodes": []
+  }
+  ]
+}
 ```
-``` 
-python cot_engine.py "../data/workflows/Ads/marketing_plan.json" --llm_string "llm_long"
-```
 
-PS: The workflow defined in data/workflows/Ads/marketing_plan.json has been visulized in images/workflows/marketing_plan_flowchart.jpg.
+### Fields
 
-## Configuration
+- `output_dir_path`: The directory where the output files will be saved.
+- `input_parameters`: An array of input parameters for the workflow. Each parameter is an object with a `name`, `type`, and `value` or `file_path`.
+- `flow_items`: An array of tasks to be executed. Each task is an object with the following fields:
+  - `id`: A unique identifier for the task.
+  - `description`: A description of the task.
+  - `type`: The type of the task. Currently, only "executor" is supported.
+  - `input_parameters`: An array of input parameters for the task. Each parameter is an object with a `name`, `type`, and `value` or `file_path`.
+  - `output`: An array of output parameters for the task. Each parameter is an object with a `type` and `name`.
+  - `next_nodes`: An array of task IDs that should be executed after this task.
 
-The workflow configuration file is a JSON file that defines the nodes and their properties. Each node has a unique ID, a type (either 'executor' or 'decision_maker'), input parameters, and output properties.
+### Task Types
 
-### Node Types
+Currently, the GoTFlow engine supports the following task types:
 
-- **Executor**: Executes an LLM task and stores the output in a variable or a file.
-- **DecisionMaker**: Evaluates a condition based on the LLM's output and determines the subsequent path in the workflow.
+- `executor`: Executes a task and produces an output.
 
-### Input Parameters
+### Parameter Types
 
-Input parameters can be of the following types:
+The GoTFlow engine supports the following parameter types:
 
-- **output_variable**: A variable that holds the output of a previous node.
-- **prompt_template**: A file that contains a template for the LLM task.
-- **prompt_parameters**: A file that contains parameters for the LLM task.
+- `prompt_template`: A text template used to generate prompts.
+- `prompt_text`: A text used as input for a task.
+- `prompt_text_list`: A list of texts used as input for a task.
+- `temp_parameter`: A temporary parameter used within a task.
+- `output_variable`: A variable used to store the output of a task.
 
-### Output Properties
+For each parameter, you can specify a `value` directly, or provide a `file_path` to a file containing the value.
 
-Output properties define how the output of a node should be stored. They can be of the following types:
+## Workflow Execution
 
-- **variable**: Stores the output in a variable for use in later nodes.
-- **file**: Stores the output in a file.
+The GoTFlow engine executes the tasks in the order specified in the "flow_items" array. For each task, the engine reads the input parameters, executes the task, and saves the output parameters. If a task has "next_nodes", the engine will execute those tasks next.
+
+The results of the workflow execution are saved in the directory specified by `output_dir_path`.
 
 
 ## License

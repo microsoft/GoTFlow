@@ -1,0 +1,39 @@
+{
+  "output_dir_path": "../data/workflows/MarketPlan/output",
+  "input_parameters":[
+    {
+            "suffix": "",
+            "file_path": "../data/workflows/MarketPlan/input/parameters/basic_info.json"
+    }
+  ],
+  "flow_items":[
+  {
+    "id": "市场规模、趋势和未来潜力洞察",
+    "description": "市场规模、趋势和未来潜力洞察",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_insights.txt"
+      },
+      {
+        "name": "content",
+        "type": "prompt_text_list",
+        "file_paths":["../data/workflows/MarketPlan/output/1-1_1_marketing_volume_trend.txt", "../data/workflows/MarketPlan/output/1-1_2_marketing_potential.txt"]
+      },
+      {
+        "name": "action",
+        "type": "temp_parameter",
+        "value": "明确东南亚双轮电动车的市场规模及趋势，以及未来的市场潜力"
+      }
+    ],
+    "output": [
+    {
+      "type": "file",
+      "name": "1-1_marketing_insights.txt"
+    }],
+    "next_nodes": []
+  }
+  ]
+}

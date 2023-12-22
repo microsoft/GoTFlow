@@ -1,0 +1,39 @@
+{
+  "output_dir_path": "../data/workflows/MarketPlan/output",
+  "input_parameters":[
+    {
+            "suffix": "",
+            "file_path": "../data/workflows/MarketPlan/input/parameters/basic_info.json"
+    }
+  ],
+  "flow_items":[
+  {
+    "id": "投融资情况以及市场潜力和增长方向洞察",
+    "description": "明确整体市场未来增长空间如何，增长方向是什么",
+    "type": "executor",
+    "input_parameters": [
+      {
+        "name": "prompt_template_file_path",
+        "type": "prompt_template",
+        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_insights.txt"
+      },
+      {
+        "name": "content",
+        "type": "prompt_text_list",
+        "file_paths": ["../data/workflows/MarketPlan/output/2-5_1_brand_investment.txt", "../data/workflows/MarketPlan/output/2-5_2_market_growth.txt"]
+      },
+      {
+        "name": "action",
+        "type": "temp_parameter",
+        "value": "明确不同品牌的投融资情况，以及整体市场的增长空间和增长方向"
+      }
+    ],
+    "output": [
+    {
+      "type": "file",
+      "name": "2-5_investment_growth_insights.txt"
+    }],
+    "next_nodes": []
+  }
+  ]
+}
