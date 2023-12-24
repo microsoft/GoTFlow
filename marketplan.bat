@@ -1,6 +1,6 @@
 @echo off
 
-set "PYTHONPATH=%PYTHONPATH%;C:\Users\jull\source\github\GoTFlow\src"
+set "PYTHONPATH=%PYTHONPATH%;src"
 
 :: Define the directories containing the workflow configuration files
 set "directories=data\workflows\MarketPlan\wf_conf\stage_1 data\workflows\MarketPlan\wf_conf\stage_2"
@@ -12,7 +12,7 @@ for %%d in (%directories%) do (
     :: Print the current file path
     echo Processing file: %%f
     :: Run the got_engine.py script with the current file as an argument
-    python src/got_engine.py %%f
+    ::python src/got_engine.py %%f
   )
 )
 
