@@ -12,7 +12,7 @@ for %%d in (%directories%) do (
     :: Print the current file path
     echo Processing file: %%f
     :: Run the got_engine.py script with the current file as an argument
-    ::python src/got_engine.py %%f
+    python src/got_engine.py %%f
   )
 )
 
