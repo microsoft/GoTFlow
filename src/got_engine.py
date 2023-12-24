@@ -3,9 +3,9 @@ import os.path
 import argparse
 
 from flow_nodes import Executor, DecisionMaker
+from utils.util import read_file, get_output_dir
 
 output_cache = {}
-
 
 def process_node(node, llm_string, parameter_cache, output_dir):
     node_type = node['type']
@@ -55,11 +55,9 @@ def process_got(got_config_path, llm_string):
         else:
             flow_items = workflow_config['flow_items']
             output_dir = workflow_config['output_dir_path']
-            if not output_dir:
-                output_dir = "."
             input_parameters = workflow_config['input_parameters']
 
-    output_path = output_dir
+    output_path = get_output_dir(output_dir)
 
     if input_parameters and len(input_parameters) > 0:
         for input_parameter in input_parameters:
@@ -68,8 +66,10 @@ def process_got(got_config_path, llm_string):
 
             parameter_cache = {}
 
-            with open(input_parameter_file_path, encoding="utf8") as f:
-                json_obj = json.load(f)
+            input_parameters_file_content = read_file(input_parameter_file_path)
+            #with open(input_parameter_file_path, encoding="utf8") as f:
+            if input_parameters_file_content:
+                json_obj = json.loads(input_parameters_file_content)
                 for key, value in json_obj.items():
                     parameter_cache[key] = value
 

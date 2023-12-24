@@ -1,9 +1,9 @@
 {
-  "output_dir_path": "../data/workflows/MarketPlan/output",
+  "output_dir_path": "${GF_ROOT}/data/workflows/MarketPlan/output",
   "input_parameters":[
     {
             "suffix": "",
-            "file_path": "../data/workflows/MarketPlan/input/parameters/basic_info.json"
+            "file_path": "${GF_ROOT}/data/workflows/MarketPlan/input/parameters/basic_info.json"
     }
   ],
   "flow_items":[
@@ -15,12 +15,12 @@
       {
         "name": "prompt_template_file_path",
         "type": "prompt_template",
-        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_outline.txt"
+        "file_path": "${GF_ROOT}/data/workflows/MarketPlan/prompts/strategies_planning_outline.txt"
       },
       {
         "name": "content",
         "type": "prompt_text_list",
-        "file_paths": ["../data/workflows/MarketPlan/output/1-1_marketing_insights.txt","../data/workflows/MarketPlan/output/1-2_marketing_factor_ways_insights.txt"]
+        "file_paths": ["${GF_ROOT}/data/workflows/MarketPlan/output/1-1_marketing_insights.txt","${GF_ROOT}/data/workflows/MarketPlan/output/1-2_marketing_factor_ways_insights.txt"]
       },
       {
         "name": "chapter_number",
@@ -43,12 +43,12 @@
       {
         "name": "prompt_template_file_path",
         "type": "prompt_template",
-        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_outline.txt"
+        "file_path": "${GF_ROOT}/data/workflows/MarketPlan/prompts/strategies_planning_outline.txt"
       },
       {
         "name": "content",
         "type": "prompt_text_list",
-        "file_paths": ["../data/workflows/MarketPlan/output/2-1_marketing_players_insights.txt","../data/workflows/MarketPlan/output/2-2_japanese_players_enterprises_insights.txt","../data/workflows/MarketPlan/output/2-3_esasia_players_enterprises_insights.txt","../data/workflows/MarketPlan/output/2-4_chinese_players_enterprises_insights.txt","../data/workflows/MarketPlan/output/2-5_investment_growth_insights.txt"]
+        "file_paths": ["${GF_ROOT}/data/workflows/MarketPlan/output/2-1_marketing_players_insights.txt","${GF_ROOT}/data/workflows/MarketPlan/output/2-2_japanese_players_enterprises_insights.txt","${GF_ROOT}/data/workflows/MarketPlan/output/2-3_esasia_players_enterprises_insights.txt","${GF_ROOT}/data/workflows/MarketPlan/output/2-4_chinese_players_enterprises_insights.txt","${GF_ROOT}/data/workflows/MarketPlan/output/2-5_investment_growth_insights.txt"]
       },
       {
         "name": "chapter_number",
@@ -71,12 +71,12 @@
       {
         "name": "prompt_template_file_path",
         "type": "prompt_template",
-        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_outline.txt"
+        "file_path": "${GF_ROOT}/data/workflows/MarketPlan/prompts/strategies_planning_outline.txt"
       },
       {
         "name": "content",
         "type": "prompt_text_list",
-        "file_paths": ["../data/workflows/MarketPlan/output/3_consumer_insights.txt"]
+        "file_paths": ["${GF_ROOT}/data/workflows/MarketPlan/output/3_consumer_insights.txt"]
       },
       {
         "name": "chapter_number",
@@ -99,12 +99,12 @@
       {
         "name": "prompt_template_file_path",
         "type": "prompt_template",
-        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_outline.txt"
+        "file_path": "${GF_ROOT}/data/workflows/MarketPlan/prompts/strategies_planning_outline.txt"
       },
       {
         "name": "content",
         "type": "prompt_text_list",
-        "file_paths": ["../data/workflows/MarketPlan/output/4_case_analytics_insights.txt"]
+        "file_paths": ["${GF_ROOT}/data/workflows/MarketPlan/output/4_case_analytics_insights.txt"]
       },
       {
         "name": "chapter_number",

@@ -1,5 +1,5 @@
 {
-  "output_dir_path": "../data/workflows/MarketPlan/output",
+  "output_dir_path": "${GF_ROOT}/data/workflows/MarketPlan/output",
   "input_parameters":[],
   "flow_items":[
   {
@@ -10,12 +10,12 @@
       {
         "name": "prompt_template_file_path",
         "type": "prompt_template",
-        "file_path": "../data/workflows/MarketPlan/prompts/ppt_outline.txt"
+        "file_path": "${GF_ROOT}/data/workflows/MarketPlan/prompts/ppt_outline.txt"
       },
       {
         "name": "manuscript",
         "type": "prompt_text",
-        "file_path": "../data/workflows/MarketPlan/input/raw_data/manuscript.txt"
+        "file_path": "${GF_ROOT}/data/workflows/MarketPlan/input/raw_data/manuscript.txt"
       }
     ],
     "output": [{
@@ -36,7 +36,7 @@
       {
         "name": "prompt_template_file_path",
         "type": "prompt_template",
-        "file_path": "../data/workflows/MarketPlan/prompts/generic_outline.txt"
+        "file_path": "${GF_ROOT}/data/workflows/MarketPlan/prompts/generic_outline.txt"
       },
       {
         "name": "specified_outline",

@@ -1,9 +1,9 @@
 {
-  "output_dir_path": "../data/workflows/Ads/output",
+  "output_dir_path": "${GF_ROOT}/data/workflows/Ads/output",
   "input_parameters":[
     {
             "suffix": "trend",
-            "file_path": "../data/workflows/Ads/input/parameters/trend.json"
+            "file_path": "${GF_ROOT}/data/workflows/Ads/input/parameters/trend.json"
     }
   ],
   "flow_items": [
@@ -15,7 +15,7 @@
       {
         "name": "prompt_template_file_path",
         "type": "prompt_template",
-        "file_path": "../data/workflows/Ads/prompts/sum_data_reader.txt"
+        "file_path": "${GF_ROOT}/data/workflows/Ads/prompts/sum_data_reader.txt"
       },
       {
         "name": "input_parameter_file_path",
@@ -36,7 +36,7 @@
       {
         "name": "prompt_template_file_path",
         "type": "prompt_template",
-        "file_path": "../data/workflows/Ads/prompts/sum_data_feature_determine.txt"
+        "file_path": "${GF_ROOT}/data/workflows/Ads/prompts/sum_data_feature_determine.txt"
       },
       {
         "name": "input_parameter_file_path",
@@ -79,7 +79,7 @@
       {
         "name": "prompt_template_file_path",
         "type": "prompt_template",
-        "file_path": "../data/workflows/Ads/prompts/sum_trend_miner.txt"
+        "file_path": "${GF_ROOT}/data/workflows/Ads/prompts/sum_trend_miner.txt"
       },
       {
         "name": "input_parameter_file_path",
@@ -104,7 +104,7 @@
       {
         "name": "prompt_template_file_path",
         "type": "prompt_template",
-        "file_path": "../data/workflows/Ads/prompts/sum_quantity_analysis.txt"
+        "file_path": "${GF_ROOT}/data/workflows/Ads/prompts/sum_quantity_analysis.txt"
       },
       {
         "name": "input_parameter_file_path",
@@ -129,7 +129,7 @@
       {
         "name": "prompt_template_file_path",
         "type": "prompt_template",
-        "file_path": "../data/workflows/Ads/prompts/sum_quality_analysis_1.txt"
+        "file_path": "${GF_ROOT}/data/workflows/Ads/prompts/sum_quality_analysis_1.txt"
       },
       {
         "name": "input_parameter_file_path",
@@ -154,7 +154,7 @@
       {
         "name": "prompt_template_file_path",
         "type": "prompt_template",
-        "file_path": "../data/workflows/Ads/prompts/sum_quality_analysis_2.txt"
+        "file_path": "${GF_ROOT}/data/workflows/Ads/prompts/sum_quality_analysis_2.txt"
       },
       {
         "name": "input_parameter_file_path",

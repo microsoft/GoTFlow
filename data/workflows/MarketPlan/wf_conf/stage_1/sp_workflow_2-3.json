@@ -1,9 +1,9 @@
 {
-  "output_dir_path": "../data/workflows/MarketPlan/output",
+  "output_dir_path": "${GF_ROOT}/data/workflows/MarketPlan/output",
   "input_parameters":[
     {
             "suffix": "",
-            "file_path": "../data/workflows/MarketPlan/input/parameters/basic_info.json"
+            "file_path": "${GF_ROOT}/data/workflows/MarketPlan/input/parameters/basic_info.json"
     }
   ],
   "flow_items":[
@@ -15,12 +15,12 @@
       {
         "name": "prompt_template_file_path",
         "type": "prompt_template",
-        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_template.txt"
+        "file_path": "${GF_ROOT}/data/workflows/MarketPlan/prompts/strategies_planning_template.txt"
       },
       {
         "name": "content",
         "type": "prompt_text",
-        "file_path": "../data/workflows/MarketPlan/input/raw_data/2-3_eastsouthasia_brands.txt"
+        "file_path": "${GF_ROOT}/data/workflows/MarketPlan/input/raw_data/2-3_eastsouthasia_brands.txt"
       },
       {
         "name": "step",
@@ -67,12 +67,12 @@
       {
         "name": "prompt_template_file_path",
         "type": "prompt_template",
-        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_template.txt"
+        "file_path": "${GF_ROOT}/data/workflows/MarketPlan/prompts/strategies_planning_template.txt"
       },
       {
         "name": "content",
         "type": "prompt_text",
-        "file_path": "../data/workflows/MarketPlan/input/raw_data/2-3_eastsouthasia_brands.txt"
+        "file_path": "${GF_ROOT}/data/workflows/MarketPlan/input/raw_data/2-3_eastsouthasia_brands.txt"
       },
       {
         "name": "step",

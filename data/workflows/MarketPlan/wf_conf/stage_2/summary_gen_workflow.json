@@ -1,9 +1,9 @@
 {
-  "output_dir_path": "../data/workflows/MarketPlan/output",
+  "output_dir_path": "${GF_ROOT}/data/workflows/MarketPlan/output",
   "input_parameters":[
     {
             "suffix": "",
-            "file_path": "../data/workflows/MarketPlan/input/parameters/basic_info.json"
+            "file_path": "${GF_ROOT}/data/workflows/MarketPlan/input/parameters/basic_info.json"
     }
   ],
   "flow_items":[
@@ -15,12 +15,12 @@
       {
         "name": "prompt_template_file_path",
         "type": "prompt_template",
-        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_intro_sum.txt"
+        "file_path": "${GF_ROOT}/data/workflows/MarketPlan/prompts/strategies_planning_intro_sum.txt"
       },
       {
         "name": "content",
         "type": "prompt_text_list",
-        "file_paths": ["../data/workflows/MarketPlan/output/chapter_1_abstract_outline.txt","../data/workflows/MarketPlan/output/chapter_2_abstract_outline.txt","../data/workflows/MarketPlan/output/chapter_3_abstract_outline.txt","../data/workflows/MarketPlan/output/chapter_4_abstract_outline.txt"]
+        "file_paths": ["${GF_ROOT}/data/workflows/MarketPlan/output/chapter_1_abstract_outline.txt","${GF_ROOT}/data/workflows/MarketPlan/output/chapter_2_abstract_outline.txt","${GF_ROOT}/data/workflows/MarketPlan/output/chapter_3_abstract_outline.txt","${GF_ROOT}/data/workflows/MarketPlan/output/chapter_4_abstract_outline.txt"]
       },
       {
         "name": "action",
@@ -43,12 +43,12 @@
       {
         "name": "prompt_template_file_path",
         "type": "prompt_template",
-        "file_path": "../data/workflows/MarketPlan/prompts/strategies_planning_intro_sum.txt"
+        "file_path": "${GF_ROOT}/data/workflows/MarketPlan/prompts/strategies_planning_intro_sum.txt"
       },
       {
         "name": "content",
         "type": "prompt_text_list",
-        "file_paths": ["../data/workflows/MarketPlan/output/chapter_1_abstract_outline.txt","../data/workflows/MarketPlan/output/chapter_2_abstract_outline.txt","../data/workflows/MarketPlan/output/chapter_3_abstract_outline.txt","../data/workflows/MarketPlan/output/chapter_4_abstract_outline.txt"]
+        "file_paths": ["${GF_ROOT}/data/workflows/MarketPlan/output/chapter_1_abstract_outline.txt","${GF_ROOT}/data/workflows/MarketPlan/output/chapter_2_abstract_outline.txt","${GF_ROOT}/data/workflows/MarketPlan/output/chapter_3_abstract_outline.txt","${GF_ROOT}/data/workflows/MarketPlan/output/chapter_4_abstract_outline.txt"]
       },
       {
         "name": "action",
