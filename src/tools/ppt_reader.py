@@ -6,7 +6,6 @@ import os
 
 from pptx.util import Pt
 
-
 def save_image(shape, slide_index, image_index, output_dir):
     # 获取图片的二进制数据
     image_stream = shape.image.blob
@@ -17,6 +16,7 @@ def save_image(shape, slide_index, image_index, output_dir):
     with open(image_path, 'wb') as img_file:
         img_file.write(image_stream)
     return image_filename
+
 
 def read_ppt_to_json(ppt_file, output_dir='../../output/images'):
     # 确保输出目录存在
@@ -70,14 +70,15 @@ def read_ppt_to_json(ppt_file, output_dir='../../output/images'):
     manu_script_text = '\n'.join(manu_script)
     return json_text, manu_script_text
 
-# Use the function
-ppt_file = '..\\..\\sample_reports\\电动化变革热度高涨，双轮车迎来出海新机会.pptx'  # replace with your ppt file path
-json_output, manuscript = read_ppt_to_json(ppt_file)
 
-# Save the output to a file
-with open('../../data/ppt_data/ppt_content.json', 'w', encoding='utf-8') as f:
-    f.write(json_output)
+if __name__ == "__main__":
+    # Use the function
+    ppt_file = '..\\..\\sample_reports\\电动化变革热度高涨，双轮车迎来出海新机会.pptx'  # replace with your ppt file path
+    json_output, manuscript = read_ppt_to_json(ppt_file)
 
+    # Save the output to a file
+    with open('../../data/ppt_data/ppt_content.json', 'w', encoding='utf-8') as f:
+        f.write(json_output)
 
-with open('../../data/workflows/MarketPlan/input/raw_data/manuscript.txt', 'w', encoding='utf-8') as f:
-    f.write(manuscript)
+    with open('../../data/workflows/MarketPlan/input/raw_data/manuscript.txt', 'w', encoding='utf-8') as f:
+        f.write(manuscript)

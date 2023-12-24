@@ -7,6 +7,7 @@ from utils.util import read_file, get_output_dir
 
 output_cache = {}
 
+
 def process_node(node, llm_string, parameter_cache, output_dir):
     node_type = node['type']
     next_nodes_ids = None
@@ -22,6 +23,7 @@ def process_node(node, llm_string, parameter_cache, output_dir):
         next_nodes_ids = decision_maker.get_next_node(condition_result)
 
     return next_nodes_ids
+
 
 def process_got_single_parameter_file(flow_items, parameter_cache, llm_string, output_path):
     if output_path and not os.path.exists(output_path):
@@ -45,6 +47,7 @@ def process_got_single_parameter_file(flow_items, parameter_cache, llm_string, o
 
     return
 
+
 def process_got(got_config_path, llm_string):
     # Load the workflow from the JSON configuration file
     with open(got_config_path, encoding="utf8") as f:
@@ -67,7 +70,7 @@ def process_got(got_config_path, llm_string):
             parameter_cache = {}
 
             input_parameters_file_content = read_file(input_parameter_file_path)
-            #with open(input_parameter_file_path, encoding="utf8") as f:
+
             if input_parameters_file_content:
                 json_obj = json.loads(input_parameters_file_content)
                 for key, value in json_obj.items():
@@ -84,6 +87,7 @@ def process_got(got_config_path, llm_string):
         process_got_single_parameter_file(flow_items, {}, llm_string, output_path)
 
     return
+
 
 def get_parameter_file_paths(input_parameter_file_path):
     if not input_parameter_file_path:
@@ -102,6 +106,7 @@ def get_parameter_file_paths(input_parameter_file_path):
         print(f"{input_parameter_file_path} is neither a file nor a directory.")
 
     return file_paths
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process a workflow based on a configuration file.')

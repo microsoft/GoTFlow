@@ -2,6 +2,7 @@ from utils.aoai import get_llm_config, gpt_process_loops
 from utils.util import read_file
 import os
 
+
 class Executor:
     def __init__(self, node, llm_string, loops=3):
         self.node = node
@@ -23,19 +24,9 @@ class Executor:
             name = parameter["name"]
             if parameter["type"] == "prompt_template":
                 file_path = parameter["file_path"]
-                #if not file_path:
-                #    print(f"Error: the file_path of {name} doesn't exist.")
-                #    continue
-                #with open(file_path, 'r', encoding="utf-8") as file:
-                #    prompt_template += file.read()
                 prompt_template += read_file(file_path)
             elif parameter["type"] == "prompt_text":
                 file_path = parameter["file_path"]
-                #if not file_path or not name:
-                #    print(f"Error: the file_path of {name} doesn't exist.")
-                #    continue
-                #with open(file_path, 'r', encoding="utf-8") as file:
-                #    prompt_text = file.read()
                 prompt_text = read_file(file_path)
                 if prompt_text:
                     parameter_value_dict[name] = prompt_text
@@ -49,8 +40,6 @@ class Executor:
                     continue
                 prompt_text = ""
                 for file_path in file_paths:
-                    #with open(file_path, 'r', encoding="utf-8") as file:
-                    #    prompt_text += file.read()
                     prompt_text += read_file(file_path)
                 parameter_value_dict[name] = prompt_text
             elif parameter["type"] == "temp_parameter":

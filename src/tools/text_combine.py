@@ -23,6 +23,7 @@ def merge_files(dir_path, file_names, output_path):
 
     return
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Merge files into one.')
     parser.add_argument('source_dir', help='The path to the source dir.')
