@@ -1,9 +1,9 @@
 {
-"output": "东南亚市场的本地双轮电动车品牌主要有印尼的SMOOT、MAKA Motors、Gen Indonesia、Ilectra Motor Group（IMG），越南的VinFast、Pega、Dibao、Anbico、Dat Bike、Selex Motors，以及泰国的GPX。各品牌的市场份额具体数据未提供。",
+"output": "东南亚市场的本地双轮电动车品牌主要有印尼的双轮电动车品牌-7、双轮电动车品牌-8、双轮电动车品牌-9、双轮电动车品牌-10，越南的双轮电动车品牌-4、双轮电动车品牌-11、双轮电动车品牌-12、双轮电动车品牌-13、双轮电动车品牌-14、双轮电动车品牌-15，以及泰国的双轮电动车品牌-16。各品牌的市场份额具体数据未提供。",
 "labels": [
     {
         "type": "brand",
-        "value": "SMOOT"
+        "value": "双轮电动车品牌-7"
     },
     {
         "type": "area",
@@ -11,7 +11,7 @@
     },
     {
         "type": "brand",
-        "value": "MAKA Motors"
+        "value": "双轮电动车品牌-8"
     },
     {
         "type": "area",
@@ -19,7 +19,7 @@
     },
     {
         "type": "brand",
-        "value": "Gen Indonesia"
+        "value": "双轮电动车品牌-9"
     },
     {
         "type": "area",
@@ -27,7 +27,7 @@
     },
     {
         "type": "brand",
-        "value": "Ilectra Motor Group（IMG）"
+        "value": "双轮电动车品牌-10"
     },
     {
         "type": "area",
@@ -35,7 +35,7 @@
     },
     {
         "type": "brand",
-        "value": "VinFast"
+        "value": "双轮电动车品牌-4"
     },
     {
         "type": "area",
@@ -43,7 +43,7 @@
     },
     {
         "type": "brand",
-        "value": "Pega"
+        "value": "双轮电动车品牌-11"
     },
     {
         "type": "area",
@@ -51,7 +51,7 @@
     },
     {
         "type": "brand",
-        "value": "Dibao"
+        "value": "双轮电动车品牌-12"
     },
     {
         "type": "area",
@@ -59,7 +59,7 @@
     },
     {
         "type": "brand",
-        "value": "Anbico"
+        "value": "双轮电动车品牌-13"
     },
     {
         "type": "area",
@@ -67,7 +67,7 @@
     },
     {
         "type": "brand",
-        "value": "Dat Bike"
+        "value": "双轮电动车品牌-14"
     },
     {
         "type": "area",
@@ -75,7 +75,7 @@
     },
     {
         "type": "brand",
-        "value": "Selex Motors"
+        "value": "双轮电动车品牌-15"
     },
     {
         "type": "area",
@@ -83,7 +83,7 @@
     },
     {
         "type": "brand",
-        "value": "GPX"
+        "value": "双轮电动车品牌-16"
     },
     {
         "type": "area",
