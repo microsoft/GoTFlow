@@ -1,2 +1,5 @@
 openai
 numpy
+argparse
+chardet
+

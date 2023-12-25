@@ -48,7 +48,8 @@ def process_got_single_parameter_file(flow_items, parameter_cache, llm_string, o
     return
 
 
-def process_got(got_config_path, llm_string):
+def process_got(got_config_path, llm_string, specified_output_dir):
+
     # Load the workflow from the JSON configuration file
     with open(got_config_path, encoding="utf8") as f:
         workflow_config = json.load(f)
@@ -57,7 +58,11 @@ def process_got(got_config_path, llm_string):
             exit(0)
         else:
             flow_items = workflow_config['flow_items']
-            output_dir = workflow_config['output_dir_path']
+            if (not specified_output_dir) or specified_output_dir == "DEFAULT":
+                output_dir = workflow_config['output_dir_path']
+            else:
+                output_dir = specified_output_dir
+
             input_parameters = workflow_config['input_parameters']
 
     output_path = get_output_dir(output_dir)
@@ -112,9 +117,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process a workflow based on a configuration file.')
     parser.add_argument('workflow_file_path', help='The path to the workflow configuration file.')
     parser.add_argument('--llm_string', default='llm_long', help='Optional string for the llm.')
+    parser.add_argument('--output_dir', default='DEFAULT', help='Optional string for the llm.')
 
     args = parser.parse_args()
     workflow_file_path = args.workflow_file_path
     llm_string = args.llm_string  # This will be an empty string if --llm_string is not provided
+    specified_output_dir = args.output_dir
 
-    process_got(workflow_file_path, llm_string)
+    process_got(workflow_file_path, llm_string, specified_output_dir)

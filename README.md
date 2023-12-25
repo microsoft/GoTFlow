@@ -37,10 +37,16 @@ The GoTFlow engine is a Python-based workflow engine designed to execute a serie
 To run the GoTFlow engine, use the following command:
 
 ```bash
-python got_engine.py <workflow_config_file>
+python got_engine.py <workflow_config_file> --output_dir <output_directory> --llm_conf <llm_config_file>
 ```
 
-Replace `<workflow_config_file>` with the path to your workflow configuration file.
+Replace <workflow_config_file> with the path to your workflow configuration file. <output_directory> is the directory where the output files will be saved. <llm_config_file> is the path to the LLM configuration file.
+
+Command Line Optional Arguments：
+
+--output_dir: Specifies the directory where the output files will be saved. If not provided, the output directory specified in the workflow configuration file will be used.
+
+--llm_conf: Specifies the path to the LLM configuration file. This file contains the configuration for the Language Learning Model (LLM) used in the workflow.
 
 ## Workflow Configuration
 
