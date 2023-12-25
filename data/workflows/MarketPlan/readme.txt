@@ -17,3 +17,5 @@ python text_combine.py
 ```
 
 这样，您就可以得到一个完整的营销策略规划报告，该报告是根据您提供的素材自动生成的。
+
+NOTE：GoTFlow 根目录下的 MarketPlan.bat 中已经实现了上面两个步骤的全部操作，Windows 用户直接在 GoTFlow 目录下直接运行 MarketPlan.bat 文件即可自动化实现营销策略规划报告生成的全流程。
