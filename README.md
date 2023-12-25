@@ -19,6 +19,12 @@ To use this project, you need to have the following dependencies installed:
 
 - Python 3.10 or higher
 
+- AzureOpenAI Key
+
+You are required to use your own Azure openai key to access the Azure openai API (AOAI).
+
+What you need to do is just to put your Azure openai key in a plain text file named openai_key.txt and put it in the conf directory of this project. 
+
 - Run
 	```
 	pip install -r requirements.txt 
