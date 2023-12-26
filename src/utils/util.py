@@ -4,7 +4,7 @@ import chardet
 # Get the absolute path of the current script
 current_dir = os.path.dirname(os.path.abspath(__file__))
 # Get the root directory of the GoTFlow project
-got_root = os.path.join(current_dir, '../..')
+got_root = os.path.join(current_dir, '../../')
 
 got_root_sign = "${GF_ROOT}"
 

@@ -25,9 +25,9 @@ def process_node(node, llm_string, parameter_cache, output_dir):
     return next_nodes_ids
 
 
-def process_got_single_parameter_file(flow_items, parameter_cache, llm_string, output_path):
-    if output_path and not os.path.exists(output_path):
-        os.makedirs(output_path)
+def process_got_single_parameter_file(flow_items, parameter_cache, llm_string, output_dir):
+    if output_dir and not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
     # Create a cache for all nodes
     node_cache = {node['id']: node for node in flow_items}
@@ -40,7 +40,7 @@ def process_got_single_parameter_file(flow_items, parameter_cache, llm_string, o
         if next_nodes_ids:  # If there are nodes to process
             current_node_id = next_nodes_ids.pop(0)
             current_node = node_cache[current_node_id]
-            new_next_nodes_ids = process_node(current_node, llm_string, parameter_cache, output_path)
+            new_next_nodes_ids = process_node(current_node, llm_string, parameter_cache, output_dir)
             processed_nodes_ids.append(current_node_id)
             if new_next_nodes_ids:  # If the current node has next nodes
                 next_nodes_ids.extend(node_id for node_id in new_next_nodes_ids if ((node_id not in next_nodes_ids) and (node_id not in processed_nodes_ids)))
@@ -65,7 +65,7 @@ def process_got(got_config_path, llm_string, specified_output_dir):
 
             input_parameters = workflow_config['input_parameters']
 
-    output_path = get_output_dir(output_dir)
+    output_dir = get_output_dir(output_dir)
 
     if input_parameters and len(input_parameters) > 0:
         for input_parameter in input_parameters:
@@ -82,14 +82,11 @@ def process_got(got_config_path, llm_string, specified_output_dir):
                     parameter_cache[key] = value
 
             if suffix:
-                output_path = os.path.join(output_dir, suffix)
+                output_dir = os.path.join(output_dir, suffix)
 
-            if not os.path.exists(output_path):
-                os.makedirs(output_path)
-
-            process_got_single_parameter_file(flow_items, parameter_cache, llm_string, output_path)
+            process_got_single_parameter_file(flow_items, parameter_cache, llm_string, output_dir)
     else:
-        process_got_single_parameter_file(flow_items, {}, llm_string, output_path)
+        process_got_single_parameter_file(flow_items, {}, llm_string, output_dir)
 
     return
 
