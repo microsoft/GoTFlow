@@ -400,5 +400,5 @@ __pycache__
 .idea
 venv
 config/openai_key*
-output/*
+logs/*.log
 _temp
