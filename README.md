@@ -15,23 +15,27 @@ The example of this project is provided by Xiaoxu Wang (xiaoxuwang1996@gmail.com
 
 ## Dependencies
 
-To use this project, you need to have the following dependencies installed:
+To use this project, you need to have the following dependencies:
 
-- Python 3.10 or higher
+- Install Python 3.11 or higher
 
-- AzureOpenAI Key
+- Prepare AzureOpenAI Key
 
-You are required to use your own Azure openai key to access the Azure openai API (AOAI).
+  You are required to use your own Azure openai key to access the Azure openai API (AOAI).
 
-What you need to do is just to put your Azure openai key in a plain text file named openai_key.txt and put it in the conf directory of this project. 
+  What you need to do is just to put your Azure openai key in a plain text file named openai_key.txt and put it in the conf directory of this project. 
 
 - Run
 	```
 	pip install -r requirements.txt 
 	```
-  before run the cot_engine.py
+  before run the got_engine.py
 
-- `utils` module for LLM configuration and GPT processing
+- Run
+    ```
+    set PYTHONPATH=%PYTHONPATH%;src
+    ```
+  before run the got_engine.py
 
 
 # Usage
