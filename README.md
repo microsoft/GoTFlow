@@ -25,18 +25,14 @@ To use this project, you need to have the following dependencies:
 
   What you need to do is just to put your Azure openai key in a plain text file named openai_key.txt and put it in the conf directory of this project. 
 
-- Run
-	```
-	pip install -r requirements.txt 
-	```
-  before run the got_engine.py
-
-- Run
-    ```
-    set PYTHONPATH=%PYTHONPATH%;src
-    ```
-  before run the got_engine.py
-
+  - Run commands:
+      ```
+      pip install -r requirements.txt
+      ```
+      ```
+      set PYTHONPATH=%PYTHONPATH%;src
+      ```
+    in GoTFlow project root dir, before run the got_engine.py
 
 # Usage
 
