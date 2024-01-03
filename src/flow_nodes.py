@@ -6,7 +6,10 @@ import os
 class Executor:
     def __init__(self, node, llm_string, loops=3):
         self.node = node
-        self.llm_config = get_llm_config(llm_string)
+        if llm_string:
+            self.llm_config = get_llm_config(llm_string)
+        else:
+            self.llm_config = None
         self.loops = loops
 
     def execute(self, output_dir, parameter_cache, output_cache):
@@ -76,8 +79,8 @@ class Executor:
                     file.write(output)
         return
 
-    def get_next_node(self):
-        return self.node["next_nodes"]
+    #def get_next_node(self):
+    #    return self.node["next_nodes"]
 
 
 class DecisionMaker(Executor):

@@ -3,6 +3,8 @@ import os.path
 import argparse
 
 from flow_nodes import Executor, DecisionMaker
+from extended_nodes import Splitter, Merger
+from iterative_nodes import RepeatExecutor
 from utils.util import read_file, get_output_dir
 
 output_cache = {}
@@ -12,15 +14,33 @@ def process_node(node, llm_string, parameter_cache, output_dir):
     node_type = node['type']
     next_nodes_ids = None
 
+    if node.get('disabled') == True:
+        if node_type != "decision_maker":
+            return node["next_nodes"]
+        else:
+            return node['forward_paths'][0]['next_nodes']
+
     if node_type == 'executor':
         executor = Executor(node, llm_string)
         executor.execute(output_dir, parameter_cache, output_cache)
-        next_nodes_ids = executor.get_next_node()
+        next_nodes_ids = node["next_nodes"]
     elif node_type == 'decision_maker':
         decision_maker = DecisionMaker(node, llm_string)
         decision_maker.execute(output_dir, parameter_cache, output_cache)
         condition_result = decision_maker.decide(parameter_cache, output_cache)
         next_nodes_ids = decision_maker.get_next_node(condition_result)
+    elif node_type == 'splitter':
+        splitter = Splitter(node)
+        splitter.execute(output_dir)
+        next_nodes_ids = node["next_nodes"]
+    elif node_type == 'merger':
+        merger = Merger(node)
+        merger.execute(output_dir)
+        next_nodes_ids = node["next_nodes"]
+    elif node_type == 'repeat_executor':
+        repeat_executor = RepeatExecutor(node, llm_string)
+        repeat_executor.execute(output_dir, parameter_cache, output_cache)
+        next_nodes_ids = node["next_nodes"]
 
     return next_nodes_ids
 
