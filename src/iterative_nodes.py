@@ -43,18 +43,18 @@ class RepeatExecutor(Executor):
 
         prompt = prompt_template
 
+        for key, value in parameter_value_dict.items():
+            if not isinstance(value, list):
+                key_str = "${" + key.strip() + "}"
+                prompt = prompt.replace(key_str, value)
+
         index = 0
         for content in splitted_contents:
             index += 1
-            parameter_value_dict["content"] = content
+            current_prompt = prompt.replace("${content}", content)
 
-            for key, value in parameter_value_dict.items():
-                if not isinstance(value, list):
-                    key_str = "${" + key.strip() + "}"
-                    prompt = prompt.replace(key_str, value)
-
-            print(f"[Loop {index}] - [Prompt]: {prompt}\n")
-            output = gpt_process_loops(self.llm_config, prompt, self.loops)
+            print(f"[Loop {index}] - [Prompt]: {current_prompt}\n")
+            output = gpt_process_loops(self.llm_config, current_prompt, self.loops)
             print(f"[Loop {index}] - [Output]: {output}\n")
 
             outputs = self.node["output"]

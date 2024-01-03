@@ -139,7 +139,6 @@ class DecisionMaker(Executor):
 
     def decide(self, parameter_cache, output_cache):
         # Here you would put the code to make the decision defined by this node
-        print(f"")
         condition = self.node["condition"]
         condition_result = self.evaluate_condition(condition, parameter_cache, output_cache)
         print(f"{self.node['id']}: determine next node based on the condition result: {condition_result}\n")
