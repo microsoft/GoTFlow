@@ -41,19 +41,27 @@ class Splitter(Executor):
 
         for paragraph in paragraphs:
             paragraph_length = len(paragraph)
-            if current_length + paragraph_length + 1 > max_length:  # +1 是为了考虑换行符
-                # 将当前组合的文本保存到一个新文件中
+
+            if max_length > 0:
+                if current_length + paragraph_length + 1 > max_length:  # +1 是为了考虑换行符
+                    # 将当前组合的文本保存到一个新文件中
+                    current_file += 1
+                    real_output_file_path = output_file_path.replace("${i}", str(current_file))
+
+                    with open(real_output_file_path, 'w', encoding='utf-8') as output_file:
+                        output_file.write(current_output)
+
+                    current_length = 0
+                    current_output = ""
+                else:
+                    current_output += paragraph + '\n'
+                    current_length += paragraph_length + 1
+            else:
                 current_file += 1
                 real_output_file_path = output_file_path.replace("${i}", str(current_file))
 
                 with open(real_output_file_path, 'w', encoding='utf-8') as output_file:
-                    output_file.write(current_output)
-
-                current_length = 0
-                current_output = ""
-            else:
-                current_output += paragraph + '\n'
-                current_length += paragraph_length + 1
+                    output_file.write(paragraph + '\n')
 
         # 保存最后一个输出文件（如果有内容）
         if current_output:

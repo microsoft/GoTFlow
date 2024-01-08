@@ -1,0 +1,31 @@
+{
+  "output_dir_path": "${GF_ROOT}/data/workflows/Rewriting/output",
+  "input_parameters": [],
+  "flow_items": [
+    {
+      "id": "prompt_test",
+      "description": "test prompt",
+      "type": "executor",
+      "input_parameters": [
+        {
+          "name": "prompt_template_file_path",
+          "type": "prompt_template",
+          "file_path": "${GF_ROOT}/data/workflows/Rewriting/prompts/translate.txt"
+        },
+        {
+        "name": "content",
+        "type": "prompt_text",
+        "file_path": "${GF_ROOT}/data/workflows/Rewriting/input/raw_data/test_content.txt"
+        }
+      ],
+      "output": [
+        {
+          "type": "file",
+          "name": "test_output_2.txt"
+        }
+      ],
+      "next_nodes": [
+      ]
+    }
+  ]
+}
