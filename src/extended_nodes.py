@@ -29,24 +29,28 @@ class Splitter(Executor):
 
         content = read_file(input_path)
 
-        paragraphs = content.split('\n')
+        paragraphs = self.split_paragraphs(content)
 
         current_file = 0
         current_length = 0
         current_output = ""
 
-        # Get the output_file_name_root from the input_path
-        base_name = os.path.basename(input_path)
-        output_file_name_root, _ = os.path.splitext(base_name)
+        # Get the folder path
+        folder_path = os.path.dirname(output_file_path)
+        # Check if the folder exists, if not, create it
+        if not os.path.exists(folder_path):
+            os.makedirs(folder_path)
 
-        for paragraph in paragraphs:
-            paragraph_length = len(paragraph)
-
-            if max_length > 0:
+        if max_length > 0:
+            for paragraph in paragraphs:
+                paragraph_length = len(paragraph)
                 if current_length + paragraph_length + 1 > max_length:  # +1 是为了考虑换行符
                     # 将当前组合的文本保存到一个新文件中
                     current_file += 1
                     real_output_file_path = output_file_path.replace("${i}", str(current_file))
+
+                    if current_output.strip() == "":
+                        current_output += paragraph
 
                     with open(real_output_file_path, 'w', encoding='utf-8') as output_file:
                         output_file.write(current_output)
@@ -56,20 +60,34 @@ class Splitter(Executor):
                 else:
                     current_output += paragraph + '\n'
                     current_length += paragraph_length + 1
-            else:
+                    # 保存最后一个输出文件（如果有内容）
+
+            if current_output:
+                output_file_path = output_file_path.replace("${i}", str(current_file))
+                with open(output_file_path, 'w', encoding='utf-8') as output_file:
+                    output_file.write(current_output)
+
+        elif max_length == 0:
+            for paragraph in paragraphs:
                 current_file += 1
                 real_output_file_path = output_file_path.replace("${i}", str(current_file))
-
                 with open(real_output_file_path, 'w', encoding='utf-8') as output_file:
                     output_file.write(paragraph + '\n')
+        elif max_length == -1:
+            real_output_file_path = output_file_path.replace("${i}", "0")
+            with open(real_output_file_path, 'w', encoding='utf-8') as output_file:
+                for paragraph in paragraphs:
+                    output_file.write(paragraph + '\n')
+        else:
+            print("Error: max_length is not specified.")
+            exit(0)
 
-        # 保存最后一个输出文件（如果有内容）
-        if current_output:
-            output_file_path = output_file_path.replace("${i}", str(current_file))
-            with open(output_file_path, 'w', encoding='utf-8') as output_file:
-                output_file.write(current_output)
 
         return
+
+    def split_paragraphs(self, content):
+        paragraphs = content.split('\n')
+        return paragraphs
 
 
 class Merger(Executor):

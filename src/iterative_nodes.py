@@ -65,6 +65,13 @@ class RepeatExecutor(Executor):
                 elif output and output_item["type"] == "file_list":
                     output_path = os.path.join(output_dir, output_item["name"])
                     output_path = output_path.replace("${i}", str(index))
+
+                    # Get the folder path
+                    folder_path = os.path.dirname(output_path)
+                    # Check if the folder exists, if not, create it
+                    if not os.path.exists(folder_path):
+                        os.makedirs(folder_path)
+
                     with open(output_path, 'w') as file:
                         file.write(output)
 

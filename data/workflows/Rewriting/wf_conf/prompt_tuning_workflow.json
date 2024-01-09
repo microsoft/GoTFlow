@@ -15,13 +15,13 @@
         {
         "name": "content",
         "type": "prompt_text",
-        "file_path": "${GF_ROOT}/data/workflows/Rewriting/input/raw_data/test_content.txt"
+        "file_path": "${GF_ROOT}/data/workflows/Rewriting/input/raw_data/original_content.txt"
         }
       ],
       "output": [
         {
           "type": "file",
-          "name": "test_output_2.txt"
+          "name": "translated_content.txt"
         }
       ],
       "next_nodes": [

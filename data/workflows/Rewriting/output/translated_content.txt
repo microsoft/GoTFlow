@@ -1,0 +1,263 @@
+首先，我要说的是，这篇文章并不是对LLMs的回顾。很明显，2023年对于人工智能来说是特殊的一年，再重申这一点似乎没有意义。相反，这篇文章旨在作为一名个体程序员的见证。自从ChatGPT问世以来，以及后来通过使用本地运行的LLMs，我已经广泛地利用了这项新技术。目标是加速我的编程能力，但这并不是唯一的目的。还有一点就是不想在编程中不值得付出精力的方面浪费精力。无数小时花在寻找关于奇特、智力上无趣的方面的文档；努力学习一个过于复杂的API，往往没有充分的理由；编写几小时后就会丢弃的立即可用的程序。这些都是我不想做的事情，尤其是现在，谷歌已经变成了一个充满垃圾信息的海洋，要在其中寻找一些有用的东西。
+
+与此同时，我在编程方面绝对不是新手。我有能力在没有任何帮助的情况下编写代码，实际上，我经常这样做。随着时间的推移，我越来越多地使用LLMs编写高级代码，尤其是在Python中，而在C语言中则较少。关于我个人使用LLMs的经验，让我印象深刻的是，我已经学会了何时使用它们，以及何时使用它们只会拖慢我的速度。我还了解到，LLMs有点像维基百科和YouTube上散布的所有视频课程：它们帮助那些有意愿、能力和纪律的人，但对那些落后的人来说，它们的好处微乎其微。我担心，至少在一开始，它们只会让那些已经具有优势的人受益。
+
+但是，我们还是一步一步来吧。
+
+# 无所不知还是鹦鹉学舌？
+以下是输出：
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+#define N 100000  // 元素数量
+#define P 0.05    // 假阳性概率
+#define M (int)(-(N * log(P)) / (log(2) * log(2)))  // 位数组大小
+#define K (int)(M / N * log(2))  // 哈希函数数量
+
+unsigned char bitArray[M / 8 + 1];
+
+void setBit(int n) {
+    bitArray[n / 8] |= 1 << (n % 8);
+}
+
+int getBit(int n) {
+    return bitArray[n / 8] & (1 << (n % 8));
+}
+
+// 基本哈希函数（用于演示目的）
+int hash1(char *str) {
+    int hash = 5381;
+    int c;
+    while ((c = *str++))
+        hash = ((hash << 5) + hash) + c;
+    return abs(hash % M);
+}
+
+int hash2(char *str) {
+    unsigned long hash = 0;
+    int c;
+    while ((c = *str++))
+        hash = c + (hash << 6) + (hash << 16) - hash;
+    return abs(hash % M);
+}
+
+void add(char *str) {
+    setBit(hash1(str));
+    setBit(hash2(str));
+    // 如果需要，添加更多哈希函数
+}
+
+int is_in(char *str) {
+    return getBit(hash1(str)) && getBit(hash2(str));
+    // 如果使用了更多哈希函数，请检查
+}
+
+int main() {
+    char *testStr = "testString";
+    add(testStr);
+
+    if (is_in(testStr)) {
+        printf("%s is probably in the set.\n", testStr);
+    } else {
+        printf("%s is definitely not in the set.\n", testStr);
+    }
+
+    return 0;
+}
+```
+
+GPT4生成的实现并不是特别出色。布隆过滤器相当普遍。它并不是一种特殊的数据结构。然而，编写一个像样的布隆过滤器需要更强的抽象能力：例如，找到一种有效的方法对同一个字符串进行N次哈希，并确保哈希值足够不相关。
+
+然而，如果你明确要求GPT4修改哈希函数，使其产生N个不相关的输出，它提出的解决方案会更加可接受：
+
+```c
+unsigned int hash(const char* str, unsigned int hash_id) {
+如果它自己想出了这个想法，它会用不同的方式编写布隆过滤器，使用单个哈希函数一次设置K个位。
+
+GPT4能够独立地完成编写一个合适且更通用的哈希函数的任务。但在编写布隆过滤器的更大项目中，它未能展示出足够的推理能力，而是输出了两个不同但相似的哈希函数：这正是人们从一篇关于布隆过滤器的糟糕文章示例中所期望的。
+
+大型语言模型当前较弱的推理能力，加上可能在主题上的资源匮乏，甚至更糟糕的是，可能存在许多低质量的资源，共同导致了这个微弱的结果。然而，这并不是一个孤立的案例。我在算法或系统编程领域尝试使用LLMs的几次经历，结果都非常糟糕，即使预期的推理能力并不大于LLMs在像Python编程这样的上下文中所表现出的能力。
+
+与此同时，GPT-4能够在一个单独的会话中反编译它生成的函数，并且准确地理解其目的：
+
+https://chat.openai.com/share/f54b64d7-d19a-4be4-8f10-08553aa812f1
+
+因此，断言在系统编程上下文中没有用处显然是不准确的。
+
+一个有趣且非常符合预期的事情是，在这些情况下，较小模型和较大模型之间的差异确实很大。让我们看看两个本地模型的表现。
+
+例如，Mixtral（Mistral的MoE）对同一个问题的回答如下：
+
+```c
+unsigned int hash(const char* str, unsigned int hash_id) {
+    unsigned int hash = 5381;
+    int c;
+    while ((c = *str++)) {
+        hash = ((hash << 5) + hash) + c;
+    }
+    return hash + hash_id;
+}
+```
+这是与当地LLM深度寻求编码器的一次聊天，由于我没有足够的RAM来使用更高精度的模型，所以将其量化为4位。然而，由于其具有340亿个参数，它在这个问题上的推理能力似乎相当先进。以下是聊天记录（使用llama.cpp进行）：
+
+> 我有一个哈希函数，它应该为相同的数据输出N个不同的哈希值。然而，当我改变hash_id的值时，我发现生成的哈希值的分布非常糟糕：
+
+unsigned int hash(const char* str, unsigned int hash_id) {
+    unsigned int hash = 5381;
+    int c;
+    while ((c = *str++)) {
+        hash = ((hash << 5) + hash) + c;
+    }
+    return hash + hash_id;
+}
+
+也许我使用的加盐策略不好？我应该如何改变它？
+
+[深度寻求编码器回复]
+
+你实现的一个可能问题是，你只是在哈希的末尾添加了`hash_id`。这可能导致分布不佳，特别是当`hash_id`过大或分布不均匀时。
+
+考虑使用位操作将`hash_id`混合进去。这里有一个使用XOR的例子：
+
+```c
+unsigned int hash(const char* str, unsigned int hash_id) {
+    unsigned int hash = 5381;
+    int c;
+    while ((c = *str++)) {
+        hash = ((hash << 5) + hash) ^ c + hash_id; // 使用XOR将hash_id混合进去
+     }
+    return (hash ^ hash_id); // 在最后再次混合hash_id
+}
+```
+
+这将比简单地将`hash_id`添加到哈希值中更好地将其分布在整个哈希值中，从而导致分布不均匀。[剪辑...实际回复包含更多有益的信息]
+然而，根据我过去几个月的经验，对于系统编程来说，如果你已经是一名有经验的程序员，那么LLM几乎永远无法提供可接受的解决方案。让我给你们展示另一个真实的例子。我目前的项目，ggufflib，涉及编写一个读取和写入GGUF格式文件的库，这是llama.cpp加载量化模型的格式。最初，为了理解量化编码的工作原理（出于速度原因，每个量化值的位以一种奇特的方式存储），我尝试使用ChatGPT，但后来我决定反向工程llama.cpp的代码：这样做要快得多。一个能够为系统程序员提供适当帮助的LLM，如果看到数据编码的“结构”声明和解码函数，应该能够重建数据格式文档。llama.cpp的函数足够小，可以完全放入GPT4的上下文中，但输出却完全无用。在这些情况下，事情就像过去一样：纸和笔，阅读代码，看解码器提取的位在哪里注册。
+
+让我更好地解释一下上面的用例，以便您可以自己尝试，如果您愿意的话。我们有这个来自llama.cpp实现的结构。
+
+// 6-bit quantization
+// weight is represented as x = a * q
+// 16 blocks of 16 elements each
+// Effectively 6.5625 bits per weight
+typedef struct {
+    uint8_t ql[QK_K/2];      // quants, lower 4 bits
+    uint8_t qh[QK_K/4];      // quants, upper 2 bits
+    int8_t  scales[QK_K/16]; // scales, quantized with 8 bits
+    ggml_fp16_t d;           // super-block scale
+} block_q6_K;
+
+然后有这个函数，用于执行反量化：
+
+void dequantize_row_q6_K(const block_q6_K * restrict x, float * restrict y, int k) {
+    assert(k % QK_K == 0);
+    const int nb = k / QK_K;
+
+    for (int i = 0; i < nb; i++) {
+
+        const float d = GGML_FP16_TO_FP32(x[i].d);
+
+        const uint8_t * restrict ql = x[i].ql;
+
+---
+const int8_t  * restrict sc = x[i].scales;
+        for (int n = 0; n < QK_K; n += 128) {
+            for (int l = 0; l < 32; ++l) {
+                int is = l/16;
+                const int8_t q1 = (int8_t)((ql[l +  0] & 0xF) | (((qh[l] >> 0) & 3) << 4)) - 32;
+                const int8_t q2 = (int8_t)((ql[l + 32] & 0xF) | (((qh[l] >> 2) & 3) << 4)) - 32;
+                const int8_t q3 = (int8_t)((ql[l +  0]  >> 4) | (((qh[l] >> 4) & 3) << 4)) - 32;
+                const int8_t q4 = (int8_t)((ql[l + 32]  >> 4) | (((qh[l] >> 6) & 3) << 4)) - 32;
+                y[l +  0] = d * sc[is + 0] * q1;
+                y[l + 32] = d * sc[is + 2] * q2;
+                y[l + 64] = d * sc[is + 4] * q3;
+                y[l + 96] = d * sc[is + 6] * q4;
+            }
+            y  += 128;
+            ql += 64;
+            qh += 32;
+            sc += 8;
+        }
+    }
+}
+
+如果我让GPT4为我写一个关于这种格式的大纲，它很难清楚地解释如何根据权重位置在“ql”的低/高4位上存储块。对于这篇博客文章，我还尝试让它写一个更简单的函数，展示数据是如何存储的（也许它不能用文字解释，但可以用代码）。但是生成的函数有很多问题，索引错误，6位-> 8位符号扩展错误（它只是强制转换为uint8_t），等等。
+
+顺便说一下，这是我最后自己写的代码：
+
+    } else if (tensor->type == GGUF_TYPE_Q6_K) {
+        uint8_t *block = (uint8_t*)tensor->weights_data;
+        uint64_t i = 0; // i-th weight to dequantize.
+        while(i < tensor->num_weights) {
+            float super_scale = from_half(*((uint16_t*)(block+128+64+16)));
+            uint8_t *L = block;
+            uint8_t *H = block+128;
+            int8_t *scales = (int8_t*)block+128+64;
+            for (int cluster = 0; cluster < 2; cluster++) {
+                for (uint64_t j = 0; j < 128; j++) {
+最后，如今不使用LLM进行编程有什么道理呢？向LLM提出正确问题是一项基本技能。练习得越少，就越无法借助AI来改进自己的工作。而且，描述问题的能力在与其他人交流时也很有用。LLM并不是唯一一个有时候不明白我们想说什么的对象。沟通不畅是一个很大的局限，许多程序员尽管在自己的专业领域非常有能力，但沟通能力却非常差。现在谷歌已经无法使用：即使只是将LLM作为一种压缩形式的文档来使用也是个好主意。至于我，我将继续广泛地使用它们。我从未喜欢过学习一个晦涩的通信协议的细节，或者一个想展示自己有多厉害的人编写的库的复杂方法。这对我来说就像是“垃圾知识”。而LLM每天都越来越多地让我免于这些烦恼。
+面对这种无法解释LLMs某些新兴能力的现象，人们本应该期望科学家们更加谨慎。然而，相反的是，许多人严重低估了LLMs，认为它们只不过是稍微高级一点的马尔可夫链，最多只能重复训练集中所见内容的极其有限的变化。然后，在证据面前，这种鹦鹉学舌的观念几乎被普遍放弃。
+
+与此同时，许多热情洋溢的人群将LLMs在现实中并不存在的超自然能力归因于它们。不幸的是，LLMs最多只能在它们在训练过程中看到的数据所表示的空间内进行插值：而这已经很多了。实际上，它们的插值能力是有限的（但仍然令人惊讶，也是意料之外的）。哦，如果今天最大的LLMs能够在它们所看到的所有代码的有界空间内连续插值就好了！即使它们无法产生真正的新颖性，它们也能取代99%的程序员。现实总是更加谦逊，就像它几乎总是这样。LLM确实有能力编写它在训练集中没有以那种确切形式出现过的程序，表现出一定程度的将训练集中出现的不同想法融合在一起的能力。目前，这种能力的局限性也是显而易见的，每当需要微妙的推理时，LLMs都会失败得很惨。然而，它们代表了从AI诞生至今的最伟大成就。这似乎是不可否认的。
+
+# 无知却无所不知
+在编程领域，也许在二三十年前，他们的能力会引起很小的兴趣。那时候，你需要了解几种编程语言、经典算法和那十个基本库。剩下的部分你需要自己添加，你自己的智慧、专业知识和设计技能。如果你具备这些要素，你就是一名专家级程序员，能够做到或多或少的一切。随着时间的推移，我们目睹了框架、编程语言、各种类型库的爆炸式增长。这种复杂性的爆炸往往是完全不必要的，也是不合理的，但事实就是如此。在这样的背景下，一个什么都知道的笨蛋是宝贵的盟友。
+
+让我举个例子：我的机器学习实验至少用了一年的Keras。然后由于各种原因，我转向了PyTorch。我已经知道什么是嵌入或残差网络，但我不想逐步研究PyTorch的文档（就像我之前学习Keras时做的那样，那时ChatGPT还不存在）。使用LLMs，编写使用Torch的Python代码非常容易。我只需要对我想要组合的模型有清晰的想法，并提出正确的问题。
+
+# 示例时间
+这是另一个例子。不久前，我需要为某些基于ESP32的设备实现一个BLE客户端。经过一番研究，我意识到多平台蓝牙编程绑定或多或少都是不可用的。解决方案很简单，使用macOS的原生API用Objective C编写代码。因此，我发现自己不得不同时处理两个问题：学习繁琐的Objective C BLE API，这个API充满了我认为毫无意义的模式（我是个极简主义者，这种API与我认为的“好设计”的光谱的另一端相差甚远），同时还要记住如何用Objective C编程。我上一次用Objective C写程序是十年前了：我已经记不清事件循环、内存管理等细节了。
+
+最终的结果是这段代码，虽然不是很美观，但它完成了它应该做的事情。我用极短的时间写了这段代码。否则是不可能的。
+
+https://github.com/antirez/freakwan/blob/main/osx-bte-cli/SerialBTE.m
+
+这段代码主要是通过在ChatGPT上剪切和粘贴我想做但不知道如何做的事情来编写的，所以它们没有正常工作。让LLM向我解释问题出在哪里以及如何解决它。的确，LLM并没有编写这段代码的很大一部分，但它确实显著加快了编写速度。如果没有ChatGPT，我能做到吗？当然可以，但最有趣的事情不是这会花费我更长的时间：事实是，我甚至不会尝试，因为这不值得。这一事实至关重要。编写这样一个程序的努力与收益之比，对于我的项目来说，是不划算的。此外，这比程序本身产生了更有用的次要副作用：对于那个项目，我修改了linenoise（我的一个用于行编辑的库），使其能够进行多路复用。
+# 一次性程序
+
+我可以记录几十个我在上面叙述的这样的案例。这样做毫无意义，因为这是同一个故事以或多或少相同的方式重复上演。我遇到一个问题，我需要快速了解一些*我可以验证*的东西，以判断LLM是否在给我胡说八道。在这种情况下，我使用LLM来加速我的知识需求。
+
+然而，还有一些不同的情况，我让LLM编写所有代码。例如，当我需要编写一个或多或少一次性的程序时。就像这个：
+
+https://github.com/antirez/simple-language-model/blob/main/plot.py
+
+我需要在学习一个小型神经网络过程中可视化损失曲线。我向GPT4展示了PyTorch程序在学习过程中生成的CSV文件的格式，然后我要求，如果我在命令行上指定了多个CSV文件，我不再需要同一个实验的训练和验证损失曲线，而是需要比较不同实验的验证损失曲线。上面的链接就是GPT4生成的结果。总共用了三十秒。
+
+类似地，我需要一个程序来读取AirBnB的CSV报告，并按月份和年份对我的公寓进行分组。然后，考虑到清洁成本和每次预订的晚数，它会对一年中不同月份的平均租金价格进行统计。这个程序对我来说非常有用。同时，编写它是极度无聊的：没有什么有趣的地方。所以我拿了CSV文件的一部分，然后在GPT4上进行了复制粘贴。我向LLM写下了要解决的问题：程序在第一次尝试时就成功运行了。我在下面完整地展示给你们。
+
+```python
+import pandas as pd
+pd.set_option('display.max_rows', None)
+df = pd.read_csv('listings.csv')
+reservations = df[df['Type'] == 'Reservation']
+reservations['Start Date'] = pd.to_datetime(reservations['Start Date'])
+reservations['Year'] = reservations['Start Date'].dt.year
+reservations['Month'] = reservations['Start Date'].dt.month
+```
+以下是一段英文文章，请在尽量保留原意和原本语气的基础上，将它翻译为中文：
+
+```
+all_listings = reservations['Listing'].unique()
+all_years = reservations['Year'].unique()
+all_months = range(1, 13)
+index = pd.MultiIndex.from_product([all_listings, all_years, all_months], names=['Listing', 'Year', 'Month'])
+all_data = pd.DataFrame(index=index).reset_index()
+merged_data = pd.merge(all_data, reservations, on=['Listing', 'Year', 'Month'], how='left')
+average_nightly_rates = merged_data.groupby(['Listing', 'Year', 'Month'])['Nightly Rate'].mean().fillna(0)
+print(average_nightly_rates)
+```
+
+要准确理解如何对这些原本相当分散和无序的数据进行分组，需要一些简单的推理：这不是一个LLM（大型语言模型）可以通过简单地重复它所见过的类似语言来解决的问题。GPT4在其训练过程中肯定观察到了类似的程序，但几乎可以肯定的是，它没有看到过一个需要按照我要求的方式进行分组，并且在具有特定格式的CSV文件中的程序。这表明（在我看来），LLM在一定程度上可以在训练集中不同程序所勾勒出的空间内进行插值。
+
+在我看来，编写这种类型的程序将是对我的时间的不明智使用。事实上，LLM可以为我完成这项工作，这无疑加快了我编写代码的速度：我可以专注于真正重要的事情。
+
+# 当事情不如预期进行：系统编程
+
+尽管我在LLM和编程方面取得了成功，但当我用C语言编写程序时，我几乎总是只把LLM当作一种更方便的文档形式来使用。我是系统编程方面的专家，在这种情况下，只有当LLM能够进行复杂推理时，它们才对我有用：在这种情况下，它们几乎总是失败的。
+
+让我们从这个实验的提示开始：
+
+概述一个简洁、小巧但可用的C语言实现的布隆过滤器的要求。重点关注哈希函数的重要方面。然后用高质量的C语言编写它。
