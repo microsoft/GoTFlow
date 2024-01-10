@@ -1,7 +1,2 @@
-To understand exactly how to group the data, which were otherwise quite scattered and disordered, requires some simple reasoning: it’s not a problem that an LLM could solve simply by regurgitating something that approximates the language it has seen. GPT4 has certainly observed similar programs during its training, but almost certainly has not seen a program that had to group things in the exact way I asked for and in a CSV file with that specific format. This shows (in my opinion) that LLMs can interpolate to some extent within the space outlined by the different programs in the training set.
-
-Writing this type of program would be, in my opinion, an imprudent use of my time. The fact that an LLM can do it for me certainly speeds up my ability to produce code in a rather direct way: I can focus on the things that matter.
-
-Here’s the output:
-
-
+The implementation produced by GPT4 is not exactly brilliant. Bloom filters are quite widespread. It’s not such an exotic data structure. However, it’s clear that writing a decent bloom filter requires a greater capacity for abstraction: for example, there’s the problem of finding an effective way to hash the same string N times, and being certain that the hashes are sufficiently decorrelated.
+Yet if you explicitly ask GPT4 to modify the hashing function so that it produces N decorrelated outputs, its proposed solution is significantly more acceptable:

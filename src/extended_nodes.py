@@ -18,8 +18,8 @@ class Splitter(Executor):
             elif parameter["type"] == "int" and parameter["name"] == "max_length":
                 max_length = parameter["value"]
 
-        if not input_path or not max_length:
-            print("Error: input_path or max_length is not specified.")
+        if not input_path:
+            print("Error: input_path is not specified.")
             exit(0)
 
         outputs = self.node["output"]
@@ -31,7 +31,6 @@ class Splitter(Executor):
         content = read_file(input_path)
 
         paragraphs = self.split_paragraphs(content)
-        print(f"Total paragraphs: {len(paragraphs)}")
 
         current_file = 0
         current_length = 0
@@ -43,21 +42,32 @@ class Splitter(Executor):
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
 
-        print(f"max_length: {max_length}")
         if max_length > 0:
             for paragraph in paragraphs:
                 paragraph_length = len(paragraph["content"])
+                paragraph_type = paragraph["type"]
 
-                if current_length + paragraph_length + 1 >= max_length:  # +1 是为了考虑换行符
-                    # 将当前组合的文本保存到一个新文件中
+                if paragraph_type == "code":
+                    if len(grouped_paragraphs) > 0:
+                        current_file += 1
+                        self.print_splited_content(current_file, output_file_path, grouped_paragraphs)
+                        grouped_paragraphs = []
+                        current_length = 0
+
                     current_file += 1
-                    self.print_splited_content(current_file, output_file_path, grouped_paragraphs)
+                    self.print_splited_content(current_file, output_file_path, [paragraph])
 
-                    current_length = 0
-                    grouped_paragraphs = []
+                elif paragraph_type == "text":
+                    if current_length + paragraph_length + 1 >= max_length:  # +1 是为了考虑换行符
+                        # 将当前组合的文本保存到一个新文件中
+                        current_file += 1
+                        self.print_splited_content(current_file, output_file_path, grouped_paragraphs)
 
-                grouped_paragraphs.append(paragraph)
-                current_length += paragraph_length + 1
+                        current_length = 0
+                        grouped_paragraphs = []
+
+                    grouped_paragraphs.append(paragraph)
+                    current_length += paragraph_length + 1
 
             # 保存最后一个输出文件（如果有内容）
             if len(grouped_paragraphs) > 0:
@@ -94,7 +104,8 @@ class Splitter(Executor):
                 # This is a non-code block, split it into paragraphs by newline characters
                 text_paragraphs = block.split('\n')
                 for text_paragraph in text_paragraphs:
-                    paragraphs.append({'type': 'text', 'content': text_paragraph})
+                    if text_paragraph.strip():
+                        paragraphs.append({'type': 'text', 'content': text_paragraph})
         return paragraphs
 
 class Merger(Executor):
