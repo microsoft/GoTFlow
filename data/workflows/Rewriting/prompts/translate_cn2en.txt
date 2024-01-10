@@ -1,0 +1,5 @@
+The following text between two '---' is a part of a Chinese paper. Please translate it into English while retaining the original meaning and tone as much as possible：
+---
+${content}
+---
+Please note that the translation process should meet the following requirements: 1) Do not translate the code in the article, keep the code as is; 2) Do not compress or summarize this text; 3) Translate sentence by sentence, and try to retain the original meaning in each sentence; 4) Translate in multiple steps, translating a section at a time, and align after each section to ensure that the volume of the translation is as close as possible to the original text, without being too much or too little.

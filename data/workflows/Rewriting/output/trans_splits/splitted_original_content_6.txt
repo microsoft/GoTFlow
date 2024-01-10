@@ -1,0 +1,62 @@
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+#define N 100000  // Number of elements
+#define P 0.05    // False positive probability
+#define M (int)(-(N * log(P)) / (log(2) * log(2)))  // Size of bit array
+#define K (int)(M / N * log(2))  // Number of hash functions
+
+unsigned char bitArray[M / 8 + 1];
+
+void setBit(int n) {
+    bitArray[n / 8] |= 1 << (n % 8);
+}
+
+int getBit(int n) {
+    return bitArray[n / 8] & (1 << (n % 8));
+}
+
+// Basic hash functions (for demonstration purposes)
+int hash1(char *str) {
+    int hash = 5381;
+    int c;
+    while ((c = *str++))
+        hash = ((hash << 5) + hash) + c;
+    return abs(hash % M);
+}
+
+int hash2(char *str) {
+    unsigned long hash = 0;
+    int c;
+    while ((c = *str++))
+        hash = c + (hash << 6) + (hash << 16) - hash;
+    return abs(hash % M);
+}
+
+void add(char *str) {
+    setBit(hash1(str));
+    setBit(hash2(str));
+    // Add more hash functions if needed
+}
+
+int is_in(char *str) {
+    return getBit(hash1(str)) && getBit(hash2(str));
+    // Check more hash functions if used
+}
+
+int main() {
+    char *testStr = "testString";
+    add(testStr);
+
+    if (is_in(testStr)) {
+        printf("%s is probably in the set.\n", testStr);
+    } else {
+        printf("%s is definitely not in the set.\n", testStr);
+    }
+
+    return 0;
+}
+```

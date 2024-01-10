@@ -16,7 +16,7 @@
         {
           "name": "max_length",
           "type": "int",
-          "value": 2000
+          "value": 1000
         }
       ],
       "output": [
@@ -37,7 +37,7 @@
         {
           "name": "prompt_template_file_path",
           "type": "prompt_template",
-          "file_path": "${GF_ROOT}/data/workflows/Rewriting/prompts/translate.txt"
+          "file_path": "${GF_ROOT}/data/workflows/Rewriting/prompts/translate_en2cn.txt"
         },
         {
           "name": "content",

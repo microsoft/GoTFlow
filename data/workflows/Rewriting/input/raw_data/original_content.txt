@@ -192,6 +192,7 @@ This is a chat with the local LLM deepseek-coder, quantized to 4 bits as I don�
 
 > I have a hash function that should output N distinct hashes for the same data. However, I'm seeing a very poor distribution of the produced hashes as I change the value of hash_id:
 
+```c
 unsigned int hash(const char* str, unsigned int hash_id) {
     unsigned int hash = 5381;
     int c;
@@ -200,6 +201,7 @@ unsigned int hash(const char* str, unsigned int hash_id) {
     }
     return hash + hash_id;
 }
+```
 
 Maybe the salting strategy I'm using is poor? How could I change it?
 
@@ -228,6 +230,7 @@ At the same time, however, my experience over the past few months suggests that 
 
 Let me explain better the above use case so that you can try it yourself, if you wish. We have this structure from llama.cpp implementation.
 
+```c
 // 6-bit quantization
 // weight is represented as x = a * q
 // 16 blocks of 16 elements each
@@ -238,9 +241,11 @@ typedef struct {
     int8_t  scales[QK_K/16]; // scales, quantized with 8 bits
     ggml_fp16_t d;           // super-block scale
 } block_q6_K;
+```
 
 Then there is this function that is used to perform the dequantization:
 
+```c
 void dequantize_row_q6_K(const block_q6_K * restrict x, float * restrict y, int k) {
     assert(k % QK_K == 0);
     const int nb = k / QK_K;
@@ -271,11 +276,13 @@ void dequantize_row_q6_K(const block_q6_K * restrict x, float * restrict y, int 
         }
     }
 }
+```
 
 If I ask GPT4 to write an outline of the format used, it struggles to provide a clear explanation of how the blocks are stored on the lower / upper 4 bits of “ql” depending on the weight position. For this blog post, I also tried asking it to write a simpler function that shows how data is stored (maybe it can’t explain it with words, but can with code). The produced function is broken in many ways, the indexes are wrong, the 6-bit -> 8-bit sign extension is wrong (it just casts to uint8_t), and so forth.
 
 Btw, this is the code that I ended writing myself:
 
+```python
     } else if (tensor->type == GGUF_TYPE_Q6_K) {
         uint8_t *block = (uint8_t*)tensor->weights_data;
         uint64_t i = 0; // i-th weight to dequantize.
@@ -300,6 +307,7 @@ Btw, this is the code that I ended writing myself:
             block += 128+64+16+2; // Go to the next block.
         }
    }
+```
 
 From the function above, I removed what was the actual contribution of this code: the long comments documenting the exact format used by llama.cpp Q6_K encoding. Now, it would be immensely useful if GPT could do this for me, and I bet it’s just a matter of months, because these kind of tasks are within what can be reached without any breakthrough, just with a bit of scaling.
 
