@@ -28,6 +28,7 @@ def read_file(file_path):
         print(f"Error: Unable to read the file {file_path} with encoding {result['encoding']}")
         return ""
 
+
 def read_file_list(file_path_regex):
     if not file_path_regex or "${i}" not in file_path_regex:
         print(f"Error: the file_path_regex of {file_path_regex} doesn't exist.")
@@ -43,12 +44,13 @@ def read_file_list(file_path_regex):
     # Sort the files by their names
     files_to_merge.sort()
 
-    contents = []
+    texts = []
     # Read and merge the contents of the files
     for file in files_to_merge:
         with open(file, 'r') as f:
-            contents.append(f.read())
-    return contents
+            texts.append(f.read())
+    return texts
+
 
 def get_output_dir(output_dir_path):
     if not output_dir_path:

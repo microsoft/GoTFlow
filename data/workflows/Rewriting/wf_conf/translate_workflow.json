@@ -7,16 +7,17 @@
       "id": "data_splitter",
       "description": "split the data",
       "type": "splitter",
+      "disabled": false,
       "input_parameters": [
         {
           "name": "source_file",
           "type": "file",
-          "file_path": "${GF_ROOT}/data/workflows/Rewriting/input/raw_data/original_content.txt"
+          "file_path": "${GF_ROOT}/data/workflows/Rewriting/input/raw_data/test.txt"
         },
         {
           "name": "max_length",
           "type": "int",
-          "value": 1000
+          "value": 2000
         }
       ],
       "output": [
@@ -69,7 +70,7 @@
       "output": [
         {
           "type": "file",
-          "name": "translated_content.txt"
+          "name": "translated_test.txt"
         }
       ],
       "next_nodes": [

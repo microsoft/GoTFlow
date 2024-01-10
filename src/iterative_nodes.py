@@ -1,8 +1,11 @@
+import json
+
 from flow_nodes import Executor
 from utils.aoai import gpt_process_loops
 from utils.util import read_file, read_file_list
 import os
 
+ZFILL_NUM = 4
 
 class RepeatExecutor(Executor):
     def __init__(self, node, llm_string, loops=3):
@@ -26,7 +29,7 @@ class RepeatExecutor(Executor):
                 prompt_template += read_file(file_path)
             elif parameter["type"] == "splitted_prompt_text":
                 file_path = parameter["file_path"]
-                splitted_contents = read_file_list(file_path)
+                splitted_texts = read_file_list(file_path)
 
             elif parameter["type"] == "temp_parameter":
                 if name and parameter["value"]:
@@ -49,13 +52,33 @@ class RepeatExecutor(Executor):
                 prompt = prompt.replace(key_str, value)
 
         index = 0
-        for content in splitted_contents:
+        for text in splitted_texts:
             index += 1
-            current_prompt = prompt.replace("${content}", content)
+            try:
+                text_obj = json.loads(text)
 
-            print(f"[Loop {index}] - [Prompt]: {current_prompt}\n")
-            output = gpt_process_loops(self.llm_config, current_prompt, self.loops)
-            print(f"[Loop {index}] - [Output]: {output}\n")
+                if 'content' in text_obj:
+                    content = text_obj["content"]
+                else:
+                    content = text
+
+                if 'type' in text_obj:
+                    type = text_obj["type"]
+                else:
+                    type = "text"
+
+            except json.JSONDecodeError:
+                content = text
+                type = "text"
+
+            if type == "code":
+                output = content # don't change code
+                print(f"[Loop {index}] - [Code_Direct_Output]: {output}\n")
+            else:
+                current_prompt = prompt.replace("${content}", content)
+                print(f"[Loop {index}] - [Prompt]: {current_prompt}\n")
+                output = gpt_process_loops(self.llm_config, current_prompt, self.loops)
+                print(f"[Loop {index}] - [Output]: {output}\n")
 
             outputs = self.node["output"]
 
@@ -64,7 +87,7 @@ class RepeatExecutor(Executor):
                     output_cache[output_item["name"]] = output
                 elif output and output_item["type"] == "file_list":
                     output_path = os.path.join(output_dir, output_item["name"])
-                    output_path = output_path.replace("${i}", str(index))
+                    output_path = output_path.replace("${i}", str(index).zfill(ZFILL_NUM))
 
                     # Get the folder path
                     folder_path = os.path.dirname(output_path)

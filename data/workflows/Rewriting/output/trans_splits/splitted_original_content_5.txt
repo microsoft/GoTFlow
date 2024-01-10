@@ -1,2 +1,0 @@
-The implementation produced by GPT4 is not exactly brilliant. Bloom filters are quite widespread. It’s not such an exotic data structure. However, it’s clear that writing a decent bloom filter requires a greater capacity for abstraction: for example, there’s the problem of finding an effective way to hash the same string N times, and being certain that the hashes are sufficiently decorrelated.
-Yet if you explicitly ask GPT4 to modify the hashing function so that it produces N decorrelated outputs, its proposed solution is significantly more acceptable:

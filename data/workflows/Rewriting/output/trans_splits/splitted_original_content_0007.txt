@@ -1,0 +1,1 @@
+{"type": "code", "content": "```c\nunsigned int hash(const char* str, unsigned int hash_id) {\n    unsigned int hash = 5381;\n    int c;\n    while ((c = *str++)) {\n        hash = ((hash << 5) + hash) + c + hash_id;\n    }\n    return hash % BF_SIZE;\n}\n```"}

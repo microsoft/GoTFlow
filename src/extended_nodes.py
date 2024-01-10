@@ -2,7 +2,9 @@ from flow_nodes import Executor
 from utils.util import read_file, read_file_list
 import os
 import re
+import json
 
+ZFILL_NUM = 4
 
 class Splitter(Executor):
     def __init__(self, node):
@@ -87,10 +89,23 @@ class Splitter(Executor):
         return
 
     def print_splited_content(self, current_file_no, output_file_path, grouped_paragraphs):
-        real_output_file_path = output_file_path.replace("${i}", str(current_file_no))
-        with open(real_output_file_path, 'w', encoding='utf-8') as output_file:
+        real_output_file_path = output_file_path.replace("${i}", str(current_file_no).zfill(ZFILL_NUM))
+        if len(grouped_paragraphs) == 1:
+            with open(real_output_file_path, 'w', encoding='utf-8') as output_file:
+                json_paragraph = json.dumps(grouped_paragraphs[0])
+                output_file.write(json_paragraph)
+        else:
+            type = grouped_paragraphs[0]["type"]
+            content = ""
             for paragraph in grouped_paragraphs:
-                output_file.write(paragraph["content"] + '\n')
+                if paragraph["type"] != type:
+                    type = "mixed"
+                content += paragraph["content"] + '\n'
+
+            output_obj = {'type': type, 'content': content}
+            with open(real_output_file_path, 'w', encoding='utf-8') as output_file:
+                json_paragraph = json.dumps(output_obj)
+                output_file.write(json_paragraph)
         return
 
     def split_paragraphs(self, content):
