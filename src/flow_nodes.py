@@ -75,7 +75,7 @@ class Executor:
                 output_cache[output_item["name"]] = output
             elif output and output_item["type"] == "file":
                 output_path = os.path.join(output_dir, output_item["name"])
-                with open(output_path, 'w') as file:
+                with open(output_path, 'w', encoding="utf-8") as file:
                     file.write(output)
         return
 

@@ -47,7 +47,7 @@ def read_file_list(file_path_regex):
     texts = []
     # Read and merge the contents of the files
     for file in files_to_merge:
-        with open(file, 'r') as f:
+        with open(file, 'r', encoding="utf-8") as f:
             texts.append(f.read())
     return texts
 

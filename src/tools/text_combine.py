@@ -10,7 +10,7 @@ def merge_files(dir_path, file_names, output_path):
         os.makedirs(output_dir)
 
     # Open the output file
-    with open(output_path, 'w') as output_file:
+    with open(output_path, 'w', encoding="utf-8") as output_file:
         # Iterate over the file names
         for file_name in file_names:
             # Construct the full file path

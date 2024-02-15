@@ -95,7 +95,7 @@ class RepeatExecutor(Executor):
                     if not os.path.exists(folder_path):
                         os.makedirs(folder_path)
 
-                    with open(output_path, 'w') as file:
+                    with open(output_path, 'w', encoding="utf-8") as file:
                         file.write(output)
 
         return

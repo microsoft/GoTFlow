@@ -7,6 +7,7 @@
       "id": "data_splitter",
       "description": "split the data",
       "type": "splitter",
+      "disabled": false,
       "input_parameters": [
         {
           "name": "source_file",
@@ -33,6 +34,7 @@
       "id": "rewrite_splits",
       "description": "rewrite splitted data",
       "type": "repeat_executor",
+      "disabled": false,
       "input_parameters": [
         {
           "name": "prompt_template_file_path",
@@ -59,6 +61,7 @@
       "id": "merge_rewritten_data",
       "description": "merge rewritten data",
       "type": "merger",
+      "disabled": false,
       "input_parameters": [
         {
           "name": "rewritten_data",

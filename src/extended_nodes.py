@@ -62,11 +62,12 @@ class Splitter(Executor):
                 elif paragraph_type == "text":
                     if current_length + paragraph_length + 1 >= max_length:  # +1 是为了考虑换行符
                         # 将当前组合的文本保存到一个新文件中
-                        current_file += 1
-                        self.print_splited_content(current_file, output_file_path, grouped_paragraphs)
+                        if len(grouped_paragraphs) > 0:
+                            current_file += 1
+                            self.print_splited_content(current_file, output_file_path, grouped_paragraphs)
 
-                        current_length = 0
-                        grouped_paragraphs = []
+                            current_length = 0
+                            grouped_paragraphs = []
 
                     grouped_paragraphs.append(paragraph)
                     current_length += paragraph_length + 1
@@ -95,6 +96,9 @@ class Splitter(Executor):
                 json_paragraph = json.dumps(grouped_paragraphs[0])
                 output_file.write(json_paragraph)
         else:
+            if len(grouped_paragraphs) == 0:
+                return
+
             type = grouped_paragraphs[0]["type"]
             content = ""
             for paragraph in grouped_paragraphs:
@@ -102,7 +106,7 @@ class Splitter(Executor):
                     type = "mixed"
                 content += paragraph["content"] + '\n'
 
-            output_obj = {'type': type, 'content': content}
+            output_obj = {"type": type, "content": content}
             with open(real_output_file_path, 'w', encoding='utf-8') as output_file:
                 json_paragraph = json.dumps(output_obj)
                 output_file.write(json_paragraph)
@@ -114,13 +118,13 @@ class Splitter(Executor):
         for block in code_blocks:
             if block.startswith('```') and block.endswith('```'):
                 # This is a code block, treat it as a single paragraph
-                paragraphs.append({'type': 'code', 'content': block})
+                paragraphs.append({"type": "code", "content": block})
             else:
                 # This is a non-code block, split it into paragraphs by newline characters
                 text_paragraphs = block.split('\n')
                 for text_paragraph in text_paragraphs:
                     if text_paragraph.strip():
-                        paragraphs.append({'type': 'text', 'content': text_paragraph})
+                        paragraphs.append({"type": "text", "content": text_paragraph})
         return paragraphs
 
 class Merger(Executor):
@@ -142,7 +146,7 @@ class Merger(Executor):
                 output_file_path = os.path.join(output_dir, output_item["name"])
 
         # Write the merged content to the output_path
-        with open(output_file_path, 'w') as f:
+        with open(output_file_path, 'w', encoding="utf-8") as f:
             for content in merged_content:
                 f.write(content + "\n")
 

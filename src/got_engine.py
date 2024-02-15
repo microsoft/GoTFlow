@@ -71,7 +71,7 @@ def process_got_single_parameter_file(flow_items, parameter_cache, llm_string, o
 def process_got(got_config_path, llm_string, specified_output_dir):
 
     # Load the workflow from the JSON configuration file
-    with open(got_config_path, encoding="utf8") as f:
+    with open(got_config_path, encoding="utf-8") as f:
         workflow_config = json.load(f)
         if not workflow_config:
             print("Error: The workflow configuration file is empty.")
