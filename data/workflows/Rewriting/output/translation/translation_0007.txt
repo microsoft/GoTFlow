@@ -1,10 +1,2 @@
-```c
-unsigned int hash(const char* str, unsigned int hash_id) {
-    unsigned int hash = 5381;
-    int c;
-    while ((c = *str++)) {
-        hash = ((hash << 5) + hash) + c + hash_id;
-    }
-    return hash % BF_SIZE;
-}
-```
+在高层次上，我们通过首先将视频压缩到一个低维潜在空间，然后将表示分解为时空片段，从而将视频转换为片段。
+视频压缩网络

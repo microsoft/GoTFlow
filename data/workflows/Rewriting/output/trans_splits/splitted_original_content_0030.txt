@@ -1,0 +1,1 @@
+{"type": "text", "content": "3D consistency. Sora can generate videos with dynamic camera motion. As the camera shifts and rotates, people and scene elements move consistently through three-dimensional space."}

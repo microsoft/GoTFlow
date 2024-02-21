@@ -1,0 +1,1 @@
+{"type": "text", "content": "Image generation capabilities\nSora is also capable of generating images. We do this by arranging patches of Gaussian noise in a spatial grid with a temporal extent of one frame. The model can generate images of variable sizes\u2014up to 2048x2048 resolution.\nEmerging simulation capabilities\n"}

@@ -1,0 +1,177 @@
+{
+  "output_dir_path": "${GF_ROOT}/data/workflows/BookReview/output",
+  "input_parameters": [
+    {
+            "suffix": "",
+            "file_path": "${GF_ROOT}/data/workflows/BookReview/input/parameters/background.json"
+    }
+  ],
+  "flow_items": [
+    {
+      "id": "data_splitter",
+      "description": "split the data",
+      "type": "splitter",
+      "disabled": true,
+      "input_parameters": [
+        {
+          "name": "source_file",
+          "type": "file",
+          "file_path": "${GF_ROOT}/data/workflows/BookReview/input/bookreview_outline_1.txt"
+        },
+        {
+          "name": "max_length",
+          "type": "int",
+          "value": 0
+        }
+      ],
+      "output": [
+        {
+          "type": "file_list",
+          "name": "splits/bookreview_outline_1_${i}.txt"
+        }
+      ],
+      "next_nodes": [
+        "book_review_writing"
+      ]
+    },
+    {
+      "id": "book_review_writing",
+      "description": "",
+      "type": "repeat_executor",
+      "disabled": true,
+      "input_parameters": [
+        {
+          "name": "prompt_template_file_path",
+          "type": "prompt_template",
+          "file_path": "${GF_ROOT}/data/workflows/BookReview/prompts/book_review_writing.txt"
+        },
+        {
+        "name": "introduction",
+        "type": "prompt_text",
+        "file_path": "${GF_ROOT}/data/workflows/BookReview/input/introduction.txt"
+        },
+        {
+        "name": "catalog",
+        "type": "prompt_text",
+        "file_path": "${GF_ROOT}/data/workflows/BookReview/input/catalog.txt"
+        },
+        {
+          "name": "content",
+          "type": "splitted_prompt_text",
+          "file_path": "${GF_ROOT}/data/workflows/BookReview/output/splits/bookreview_outline_1_${i}.txt"
+        },
+        {
+        "name": "input_parameter_file_path",
+        "type": "prompt_parameters"
+        }
+      ],
+      "output": [
+        {
+          "type": "file_list",
+          "name": "paragraphs/bookreview_1_${i}.txt"
+        }
+      ],
+      "next_nodes": [
+        "merge_paragraphs"
+      ]
+    },
+    {
+      "id": "merge_paragraphs",
+      "description": "merge review paragraphs",
+      "type": "merger",
+      "disabled": true,
+      "input_parameters": [
+        {
+          "name": "rewritten_data",
+          "type": "file_list",
+          "file_path": "${GF_ROOT}/data/workflows/BookReview/output/paragraphs/bookreview_1_${i}.txt"
+        }
+      ],
+      "output": [
+        {
+          "type": "file",
+          "name": "bookreview_1.txt"
+        }
+      ],
+      "next_nodes": [
+        "rewrite_book_review"
+      ]
+    },
+    {
+      "id": "rewrite_book_review",
+      "description": "",
+      "type": "repeat_executor",
+      "disabled": true,
+      "input_parameters": [
+        {
+          "name": "prompt_template_file_path",
+          "type": "prompt_template",
+          "file_path": "${GF_ROOT}/data/workflows/BookReview/prompts/rewrite_bookreview.txt"
+        },
+        {
+        "name": "content",
+        "type": "splitted_prompt_text",
+        "file_path": "${GF_ROOT}/data/workflows/BookReview/output/paragraphs/bookreview_1_${i}.txt"
+        }
+      ],
+      "output": [
+        {
+           "type": "file_list",
+          "name": "rewrite_paragraphs/bookreview_1_rewrite_${i}.txt"
+        }
+      ],
+      "next_nodes": [
+        "merge_rewrite_paragraphs"
+      ]
+    },
+    {
+      "id": "merge_rewrite_paragraphs",
+      "description": "merge review paragraphs",
+      "type": "merger",
+      "disabled": true,
+      "input_parameters": [
+        {
+          "name": "rewritten_data",
+          "type": "file_list",
+          "file_path": "${GF_ROOT}/data/workflows/BookReview/output/rewrite_paragraphs/bookreview_1_rewrite_${i}.txt"
+        }
+      ],
+      "output": [
+        {
+          "type": "file",
+          "name": "bookreview_1_rewrite.txt"
+        }
+      ],
+      "next_nodes": [
+        "naming"
+      ]
+    },
+    {
+      "id": "naming",
+      "description": "",
+      "type": "executor",
+      "disabled": false,
+      "input_parameters": [
+        {
+          "name": "prompt_template_file_path",
+          "type": "prompt_template",
+          "file_path": "${GF_ROOT}/data/workflows/BookReview/prompts/naming.txt"
+        },
+        {
+          "name": "content",
+          "type": "prompt_text",
+          "file_path": "${GF_ROOT}/data/workflows/BookReview/output/bookreview_1_rewrite.txt"
+        }
+      ],
+      "output": [
+        {
+          "type": "file",
+          "name": "name.txt"
+        }
+      ],
+      "next_nodes": [
+      ]
+    }
+
+  ]
+}

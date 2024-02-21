@@ -1,0 +1,1 @@
+{"type": "text", "content": "Similar to DALL\u00b7E 3, we also leverage GPT to turn short user prompts into longer detailed captions that are sent to the video model. This enables Sora to generate high quality videos that accurately follow user prompts.\nPrompting with images and videos\n"}

@@ -1,0 +1,1 @@
+{"type": "text", "content": "We believe the capabilities Sora has today demonstrate that continued scaling of video models is a promising path towards the development of capable simulators of the physical and digital world, and the objects, animals and people that live within them."}

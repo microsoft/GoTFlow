@@ -402,4 +402,4 @@ venv
 config/openai_key*
 logs/*.log
 _temp
-hidden/*
+data/workflows/Local/*

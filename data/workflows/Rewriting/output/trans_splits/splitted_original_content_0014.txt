@@ -1,0 +1,1 @@
+{"type": "text", "content": "Variable durations, resolutions, aspect ratios\nPast approaches to image and video generation typically resize, crop or trim videos to a standard size\u2014e.g., 4 second videos at 256x256 resolution. We find that instead training on data at its native size provides several benefits.\n"}

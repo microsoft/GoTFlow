@@ -1,1 +1,1 @@
-{"type": "code", "content": "```c\nunsigned int hash(const char* str, unsigned int hash_id) {\n    unsigned int hash = 5381;\n    int c;\n    while ((c = *str++)) {\n        hash = ((hash << 5) + hash) + c + hash_id;\n    }\n    return hash % BF_SIZE;\n}\n```"}
+{"type": "text", "content": "At a high level, we turn videos into patches by first compressing videos into a lower-dimensional latent space, and subsequently decomposing the representation into spacetime patches.\nVideo compression network\n"}

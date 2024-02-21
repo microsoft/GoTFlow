@@ -1,0 +1,1 @@
+{"type": "text", "content": "Animating DALL\u00b7E images\nSora is capable of generating videos provided an image and prompt as input. Below we show example videos generated based on DALL\u00b7E 2 and DALL\u00b7E 3 images.\nExtending generated videos\n"}

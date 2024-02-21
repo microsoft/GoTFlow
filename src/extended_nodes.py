@@ -93,7 +93,7 @@ class Splitter(Executor):
         real_output_file_path = output_file_path.replace("${i}", str(current_file_no).zfill(ZFILL_NUM))
         if len(grouped_paragraphs) == 1:
             with open(real_output_file_path, 'w', encoding='utf-8') as output_file:
-                json_paragraph = json.dumps(grouped_paragraphs[0])
+                json_paragraph = json.dumps(grouped_paragraphs[0], ensure_ascii=False)
                 output_file.write(json_paragraph)
         else:
             if len(grouped_paragraphs) == 0:

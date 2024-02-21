@@ -30,7 +30,11 @@ class RepeatExecutor(Executor):
             elif parameter["type"] == "splitted_prompt_text":
                 file_path = parameter["file_path"]
                 splitted_texts = read_file_list(file_path)
-
+            elif parameter["type"] == "prompt_text":
+                file_path = parameter["file_path"]
+                prompt_text = read_file(file_path)
+                if prompt_text:
+                    parameter_value_dict[name] = prompt_text
             elif parameter["type"] == "temp_parameter":
                 if name and parameter["value"]:
                     parameter_value_dict[name] = parameter["value"]

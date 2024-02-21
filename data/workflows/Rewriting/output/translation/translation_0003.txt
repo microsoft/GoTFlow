@@ -1,18 +1,1 @@
-```python
-import pandas as pd
-pd.set_option('display.max_rows', None)
-df = pd.read_csv('listings.csv')
-reservations = df[df['Type'] == 'Reservation']
-reservations['Start Date'] = pd.to_datetime(reservations['Start Date'])
-reservations['Year'] = reservations['Start Date'].dt.year
-reservations['Month'] = reservations['Start Date'].dt.month
-reservations['Nightly Rate'] = (reservations['Amount'] - reservations['Cleaning Fee']) / reservations['Nights']
-all_listings = reservations['Listing'].unique()
-all_years = reservations['Year'].unique()
-all_months = range(1, 13)
-index = pd.MultiIndex.from_product([all_listings, all_years, all_months], names=['Listing', 'Year', 'Month'])
-all_data = pd.DataFrame(index=index).reset_index()
-merged_data = pd.merge(all_data, reservations, on=['Listing', 'Year', 'Month'], how='left')
-average_nightly_rates = merged_data.groupby(['Listing', 'Year', 'Month'])['Nightly Rate'].mean().fillna(0)
-print(average_nightly_rates)
-```
+这篇技术报告主要关注我们将各种类型的视觉数据转化为统一表示的方法，这种表示能够实现大规模的生成模型训练，以及（2）对Sora的能力和局限性进行定性评估。本报告中不包括模型和实现细节。
