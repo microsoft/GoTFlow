@@ -3,7 +3,7 @@
   "input_parameters": [
     {
             "suffix": "",
-            "file_path": "${GF_ROOT}/data/workflows/BookReview/input/parameters/background.json"
+            "file_path": "${GF_ROOT}/data/workflows/BookReview/input/parameters/write_guidline_1.json"
     }
   ],
   "flow_items": [
@@ -166,7 +166,7 @@
       "output": [
         {
           "type": "file",
-          "name": "name.txt"
+          "name": "name_1.txt"
         }
       ],
       "next_nodes": [
