@@ -1,0 +1,3 @@
+题目：Imagen Video：使用扩散模型生成高清视频
+作者：Jonathan Ho, William Chan, Chitwan Saharia, Jay Whang, Ruiqi Gao, Alexey Gritsenko, Diederik P. Kingma, Ben Poole, Mohammad Norouzi, David J. Fleet, Tim Salimans
+摘要：我们提出了Imagen Video，这是一个基于视频扩散模型级联的文本条件视频生成系统。给定一个文本提示，Imagen Video使用基础视频生成模型和一系列交错的空间和时间视频超分辨率模型生成高清视频。我们描述了如何将系统扩展为高清文本到视频模型，包括设计决策，如在某些分辨率下选择完全卷积的时间和空间超分辨率模型，以及选择扩散模型的v参数化。此外，我们确认并将扩散为基础的图像生成的先前工作的发现转移到视频生成设置。最后，我们在无分类器引导下对视频模型应用渐进式蒸馏，以实现快速、高质量的采样。我们发现Imagen Video不仅能生成高保真度的视频，而且具有高度的可控性和世界知识，包括生成各种艺术风格的多样化视频和文本动画以及对3D物体理解的能力。请访问https://imagen.research.google/video/ 查看样本。

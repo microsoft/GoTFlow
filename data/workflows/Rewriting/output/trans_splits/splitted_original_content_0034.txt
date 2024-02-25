@@ -1,1 +1,0 @@
-{"type": "text", "content": "These capabilities suggest that continued scaling of video models is a promising path towards the development of highly-capable simulators of the physical and digital world, and the objects, animals and people that live within them.\nDiscussion\n"}

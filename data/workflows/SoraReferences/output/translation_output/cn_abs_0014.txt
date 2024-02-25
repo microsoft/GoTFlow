@@ -1,0 +1,5 @@
+---
+题目：语言模型是少样本学习器
+作者：Tom B. Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared Kaplan, Prafulla Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell, Sandhini Agarwal, Ariel Herbert-Voss, Gretchen Krueger, Tom Henighan, Rewon Child, Aditya Ramesh, Daniel M. Ziegler, Jeffrey Wu, Clemens Winter, Christopher Hesse, Mark Chen, Eric Sigler, Mateusz Litwin, Scott Gray, Benjamin Chess, Jack Clark, Christopher Berner, Sam McCandlish, Alec Radford, Ilya Sutskever, Dario Amodei
+摘要：最近的研究表明，在大量文本语料库上进行预训练，然后在特定任务上进行微调，可以在许多自然语言处理（NLP）任务和基准测试中取得显著提升。尽管这种方法在架构上通常是任务无关的，但仍需要数千或数万个示例的任务特定微调数据集。相比之下，人类通常只需要几个示例或简单的指令就可以完成新的语言任务，而当前的NLP系统在这方面仍然存在很大的困难。在这里，我们展示了通过扩大语言模型可以显著提高任务无关的少样本性能，有时甚至可以达到与之前最先进的微调方法相媲美的水平。具体来说，我们训练了GPT-3，一个具有1750亿参数的自回归语言模型，比以前的任何非稀疏语言模型多10倍，并在少样本设置中测试其性能。对于所有任务，GPT-3都是在没有梯度更新或微调的情况下应用的，任务和少样本演示仅通过与模型的文本交互来指定。GPT-3在许多NLP数据集上取得了很好的性能，包括翻译、问答和填空任务，以及一些需要实时推理或领域适应的任务，如对单词进行重新排序、在句子中使用新词或进行3位数的算术运算。与此同时，我们还发现了一些GPT-3在少样本学习中仍然存在困难的数据集，以及一些GPT-3在大型网络语料库上训练时面临的方法论问题。最后，我们发现GPT-3可以生成新闻文章样本，人类评估者很难区分这些文章是由人类还是机器生成的。我们讨论了这一发现以及GPT-3总体上对社会的更广泛影响。
+---

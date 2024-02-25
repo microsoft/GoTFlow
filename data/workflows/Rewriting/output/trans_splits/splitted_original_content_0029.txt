@@ -1,1 +1,0 @@
-{"type": "text", "content": "We find that video models exhibit a number of interesting emergent capabilities when trained at scale. These capabilities enable Sora to simulate some aspects of people, animals and environments from the physical world. These properties emerge without any explicit inductive biases for 3D, objects, etc.\u2014they are purely phenomena of scale."}

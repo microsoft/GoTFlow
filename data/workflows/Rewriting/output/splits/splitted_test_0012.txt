@@ -1,1 +1,0 @@
-{"type": "text", "content": "If it had come up with this idea on its own, it would have written the bloom filter differently, setting K bits at a time using a single hashing function."}

@@ -1,0 +1,5 @@
+---
+题目：一幅图像价值16x16个单词：大规模图像识别的变压器
+作者：Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, Matthias Minderer, Georg Heigold, Sylvain Gelly, Jakob Uszkoreit, Neil Houlsby
+摘要：尽管Transformer架构已经成为自然语言处理任务的事实标准，但其在计算机视觉领域的应用仍然有限。在视觉领域，注意力机制要么与卷积网络结合使用，要么用于替换卷积网络的某些组件，同时保持其整体结构。我们证明，这种依赖CNN的做法是没有必要的，直接将纯Transformer应用于图像块序列在图像分类任务上表现非常出色。当在大量数据上进行预训练并转移到多个中等规模或小规模的图像识别基准（ImageNet，CIFAR-100，VTAB等）时，视觉变压器（ViT）与最先进的卷积网络相比，取得了优异的结果，同时在训练过程中需要的计算资源要少得多。
+---

@@ -1,0 +1,5 @@
+---
+题目：Patch n' Pack：NaViT，一种适用于任何纵横比和分辨率的视觉变换器
+作者：Mostafa Dehghani, Basil Mustafa, Josip Djolonga, Jonathan Heek, Matthias Minderer, Mathilde Caron, Andreas Steiner, Joan Puigcerver, Robert Geirhos, Ibrahim Alabdulmohsin, Avital Oliver, Piotr Padlewski, Alexey Gritsenko, Mario Lučić, Neil Houlsby
+摘要：在计算机视觉模型处理图像之前，将图像调整为固定分辨率的做法无处不在，但其效果明显不理想，尚未成功受到挑战。然而，像视觉变换器（ViT）这样的模型提供了灵活的基于序列的建模，因此可以处理不同长度的输入序列。我们利用这一点，开发了NaViT（原生分辨率ViT），在训练过程中使用序列打包来处理任意分辨率和纵横比的输入。除了灵活的模型使用外，我们还展示了大规模监督和对比图像文本预训练的改进训练效率。NaViT可以高效地转移到标准任务，如图像和视频分类、目标检测和语义分割，并在鲁棒性和公平性基准测试中取得改进的结果。在推理时，输入分辨率的灵活性可以用来平滑地导航测试时的成本-性能权衡。我们相信，NaViT标志着与大多数计算机视觉模型使用的标准CNN设计输入和建模流程的分离，并代表了ViT的一个有前景的发展方向。
+---

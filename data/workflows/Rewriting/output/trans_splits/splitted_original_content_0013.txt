@@ -1,1 +1,0 @@
-{"type": "text", "content": "In this work, we find that diffusion transformers scale effectively as video models as well. Below, we show a comparison of video samples with fixed seeds and inputs as training progresses. Sample quality improves markedly as training compute increases."}

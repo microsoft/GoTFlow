@@ -1,1 +1,0 @@
-{"type": "text", "content": "At a high level, we turn videos into patches by first compressing videos into a lower-dimensional latent space, and subsequently decomposing the representation into spacetime patches.\nVideo compression network\n"}

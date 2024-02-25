@@ -21,7 +21,7 @@
       "output": [
         {
           "type": "file_list",
-          "name": "trans_splits/splitted_original_content_${i}.txt"
+          "name": "splits/splitted_original_content_${i}.txt"
         }
       ],
       "next_nodes": [

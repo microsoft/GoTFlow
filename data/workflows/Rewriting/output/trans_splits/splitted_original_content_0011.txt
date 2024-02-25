@@ -1,1 +1,0 @@
-{"type": "text", "content": "Scaling transformers for video generation"}

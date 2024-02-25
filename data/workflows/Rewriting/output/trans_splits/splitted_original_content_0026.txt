@@ -1,1 +1,0 @@
-{"type": "text", "content": "Diffusion models have enabled a plethora of methods for editing images and videos from text prompts. Below we apply one of these methods, SDEdit, to Sora. This technique enables Sora to transform  the styles and environments of input videos zero-shot.\nConnecting videos\n"}
