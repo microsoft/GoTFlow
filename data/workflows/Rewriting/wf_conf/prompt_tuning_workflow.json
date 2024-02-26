@@ -1,10 +1,11 @@
 {
-  "output_dir_path": "${GF_ROOT}/data/workflows/Rewriting/output",
+  "output_dir_path": "${GF_ROOT}/hidden/output",
   "input_parameters": [],
   "flow_items": [
     {
-      "id": "data_splitter",
+      "id": "node_1",
       "description": "split the data",
+      "disabled": true,
       "type": "splitter",
       "input_parameters": [
         {
@@ -24,30 +25,24 @@
           "name": "trans_splits/splitted_original_content_${i}.txt"
         }
       ],
-      "next_nodes": [
+      "next_nodes": ["node_2"
       ]
     },
     {
-      "id": "prompt_test",
+      "id": "node_2",
       "description": "test prompt",
       "type": "executor",
-      "disabled": true,
       "input_parameters": [
         {
           "name": "prompt_template_file_path",
           "type": "prompt_template",
-          "file_path": "${GF_ROOT}/data/workflows/Rewriting/prompts/translate.txt"
-        },
-        {
-        "name": "content",
-        "type": "prompt_text",
-        "file_path": "${GF_ROOT}/data/workflows/Rewriting/input/raw_data/original_content.txt"
+          "file_path": "${GF_ROOT}/hidden/bingchat_prompts/3.txt"
         }
       ],
       "output": [
         {
           "type": "file",
-          "name": "translated_content.txt"
+          "name": "output_3.txt"
         }
       ],
       "next_nodes": [
