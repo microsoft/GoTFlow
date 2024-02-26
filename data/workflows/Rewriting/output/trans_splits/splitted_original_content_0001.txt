@@ -1,1 +1,0 @@
-{"type": "text", "content": "Video generation models as world simulators"}

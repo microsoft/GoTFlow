@@ -1,0 +1,5 @@
+---
+题目：VideoGPT：使用VQ-VAE和Transformer的视频生成
+作者：Wilson Yan, Yunzhi Zhang, Pieter Abbeel, Aravind Srinivas
+摘要：我们提出了VideoGPT：一种概念简单的架构，用于将基于似然的生成建模扩展到自然视频。VideoGPT使用VQ-VAE通过采用3D卷积和轴向自注意力来学习原始视频的下采样离散潜在表示。然后使用简单的GPT类似架构通过时空位置编码自回归地对离散潜变量进行建模。尽管在公式化和训练方便性上具有简单性，但我们的架构能够在BAIR机器人数据集上生成与最先进的GAN模型竞争的样本，并从UCF-101和Tumbler GIF数据集（TGIF）生成高保真度的自然视频。我们希望我们提出的架构能作为基于Transformer的视频生成模型的简约实现的可复制参考。样本和代码可在https://wilson1yan.github.io/videogpt/index.html 上找到。
+---

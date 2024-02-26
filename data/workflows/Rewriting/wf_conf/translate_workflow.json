@@ -23,7 +23,7 @@
       "output": [
         {
           "type": "file_list",
-          "name": "trans_splits/splitted_original_content_${i}.txt"
+          "name": "splits/splitted_original_content_${i}.txt"
         }
       ],
       "next_nodes": [
@@ -44,13 +44,13 @@
         {
           "name": "content",
           "type": "splitted_prompt_text",
-          "file_path": "${GF_ROOT}/data/workflows/Rewriting/output/trans_splits/splitted_original_content_${i}.txt"
+          "file_path": "${GF_ROOT}/data/workflows/Rewriting/output/splits/splitted_original_content_${i}.txt"
         }
       ],
       "output": [
         {
           "type": "file_list",
-          "name": "translation/translation_${i}.txt"
+          "name": "rewritten/translation_${i}.txt"
         }
       ],
       "next_nodes": [

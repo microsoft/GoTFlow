@@ -403,3 +403,8 @@ config/openai_key*
 logs/*.log
 _temp
 data/workflows/Local/*
+data/workflows/Rewriting/output/splits/*
+data/workflows/Rewriting/output/rewritten/*
+data/workflows/BookReview/output/splits/*
+data/workflows/BookReview/output/paragraphs/*
+data/workflows/BookReview/output/rewrite_paragraphs/*

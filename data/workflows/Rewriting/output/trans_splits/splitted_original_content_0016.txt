@@ -1,1 +1,0 @@
-{"type": "text", "content": "Sora can sample widescreen 1920x1080p videos, vertical 1080x1920 videos and everything inbetween. This lets Sora create content for different devices directly at their native aspect ratios. It also lets us quickly prototype content at lower sizes before generating at full resolution\u2014all with the same model."}

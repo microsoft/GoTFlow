@@ -1,0 +1,3 @@
+题目：扩展自回归模型用于内容丰富的文本到图像生成
+作者：Jiahui Yu, Yuanzhong Xu, Jing Yu Koh, Thang Luong, Gunjan Baid, Zirui Wang, Vijay Vasudevan, Alexander Ku, Yinfei Yang, Burcu Karagol Ayan, Ben Hutchinson, Wei Han, Zarana Parekh, Xin Li, Han Zhang, Jason Baldridge, Yonghui Wu
+摘要：我们提出了一种路径自回归文本到图像（Parti）模型，该模型生成高保真度的真实感图像，并支持涉及复杂构图和世界知识的内容丰富的合成。Parti将文本到图像生成视为一个序列到序列建模问题，类似于机器翻译，目标输出是图像标记序列而不是另一种语言的文本标记。这种策略可以自然地利用大型语言模型的丰富成果，这些模型通过扩大数据和模型规模不断提高性能和能力。我们的方法很简单：首先，Parti使用基于Transformer的图像标记器ViT-VQGAN将图像编码为离散标记的序列。其次，我们通过将编码器-解码器Transformer模型扩展到200亿参数，实现了持续的质量改进，并在MS-COCO上实现了最新的零射击FID得分7.23和微调FID得分3.22。我们对Localized Narratives以及PartiPrompts（P2）进行了详细分析，P2是一种包含超过1600个英语提示的新型全面基准测试，证明了Parti在各种类别和难度方面的有效性。我们还探讨并强调了我们模型的局限性，以确定并举例说明需要进一步改进的关键领域。请访问https://parti.research.google/ 查看高分辨率图像。

@@ -1,1 +1,0 @@
-{"type": "text", "content": "We can use this method to extend a video both forward and backward to produce a seamless infinite loop.\nVideo-to-video editing\n"}

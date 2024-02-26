@@ -1,0 +1,5 @@
+---
+题目：基于Transformer的可扩展扩散模型
+作者：William Peebles, Saining Xie
+摘要：我们探讨了一类基于Transformer架构的扩散模型。我们训练了图像的潜在扩散模型，用在潜在块上操作的Transformer替换了常用的U-Net骨干。我们通过Gflops测量的前向传播复杂性来分析我们的扩散Transformer（DiT）的可扩展性。我们发现，具有更高Gflops的DiT（通过增加Transformer的深度/宽度或增加输入令牌的数量）始终具有较低的FID。除了具有良好的可扩展性属性外，我们最大的DiT-XL/2模型在类条件ImageNet 512x512和256x256基准测试中均优于所有先前的扩散模型，在后者上实现了最先进的FID 2.27。
+---

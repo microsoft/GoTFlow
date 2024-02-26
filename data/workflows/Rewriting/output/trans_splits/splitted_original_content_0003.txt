@@ -1,1 +1,0 @@
-{"type": "text", "content": "This technical report focuses on our method for turning visual data of all types into a unified representation that enables large-scale training of generative models, and (2) qualitative evaluation of Sora\u2019s capabilities and limitations. Model and implementation details are not included in this report."}

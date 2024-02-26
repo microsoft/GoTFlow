@@ -12,7 +12,7 @@
         {
           "name": "source_file",
           "type": "file",
-          "file_path": "${GF_ROOT}/data/workflows/Rewriting/input/raw_data/test.txt"
+          "file_path": "${GF_ROOT}/data/workflows/Rewriting/input/raw_data/subtitle.txt"
         },
         {
           "name": "max_length",
@@ -72,7 +72,7 @@
       "output": [
         {
           "type": "file",
-          "name": "rewritten_test.txt"
+          "name": "rewritten_subtitle.txt"
         }
       ],
       "next_nodes": [
