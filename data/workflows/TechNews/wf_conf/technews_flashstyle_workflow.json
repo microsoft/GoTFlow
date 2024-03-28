@@ -38,22 +38,12 @@
       "id": "news_writing",
       "description": "",
       "type": "repeat_executor",
-      "disabled": false,
+      "disabled": true,
       "input_parameters": [
         {
           "name": "prompt_template_file_path",
           "type": "prompt_template",
           "file_path": "${GF_ROOT}/data/workflows/TechNews/prompts/news_writing.txt"
-        },
-        {
-        "name": "introduction_company",
-        "type": "prompt_text",
-        "file_path": "${GF_ROOT}/data/workflows/TechNews/input/introduction_company.txt"
-        },
-        {
-        "name": "introduction_product",
-        "type": "prompt_text",
-        "file_path": "${GF_ROOT}/data/workflows/TechNews/input/introduction_product.txt"
         },
         {
         "name": "news_event",
@@ -89,7 +79,7 @@
       "id": "merge_paragraphs",
       "description": "merge review paragraphs",
       "type": "merger",
-      "disabled": false,
+      "disabled": true,
       "input_parameters": [
         {
           "name": "rewritten_data",
@@ -100,7 +90,7 @@
       "output": [
         {
           "type": "file",
-          "name": "TechNews_flashstyle_2.txt"
+          "name": "TechNews_flashstyle.txt"
         }
       ],
       "next_nodes": [
@@ -149,7 +139,7 @@
       "output": [
         {
           "type": "file",
-          "name": "TechNews_flashstyle_rewrite_2.txt"
+          "name": "TechNews_flashstyle_rewrite.txt"
         }
       ],
       "next_nodes": [

@@ -4,7 +4,7 @@
     ${introduction_company}
     ${customer}公司的主要产品/服务为${product}的介绍如下：
     ${introduction_product}
-##Goal:目前我们要为${customer}撰写一篇${style}风格的科技新闻报告的稿件，这篇新闻稿的新闻人物为${figure},要撰写一篇报道${event}的稿件。${point}。稿件总字数在大约${total_words}字。
+##Goal:目前我们要为${customer}撰写一篇${style}风格的科技新闻报告的稿件，这篇新闻稿的新闻人物为${figure},要撰写一篇报道${event}的稿件。${point}稿件总字数在大约${total_words}字。
 ##Outline:${style}风格的科技新闻的提纲和各部分字数如下：
     ${news_outline}
 ##Event Materials：关于本次新闻事件的具体信息如下：
