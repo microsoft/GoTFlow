@@ -1,0 +1,159 @@
+{
+  "output_dir_path": "${GF_ROOT}/data/workflows/TechNews/output",
+  "input_parameters": [
+    {
+            "suffix": "",
+            "file_path": "${GF_ROOT}/data/workflows/TechNews/input/parameters/customer_requirements.json"
+    }
+  ],
+  "flow_items": [
+    {
+      "id": "data_splitter",
+      "description": "split the data",
+      "type": "splitter",
+      "disabled": true,
+      "input_parameters": [
+        {
+          "name": "source_file",
+          "type": "file",
+          "file_path": "${GF_ROOT}/data/workflows/TechNews/input/technews_outline_flashstyle.txt"
+        },
+        {
+          "name": "max_length",
+          "type": "int",
+          "value": 0
+        }
+      ],
+      "output": [
+        {
+          "type": "file_list",
+          "name": "splits/technews_outline_flashstyle_${i}.txt"
+        }
+      ],
+      "next_nodes": [
+        "news_writing"
+      ]
+    },
+    {
+      "id": "news_writing",
+      "description": "",
+      "type": "repeat_executor",
+      "disabled": false,
+      "input_parameters": [
+        {
+          "name": "prompt_template_file_path",
+          "type": "prompt_template",
+          "file_path": "${GF_ROOT}/data/workflows/TechNews/prompts/news_writing.txt"
+        },
+        {
+        "name": "introduction_company",
+        "type": "prompt_text",
+        "file_path": "${GF_ROOT}/data/workflows/TechNews/input/introduction_company.txt"
+        },
+        {
+        "name": "introduction_product",
+        "type": "prompt_text",
+        "file_path": "${GF_ROOT}/data/workflows/TechNews/input/introduction_product.txt"
+        },
+        {
+        "name": "news_event",
+        "type": "prompt_text",
+        "file_path": "${GF_ROOT}/data/workflows/TechNews/input/news_event.txt"
+        },
+        {
+          "name": "news_outline",
+          "type": "prompt_text",
+          "file_path": "${GF_ROOT}/data/workflows/TechNews/input/technews_outline_flashstyle.txt"
+        },
+        {
+          "name": "content",
+          "type": "splitted_prompt_text",
+          "file_path": "${GF_ROOT}/data/workflows/TechNews/output/splits/technews_outline_flashstyle_${i}.txt"
+        },
+        {
+        "name": "input_parameter_file_path",
+        "type": "prompt_parameters"
+        }
+      ],
+      "output": [
+        {
+          "type": "file_list",
+          "name": "paragraphs/technews_flashstyle_${i}.txt"
+        }
+      ],
+      "next_nodes": [
+        "merge_paragraphs"
+      ]
+    },
+    {
+      "id": "merge_paragraphs",
+      "description": "merge review paragraphs",
+      "type": "merger",
+      "disabled": false,
+      "input_parameters": [
+        {
+          "name": "rewritten_data",
+          "type": "file_list",
+          "file_path": "${GF_ROOT}/data/workflows/TechNews/output/paragraphs/technews_flashstyle_${i}.txt"
+        }
+      ],
+      "output": [
+        {
+          "type": "file",
+          "name": "TechNews_flashstyle_2.txt"
+        }
+      ],
+      "next_nodes": [
+        "rewrite_technews"
+      ]
+    },
+    {
+      "id": "rewrite_technews",
+      "description": "",
+      "type": "repeat_executor",
+      "disabled": false,
+      "input_parameters": [
+        {
+          "name": "prompt_template_file_path",
+          "type": "prompt_template",
+          "file_path": "${GF_ROOT}/data/workflows/TechNews/prompts/rewrite_technews.txt"
+        },
+        {
+        "name": "content",
+        "type": "splitted_prompt_text",
+        "file_path": "${GF_ROOT}/data/workflows/TechNews/output/paragraphs/technews_flashstyle_${i}.txt"
+        }
+      ],
+      "output": [
+        {
+           "type": "file_list",
+          "name": "rewrite_paragraphs/technews_flashstyle_rewrite_${i}.txt"
+        }
+      ],
+      "next_nodes": [
+        "merge_rewrite_paragraphs"
+      ]
+    },
+    {
+      "id": "merge_rewrite_paragraphs",
+      "description": "merge review paragraphs",
+      "type": "merger",
+      "disabled": false,
+      "input_parameters": [
+        {
+          "name": "rewritten_data",
+          "type": "file_list",
+          "file_path": "${GF_ROOT}/data/workflows/TechNews/output/rewrite_paragraphs/technews_flashstyle_rewrite_${i}.txt"
+        }
+      ],
+      "output": [
+        {
+          "type": "file",
+          "name": "TechNews_flashstyle_rewrite_2.txt"
+        }
+      ],
+      "next_nodes": [
+      ]
+    }
+  ]
+}
